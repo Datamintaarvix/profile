@@ -852,9 +852,8 @@ export const faqs: FAQItem[] = [
 // 13. SOCIAL & EXTERNAL LINKS
 // ==========================================
 export const socialLinks: SocialLink[] = [
-  // TEMPORARY DATA — REPLACE BEFORE PRODUCTION
-  { platform: "LinkedIn", url: "https://linkedin.com/company/datamint-arvix", handle: "datamint-arvix" },
+  { platform: "LinkedIn", url: "https://www.linkedin.com/company/datamint-aarvix/", handle: "datamint-aarvix" },
   { platform: "GitHub", url: "https://github.com/datamint-arvix", handle: "datamint-arvix" },
   { platform: "X", url: "https://x.com/datamintarvix", handle: "@datamintarvix" },
-  { platform: "Instagram", url: "https://instagram.com/datamintarvix", handle: "@datamintarvix" }
+  { platform: "Instagram", url: "https://www.instagram.com/datamint_aarvix", handle: "@datamint_aarvix" }
 ];
