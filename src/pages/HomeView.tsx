@@ -244,9 +244,6 @@ export const HomeView: React.FC<HomeViewProps> = ({
                <div className="absolute top-4 left-4 text-[10px] font-mono text-cyan-400 tracking-wider z-10">
                  [ ABOUT / CULTURE ]
                </div>
-               <div className="w-16 h-16 rounded-full bg-cyan-500/20 flex items-center justify-center backdrop-blur-sm border border-cyan-400/30 cursor-pointer hover:scale-105 transition-transform z-10">
-                  <Play className="w-6 h-6 text-cyan-400 ml-1" />
-               </div>
             </div>
           </div>
         </div>
