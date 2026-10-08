@@ -1,0 +1,163 @@
+/* ==========================================================================
+   Global Responsive Styles
+   End-to-End mobile and tablet optimizations
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Mobile Phones (Up to 767px)
+   -------------------------------------------------------------------------- */
+@media screen and (max-width: 767px) {
+  /* Global Fixes to prevent horizontal scroll */
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  /* Typography Scaling */
+  h1 {
+    font-size: clamp(2.5rem, 8vw, 3.5rem) !important;
+    line-height: 1.1 !important;
+  }
+  h2 {
+    font-size: clamp(2rem, 6vw, 2.5rem) !important;
+    line-height: 1.2 !important;
+  }
+  h3 {
+    font-size: clamp(1.5rem, 5vw, 1.75rem) !important;
+  }
+  p {
+    font-size: 0.9375rem !important; /* 15px */
+    line-height: 1.6 !important;
+  }
+
+  /* Structural Spacing (Padding/Margins) */
+  .max-w-7xl {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  .pt-40 {
+    padding-top: 6rem !important; /* Reduce top padding on mobile */
+  }
+  .pb-24 {
+    padding-bottom: 4rem !important;
+  }
+  .space-y-32 > * + * {
+    margin-top: 5rem !important; /* Tighter sections on mobile */
+  }
+  .space-y-20 > * + * {
+    margin-top: 3.5rem !important;
+  }
+
+  /* Glass Panels & Cards */
+  .glass-panel {
+    padding: 1.5rem !important;
+    border-radius: 1.5rem !important;
+  }
+  .glass-card {
+    padding: 1.25rem !important;
+    border-radius: 1.25rem !important;
+  }
+
+  /* Form Elements & Inputs for touch targets */
+  input, textarea, select {
+    font-size: 16px !important; /* Prevents iOS auto-zoom */
+    padding: 0.875rem 1rem !important;
+  }
+  button {
+    min-height: 44px; /* Apple Human Interface Guidelines tap target size */
+  }
+
+  /* Navbar Adjustments */
+  nav.fixed {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    height: 4.5rem !important;
+  }
+  
+  /* Hero Sections */
+  .hero-container {
+    text-align: center;
+    align-items: center;
+  }
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  .hero-buttons button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Footer Links Stacking */
+  footer .grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  footer .grid > div {
+    text-align: center;
+    align-items: center;
+  }
+  footer ul {
+    align-items: center;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Tablets (768px to 1023px)
+   -------------------------------------------------------------------------- */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  /* Typography Scaling */
+  h1 {
+    font-size: clamp(3rem, 6vw, 4rem) !important;
+  }
+
+  /* Section Spacing */
+  .pt-40 {
+    padding-top: 8rem !important;
+  }
+
+  /* 2-column forced grids for tablet */
+  .tablet-grid-2 {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem !important;
+  }
+
+  /* Adjust padding for glass panels */
+  .glass-panel {
+    padding: 2.5rem !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Special Component Hacks (All Mobile Devices)
+   -------------------------------------------------------------------------- */
+@media screen and (max-width: 1023px) {
+  /* Hide purely decorative background elements on smaller screens to boost performance */
+  .bg-gradient-radial, 
+  .blur-\[120px\],
+  .blur-3xl {
+    opacity: 0.5; /* Reduce intensity */
+  }
+
+  /* Make vertical tabs in ServicesView horizontally scrollable on mobile/tablet */
+  .services-tabs-container {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    white-space: nowrap !important;
+    padding-bottom: 1rem !important;
+    -webkit-overflow-scrolling: touch;
+    /* Hide scrollbar */
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+  }
+  .services-tabs-container::-webkit-scrollbar {
+    display: none;
+  }
+  .services-tabs-container > div {
+    flex: 0 0 auto !important;
+    width: 250px !important;
+  }
+}
