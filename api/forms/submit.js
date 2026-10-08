@@ -1,38 +1,13 @@
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import multer from 'multer';
 import { Resend } from 'resend';
 
-dotenv.config();
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '10mb',
+    },
+  },
+};
 
-const app = express();
-const port = process.env.PORT || 5000;
-
-// Initialize Resend
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-// Middleware
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// Configure multer for file uploads (in-memory storage for forwarding via email)
-const storage = multer.memoryStorage();
-const upload = multer({ 
-  storage,
-  limits: { fileSize: 10 * 1024 * 1024 }, // 10MB limit
-  fileFilter: (req, file, cb) => {
-    const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
-    if (allowedTypes.includes(file.mimetype)) {
-      cb(null, true);
-    } else {
-      cb(new Error('Invalid file type. Only PDF and Word documents are allowed.'));
-    }
-  }
-});
-
-// Helper to format date
 const formatDate = () => {
   return new Date().toLocaleString('en-US', {
     day: '2-digit',
@@ -44,13 +19,11 @@ const formatDate = () => {
   });
 };
 
-// Generate HTML Email Body
 const generateEmailHtml = (formType, data, sourcePage) => {
   let customerDetails = '';
   let projectDetails = '';
   let otherDetails = '';
 
-  // Customer Details
   if (data.name || data.firstName || data.lastName) {
     const fullName = data.name || `${data.firstName || ''} ${data.lastName || ''}`.trim();
     customerDetails += `<p><strong>Name:</strong> ${fullName}</p>`;
@@ -60,7 +33,6 @@ const generateEmailHtml = (formType, data, sourcePage) => {
   if (data.company) customerDetails += `<p><strong>Company:</strong> ${data.company}</p>`;
   if (data.location) customerDetails += `<p><strong>Location:</strong> ${data.location}</p>`;
 
-  // Project/Career Details
   if (data.service) projectDetails += `<p><strong>Service:</strong> ${data.service}</p>`;
   if (data.package) projectDetails += `<p><strong>Package:</strong> ${data.package}</p>`;
   if (data.budget) projectDetails += `<p><strong>Budget:</strong> ${data.budget}</p>`;
@@ -71,7 +43,6 @@ const generateEmailHtml = (formType, data, sourcePage) => {
   if (data.linkedin) projectDetails += `<p><strong>LinkedIn:</strong> <a href="${data.linkedin}">${data.linkedin}</a></p>`;
   if (data.portfolio) projectDetails += `<p><strong>Portfolio:</strong> <a href="${data.portfolio}">${data.portfolio}</a></p>`;
   
-  // Message / Other
   if (data.subject) otherDetails += `<p><strong>Subject:</strong> ${data.subject}</p>`;
   if (data.message || data.coverLetter) {
     const msg = data.message || data.coverLetter;
@@ -81,30 +52,21 @@ const generateEmailHtml = (formType, data, sourcePage) => {
   return `
     <div style="font-family: Arial, sans-serif; max-w: 600px; margin: 0 auto; color: #333;">
       <h2 style="color: #0F172A; border-bottom: 2px solid #00B8FF; padding-bottom: 10px;">DATAMINT AARVIX <br/> <span style="font-size: 16px; color: #64748B;">NEW FORM SUBMISSION</span></h2>
-      
       <p><strong>FORM TYPE:</strong> ${formType}</p>
       <p><strong>SUBMITTED DATE/TIME:</strong> ${formatDate()}</p>
       <p><strong>SOURCE PAGE:</strong> ${sourcePage || 'Unknown'}</p>
-
       <hr style="border: none; border-top: 1px solid #E2E8F0; margin: 20px 0;" />
-      
       <h3 style="color: #0F172A;">CUSTOMER DETAILS</h3>
       ${customerDetails || '<p>N/A</p>'}
-      
       <hr style="border: none; border-top: 1px solid #E2E8F0; margin: 20px 0;" />
-      
       <h3 style="color: #0F172A;">REQUEST DETAILS</h3>
       ${projectDetails || '<p>N/A</p>'}
-      
       ${otherDetails ? `
         <hr style="border: none; border-top: 1px solid #E2E8F0; margin: 20px 0;" />
         <h3 style="color: #0F172A;">ADDITIONAL INFORMATION</h3>
         ${otherDetails}
       ` : ''}
-
       <hr style="border: none; border-top: 1px solid #E2E8F0; margin: 20px 0;" />
-      
-      <br/>
       <p style="font-size: 12px; color: #94A3B8;">
         DATAMINT AARVIX<br/>
         This is an automated form notification.
@@ -113,7 +75,25 @@ const generateEmailHtml = (formType, data, sourcePage) => {
   `;
 };
 
-app.post('/api/forms/submit', async (req, res) => {
+export default async function handler(req, res) {
+  // CORS Headers
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  );
+
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+
+  if (req.method !== 'POST') {
+    return res.status(405).json({ success: false, error: 'Method not allowed' });
+  }
+
   try {
     const { formType, sourcePage, data, file } = req.body;
     
@@ -134,7 +114,6 @@ app.post('/api/forms/submit', async (req, res) => {
     const fromEmail = process.env.FROM_EMAIL || 'DATAMINT AARVIX <info@datamintaarvix.com>';
 
     let subject = \`New Form Submission: \${formType}\`;
-    
     if (formType.toLowerCase().includes('contact')) {
       subject = \`New Contact Enquiry — \${name}\`;
     } else if (formType.toLowerCase().includes('quote')) {
@@ -159,8 +138,8 @@ app.post('/api/forms/submit', async (req, res) => {
       html: htmlBody,
     };
 
-    // Attach resume if provided via JSON Base64
     if (file && file.content && file.name) {
+      // Vercel Serverless function supports sending Base64 strings directly in Resend attachments
       emailPayload.attachments = [
         {
           filename: file.name,
@@ -174,6 +153,7 @@ app.post('/api/forms/submit', async (req, res) => {
       return res.status(200).json({ success: true, message: 'Submission received successfully (Mocked).' });
     }
 
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const { data: resendData, error } = await resend.emails.send(emailPayload);
 
     if (error) {
@@ -181,14 +161,10 @@ app.post('/api/forms/submit', async (req, res) => {
       return res.status(500).json({ success: false, error: 'Something went wrong. Please try again.' });
     }
 
-    res.status(200).json({ success: true, message: 'Submission received successfully.' });
+    return res.status(200).json({ success: true, message: 'Submission received successfully.' });
 
   } catch (error) {
     console.error('Form submission error:', error);
-    res.status(500).json({ success: false, error: 'Something went wrong. Please try again.' });
+    return res.status(500).json({ success: false, error: 'Something went wrong. Please try again.' });
   }
-});
-
-app.listen(port, () => {
-  console.log(\`Backend server running on port \${port}\`);
-});
+}
