@@ -62,7 +62,7 @@ export const QuoteView: React.FC<QuoteViewProps> = ({
 
     try {
       await sendAdminNotification({
-        formType: formData.selectedPackage ? 'Package Enquiry' : 'Get a Quote',
+        formType: formData.packageTier ? 'Package Enquiry' : 'Get a Quote',
         sourcePage: window.location.href,
         data: {
           name: formData.name,
@@ -70,7 +70,7 @@ export const QuoteView: React.FC<QuoteViewProps> = ({
           email: formData.email,
           phone: formData.phone,
           service: formData.service,
-          package: formData.selectedPackage,
+          package: formData.packageTier,
           budget: formData.budget,
           message: formData.description,
         }
