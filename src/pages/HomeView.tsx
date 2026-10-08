@@ -429,7 +429,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
       <section className="relative w-full pt-32 pb-32">
         {/* Using a tech-focused image for solutions for the whole section */}
         <div className="absolute inset-0 bg-[url('/home/twilightreflectionsatamodernofficeplaza.png')] bg-cover bg-center bg-fixed" />
-        <div className="absolute inset-0 bg-navy-950/10" />
+        <div className="absolute inset-0 bg-[#03101D]/90" />
         
         {/* Banner Header Text */}
         <div className="relative w-full flex flex-col items-center justify-center text-center mb-16 z-10 px-4">
