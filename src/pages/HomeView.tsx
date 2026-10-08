@@ -280,11 +280,11 @@ export const HomeView: React.FC<HomeViewProps> = ({
               We focus on long-term architecture rather than quick superficial fixes.
             </p>
             <div className="flex gap-4">
-              <button onClick={prevPillar} className="text-slate-500 hover:text-white transition-colors cursor-pointer">
-                <ArrowLeft className="w-5 h-5 md:w-6 md:h-6" />
+              <button onClick={prevPillar} className="w-12 h-12 flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-white/10 transition-all cursor-pointer">
+                <ArrowLeft className="w-5 h-5" />
               </button>
-              <button onClick={nextPillar} className="text-white hover:text-slate-400 transition-colors cursor-pointer">
-                <ArrowRight className="w-5 h-5 md:w-6 md:h-6" />
+              <button onClick={nextPillar} className="w-12 h-12 flex items-center justify-center rounded-full border border-cyan-500/50 bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500/20 transition-all cursor-pointer">
+                <ArrowRight className="w-5 h-5" />
               </button>
             </div>
           </div>
@@ -362,11 +362,11 @@ export const HomeView: React.FC<HomeViewProps> = ({
               </p>
               
               <div className="flex gap-4">
-                <button onClick={() => scrollMethodology('left')} className="text-slate-500 hover:text-white transition-colors cursor-pointer focus:outline-none">
-                  <ArrowLeft className="w-6 h-6" />
+                <button onClick={() => scrollMethodology('left')} className="w-12 h-12 flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-white/10 transition-all cursor-pointer focus:outline-none">
+                  <ArrowLeft className="w-5 h-5" />
                 </button>
-                <button onClick={() => scrollMethodology('right')} className="text-slate-500 hover:text-white transition-colors cursor-pointer focus:outline-none">
-                  <ArrowRight className="w-6 h-6" />
+                <button onClick={() => scrollMethodology('right')} className="w-12 h-12 flex items-center justify-center rounded-full border border-cyan-500/50 bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500/20 transition-all cursor-pointer focus:outline-none">
+                  <ArrowRight className="w-5 h-5" />
                 </button>
               </div>
             </div>
