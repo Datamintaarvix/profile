@@ -10,7 +10,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // Initialize Resend
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY || 're_dummy_key');
 
 // Middleware
 app.use(cors());
@@ -133,20 +133,20 @@ app.post('/api/forms/submit', async (req, res) => {
     const adminEmail = process.env.ADMIN_EMAIL || 'srisaran2694@gmail.com';
     const fromEmail = process.env.FROM_EMAIL || 'DATAMINT AARVIX <info@datamintaarvix.com>';
 
-    let subject = \`New Form Submission: \${formType}\`;
+    let subject = `New Form Submission: ${formType}`;
     
     if (formType.toLowerCase().includes('contact')) {
-      subject = \`New Contact Enquiry — \${name}\`;
+      subject = `New Contact Enquiry — ${name}`;
     } else if (formType.toLowerCase().includes('quote')) {
-      subject = \`New Quote Request — \${name}\`;
+      subject = `New Quote Request — ${name}`;
     } else if (formType.toLowerCase().includes('career')) {
-      subject = \`New Career Application — \${name}\`;
+      subject = `New Career Application — ${name}`;
     } else if (formType.toLowerCase().includes('package')) {
-      subject = \`New Package Enquiry — \${data.package || name} — \${name}\`;
+      subject = `New Package Enquiry — ${data.package || name} — ${name}`;
     } else if (formType.toLowerCase().includes('service')) {
-      subject = \`New Service Enquiry — \${data.service || name} — \${name}\`;
+      subject = `New Service Enquiry — ${data.service || name} — ${name}`;
     } else if (formType.toLowerCase().includes('consultation')) {
-      subject = \`New Consultation Request — \${name}\`;
+      subject = `New Consultation Request — ${name}`;
     }
 
     const htmlBody = generateEmailHtml(formType, data, sourcePage);
@@ -190,5 +190,5 @@ app.post('/api/forms/submit', async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(\`Backend server running on port \${port}\`);
+  console.log(`Backend server running on port ${port}`);
 });
