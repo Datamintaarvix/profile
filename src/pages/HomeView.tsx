@@ -235,17 +235,18 @@ export const HomeView: React.FC<HomeViewProps> = ({
           <div className="relative w-full">
             <div className="absolute -inset-4 bg-gradient-to-tr from-cyan-500/10 to-transparent rounded-[2rem] blur-2xl" />
             <div className="relative bg-[#061525]/80 backdrop-blur-xl border border-[rgba(0,180,255,0.18)] rounded-[24px] p-6 shadow-2xl overflow-hidden aspect-[4/3] flex flex-col items-center justify-center">
-               <div className="absolute top-4 left-4 text-[10px] font-mono text-cyan-400 tracking-wider">
+               <img
+                  src="/home/focusedworkinanaioffice.png"
+                  alt="Corporate technology workflow"
+                  className="absolute inset-0 w-full h-full object-cover z-0"
+                />
+               <div className="absolute inset-0 bg-navy-950/20 z-0 pointer-events-none"></div>
+               <div className="absolute top-4 left-4 text-[10px] font-mono text-cyan-400 tracking-wider z-10">
                  [ ABOUT / CULTURE ]
                </div>
                <div className="w-16 h-16 rounded-full bg-cyan-500/20 flex items-center justify-center backdrop-blur-sm border border-cyan-400/30 cursor-pointer hover:scale-105 transition-transform z-10">
                   <Play className="w-6 h-6 text-cyan-400 ml-1" />
                </div>
-               <img
-                  src="/home/focusedworkinanaioffice.png"
-                  alt="Corporate technology workflow"
-                  className="opacity-50 absolute inset-0 w-full h-full object-cover mix-blend-screen"
-                />
             </div>
           </div>
         </div>
