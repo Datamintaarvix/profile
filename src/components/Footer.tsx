@@ -54,35 +54,30 @@ export const Footer: React.FC<FooterProps> = ({
   };
 
   return (
-    <footer className="relative bg-[#020813] border-t border-white/5 pt-16 pb-8 overflow-hidden">
-      {/* Abstract Background Elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-cyan-500/5 rounded-full blur-[120px] -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-blue-600/5 rounded-full blur-[100px] translate-y-1/4 translate-x-1/4" />
-        {/* Subtle curving glow at the bottom */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[120%] h-32 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-900/20 via-[#020813]/0 to-transparent blur-2xl" />
-      </div>
+    <footer className="relative bg-white/90 backdrop-blur-xl border-t border-slate-200/80 pt-16 pb-12 overflow-hidden transition-colors duration-300 shadow-[0_-4px_20px_-2px_rgba(15,23,42,0.03)]">
+      {/* Subtle background ambient mesh */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-24 bg-cyan-500/5 blur-3xl pointer-events-none" />
 
-      <div className="max-w-[85rem] mx-auto px-6 sm:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 pb-12 border-b border-white/10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-slate-200">
           {/* Col 1: Brand & Mission */}
-          <div className="lg:col-span-4 space-y-6 pr-4">
+          <div className="lg:col-span-4 space-y-4">
             <button
               onClick={() => handleNav('home')}
               className="text-left cursor-pointer focus:outline-none"
             >
-              <Logo variant="dark" height={90} useImg={true} />
+              <Logo variant="light" height={90} useImg={true} />
             </button>
-            <p className="text-slate-400 text-[13px] leading-relaxed max-w-[320px]">
+            <p className="text-slate-600 text-sm leading-relaxed max-w-sm">
               Modern technology, digital products and software solutions built around real business needs. Engineered for scale, speed, and future agility.
             </p>
 
             {/* Social links */}
-            <div className="pt-4">
-              <div className="text-[11px] font-mono uppercase tracking-[0.2em] text-slate-500 mb-4 font-bold">
+            <div className="pt-2">
+              <div className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-3">
                 Connect With Us
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2.5">
                 {socialLinks.map((s) => (
                   <a
                     key={s.platform}
@@ -90,7 +85,7 @@ export const Footer: React.FC<FooterProps> = ({
                     target="_blank"
                     rel="noopener noreferrer"
                     title={s.platform}
-                    className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/10 hover:border-cyan-500/50 hover:bg-white/[0.08] text-slate-400 hover:text-white flex items-center justify-center transition-all duration-300 shadow-[0_0_15px_rgba(0,0,0,0.5)]"
+                    className="w-9 h-9 rounded-lg bg-white border border-slate-200 hover:border-cyan-500/40 hover:bg-slate-200 text-slate-600 hover:text-cyan-600 flex items-center justify-center transition-all duration-200 shadow-sm"
                   >
                     {getSocialIcon(s.platform)}
                   </a>
@@ -100,16 +95,16 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
 
           {/* Col 2: Company Navigation */}
-          <div className="lg:col-span-2 lg:ml-8 space-y-5">
-            <h4 className="text-[11px] font-mono uppercase tracking-[0.2em] text-cyan-500 font-bold">
+          <div className="lg:col-span-2 space-y-4">
+            <h4 className="text-xs font-mono uppercase tracking-widest text-slate-900 font-semibold">
               Company
             </h4>
-            <ul className="space-y-3.5">
+            <ul className="space-y-2.5 text-sm">
               {navigationItems.map((item) => (
                 <li key={item.id}>
                   <button
                     onClick={() => handleNav(item.id)}
-                    className="text-slate-300 hover:text-white text-[13px] transition-colors cursor-pointer text-left"
+                    className="text-slate-600 hover:text-cyan-600 transition-colors cursor-pointer text-left font-medium"
                   >
                     {item.label.charAt(0) + item.label.slice(1).toLowerCase()}
                   </button>
@@ -119,16 +114,16 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
 
           {/* Col 3: Services */}
-          <div className="lg:col-span-3 space-y-5">
-            <h4 className="text-[11px] font-mono uppercase tracking-[0.2em] text-cyan-500 font-bold">
+          <div className="lg:col-span-3 space-y-4">
+            <h4 className="text-xs font-mono uppercase tracking-widest text-slate-900 font-semibold">
               Services
             </h4>
-            <ul className="space-y-3.5">
+            <ul className="space-y-2.5 text-sm">
               {services.slice(0, 6).map((service) => (
                 <li key={service.id}>
                   <button
                     onClick={() => handleNav('services')}
-                    className="text-slate-300 hover:text-white text-[13px] transition-colors cursor-pointer text-left"
+                    className="text-slate-600 hover:text-cyan-600 transition-colors cursor-pointer text-left font-medium"
                   >
                     {service.title}
                   </button>
@@ -138,57 +133,58 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
 
           {/* Col 4: Corporate Contact */}
-          <div className="lg:col-span-3 space-y-5">
-            <h4 className="text-[11px] font-mono uppercase tracking-[0.2em] text-cyan-500 font-bold">
+          <div className="lg:col-span-3 space-y-4">
+            <h4 className="text-xs font-mono uppercase tracking-widest text-slate-900 font-semibold">
               Connect
             </h4>
-            <div className="space-y-4 text-[13px] text-slate-300">
-              <div className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-cyan-500 shrink-0 mt-0.5" />
+            <div className="space-y-3 text-sm text-slate-600">
+              <div className="flex items-start gap-2.5">
+                <MapPin className="w-4 h-4 text-cyan-600 shrink-0 mt-0.5" />
                 <span>{companyInfo.location}</span>
               </div>
-              <div className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-cyan-500 shrink-0" />
-                <a href={`mailto:${companyInfo.email}`} className="hover:text-white transition-colors">
+              <div className="flex items-center gap-2.5">
+                <Mail className="w-4 h-4 text-cyan-600 shrink-0" />
+                <a href={`mailto:${companyInfo.email}`} className="hover:text-cyan-600 transition-colors font-medium">
                   {companyInfo.email}
                 </a>
               </div>
-              <div className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-cyan-500 shrink-0" />
-                <a href={`tel:${companyInfo.phone}`} className="hover:text-white transition-colors">
+              <div className="flex items-center gap-2.5">
+                <Phone className="w-4 h-4 text-cyan-600 shrink-0" />
+                <a href={`tel:${companyInfo.phone}`} className="hover:text-cyan-600 transition-colors font-medium">
                   {companyInfo.phone}
                 </a>
               </div>
             </div>
 
-            <div className="mt-6 p-4 rounded-xl bg-[#091524] border border-white/5 text-[12px] text-slate-300 flex items-center gap-3 shadow-lg max-w-[240px]">
-              <ShieldCheck className="w-5 h-5 text-cyan-500 shrink-0" />
-              <span className="leading-tight">Enterprise-Grade Guaranteed</span>
+            <div className="p-3 rounded-lg bg-white border border-slate-200 text-[11px] text-slate-500 flex items-center gap-2 shadow-sm">
+              <ShieldCheck className="w-3.5 h-3.5 text-cyan-600" />
+              <span>Enterprise-Grade Security & SLA Guaranteed</span>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <p>© 2026 DATAMINT AARVIX. All Rights Reserved.</p>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6">
             <button
               onClick={onOpenPrivacy}
-              className="hover:text-white transition-colors cursor-pointer"
+              className="hover:text-slate-900 transition-colors cursor-pointer"
             >
               Privacy Policy
             </button>
-            <span className="text-white/10">|</span>
+            <span className="text-slate-300">•</span>
             <button
               onClick={onOpenTerms}
-              className="hover:text-white transition-colors cursor-pointer"
+              className="hover:text-slate-900 transition-colors cursor-pointer"
             >
               Terms & Conditions
             </button>
           </div>
         </div>
       </div>
+
     </footer>
   );
 };

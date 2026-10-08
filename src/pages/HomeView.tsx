@@ -241,11 +241,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
                <div className="w-16 h-16 rounded-full bg-cyan-500/20 flex items-center justify-center backdrop-blur-sm border border-cyan-400/30 cursor-pointer hover:scale-105 transition-transform z-10">
                   <Play className="w-6 h-6 text-cyan-400 ml-1" />
                </div>
-               <ImagePlaceholder
-                  label="HOLOGRAPHIC INTERFACE"
-                  sublabel="Corporate technology workflow"
-                  aspectRatio="video"
-                  className="opacity-50 absolute inset-0 w-full h-full mix-blend-screen"
+               <img
+                  src="/home/focusedworkinanaioffice.png"
+                  alt="Corporate technology workflow"
+                  className="opacity-50 absolute inset-0 w-full h-full object-cover mix-blend-screen"
                 />
             </div>
           </div>
@@ -317,10 +316,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
           >
             {valuePillars.map((pillar, idx) => {
               const images = [
-                "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800",
-                "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=800",
-                "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800",
-                "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=800"
+                "/home/businessfirst.png",
+                "/home/modernengineering.png",
+                "/home/userfocused.png",
+                "/home/longtermthinking.png"
               ];
               return (
                 <div 
@@ -391,11 +390,11 @@ export const HomeView: React.FC<HomeViewProps> = ({
                     className="absolute inset-0 bg-cover bg-center"
                     style={{ 
                       backgroundImage: `url(${[
-                        'https://images.unsplash.com/photo-1557683311-eac922347aa1?auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1557682250-33bd709cbe85?auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1557682224-5b8590cd9ec5?auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1557682260-96773eb01377?auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1557682257-2f9c37a3a5f3?auto=format&fit=crop&w=800&q=80',
+                        '/home/technologydesignedaroundrealbusinessneeds.png',
+                        '/home/businessmanagementdashboardinterface.png',
+                        '/home/cinematicautomatedwarehousefulfillment.png',
+                        '/home/twilightreflectionsatamodernofficeplaza.png',
+                        '/home/focusedworkinanaioffice.png'
                       ][idx % 5]})` 
                     }}
                   />
@@ -429,7 +428,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
       {/* 08. DIGITAL SOLUTIONS */}
       <section className="relative w-full pt-32 pb-32">
         {/* Using a tech-focused image for solutions for the whole section */}
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center bg-fixed" />
+        <div className="absolute inset-0 bg-[url('/home/twilightreflectionsatamodernofficeplaza.png')] bg-cover bg-center bg-fixed" />
         <div className="absolute inset-0 bg-navy-950/10" />
         
         {/* Banner Header Text */}
@@ -506,13 +505,18 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {projects.slice(0, 4).map((project) => (
+          {projects.slice(0, 4).map((project, idx) => (
             <div key={project.id} className="group relative bg-[#03101D] rounded-tl-[40px] rounded-br-[40px] rounded-tr-xl rounded-bl-xl border border-white/10 overflow-hidden hover:border-[rgba(0,180,255,0.3)] transition-all">
               <div className="aspect-square w-full overflow-hidden relative">
                  <div className="absolute inset-0 bg-gradient-to-t from-[#03101D] via-transparent to-transparent z-10 opacity-80" />
-                 <ImagePlaceholder
-                    label={project.title.toUpperCase()}
-                    aspectRatio="video"
+                 <img
+                    src={[
+                      '/home/businessmanagementdashboardinterface.png',
+                      '/home/cinematicautomatedwarehousefulfillment.png',
+                      '/home/technologydesignedaroundrealbusinessneeds.png',
+                      '/home/twilightreflectionsatamodernofficeplaza.png'
+                    ][idx % 4]}
+                    alt={project.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                  <div className="absolute top-3 left-3 z-20">
