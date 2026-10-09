@@ -12,7 +12,7 @@ import { ProjectsView } from './pages/ProjectsView';
 import { CareersView } from './pages/CareersView';
 import { ContactView } from './pages/ContactView';
 import { QuoteView } from './pages/QuoteView';
-import { Service } from './data/siteData';
+import { Service, services } from './data/siteData';
 import { ThemeProvider } from './context/ThemeContext';
 import './App.css';
 
