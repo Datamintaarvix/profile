@@ -124,12 +124,6 @@ export const AboutView: React.FC<AboutViewProps> = ({ onOpenQuote, onNavigate })
             >
               Explore Projects <ArrowRight className="w-4 h-4" />
             </button>
-            <button
-              onClick={onOpenQuote}
-              className="bg-white/5 hover:bg-white/10 border border-white/10 text-white px-6 py-3 rounded-xl text-sm font-semibold transition-colors cursor-pointer"
-            >
-              Learn More
-            </button>
           </div>
         </div>
 

@@ -45,8 +45,11 @@ export const sendAdminNotification = async ({ formType, data, sourcePage, file }
       file: fileData,
     };
 
-    // Submits to /api/forms/submit (proxied to Express port 5000 in dev, or Vercel serverless in prod)
-    const response = await fetch('/api/forms/submit', {
+    const API_BASE = import.meta.env.VITE_API_URL || '';
+    const endpoint = `${API_BASE}/api/forms/submit`;
+
+    // Submits to the API endpoint (proxied in dev, absolute or relative in prod depending on VITE_API_URL)
+    const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
