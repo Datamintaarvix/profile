@@ -143,7 +143,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             
             <div className="flex flex-wrap items-center gap-4 pt-4">
               <button
-                onClick={() => onOpenQuote()}
+                onClick={() => onNavigate('contact')}
                 className="px-8 py-4 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 hover:opacity-90 transition-opacity flex items-center gap-2"
               >
                 <span>Start a Project</span>
@@ -264,7 +264,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
           </p>
         </div>
 
-        <ServicesCoverflow onExplore={(title) => onOpenQuote(title)} />
+        <ServicesCoverflow onExplore={() => onNavigate('packages')} />
       </section>
 
       {/* 06. ENGINEERING PHILOSOPHY (RESTYLED) */}
@@ -466,7 +466,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 ))}
               </ul>
               <button 
-                onClick={() => onOpenQuote(solution.title)}
+                onClick={() => onNavigate('contact')}
                 className="w-full py-2.5 rounded-lg border border-white/10 text-white text-sm font-medium hover:bg-white/5 transition-colors"
               >
                 Explore Architecture

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUpRight, Globe, Code2, Palette, Smartphone, ShoppingBag, Cpu, Cloud, Layers } from 'lucide-react';
+import { ArrowUpRight, Globe, Code2, Palette, Smartphone, ShoppingBag, Cpu, Cloud, Layers, Megaphone } from 'lucide-react';
 import { Service } from '../data/siteData';
 
 interface ServiceCardProps {
@@ -23,6 +23,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
       case 'ShoppingBag': return <ShoppingBag {...props} />;
       case 'Cpu': return <Cpu {...props} />;
       case 'Cloud': return <Cloud {...props} />;
+      case 'Megaphone': return <Megaphone {...props} />;
       default: return <Layers {...props} />;
     }
   };

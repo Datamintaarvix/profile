@@ -7,11 +7,13 @@ import { services, addOnServices, type Service } from '../data/siteData';
 
 interface ServicesViewProps {
   onOpenQuote: (serviceTitle?: string) => void;
+  onNavigate: (tabId: string) => void;
   selectedServiceInit?: Service | null;
 }
 
 export const ServicesView: React.FC<ServicesViewProps> = ({
   onOpenQuote,
+  onNavigate,
 }) => {
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [activeServiceId, setActiveServiceId] = useState<string>(services[0].id);
@@ -85,32 +87,34 @@ export const ServicesView: React.FC<ServicesViewProps> = ({
           </span>
         </div>
 
-        <ServicesCoverflow onExplore={(title) => onOpenQuote(title)} />
+        <ServicesCoverflow onExplore={() => onNavigate('packages')} />
       </section>
 
       <div className="glowing-divider" />
 
       {/* Filter Pills & Detailed Section */}
-      <section className="space-y-12">
-        <div className="flex flex-col gap-6">
-          <div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
+      <section className="relative w-full py-12 space-y-12">
+        
+        {/* Header & Filters */}
+        <div className="flex flex-col gap-8 md:gap-10">
+          <div className="max-w-3xl">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
               Detailed Specifications
             </h2>
-            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
-              Explore technical capabilities and deliverables for each domain.
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+              Explore our technical capabilities, specialized workflows, and exact deliverables for each engineering domain. Select a category to filter services.
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-mono tracking-wider transition-all cursor-pointer ${
+                className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold tracking-widest uppercase transition-all duration-300 cursor-pointer ${
                   activeCategory === cat
-                    ? 'bg-blue-600 dark:bg-cyan-brand text-white dark:text-navy-950 font-bold shadow-sm'
-                    : 'bg-slate-100 dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                    ? 'bg-cyan-600 text-white shadow-lg shadow-cyan-600/20 border border-cyan-500'
+                    : 'bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-white/10'
                 }`}
               >
                 {cat}
@@ -119,104 +123,120 @@ export const ServicesView: React.FC<ServicesViewProps> = ({
           </div>
         </div>
 
-        {/* Detailed Vertical Tabs Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* Detailed Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start">
+          
           {/* Left Sidebar: Service List */}
-          <div className="services-tabs-container lg:col-span-4 space-y-2 lg:space-y-2 lg:sticky lg:top-32 h-auto lg:max-h-[70vh] overflow-y-auto pr-2 hide-scrollbar">
+          <div className="lg:col-span-4 flex flex-col gap-3 lg:sticky lg:top-32 max-h-[60vh] lg:max-h-[75vh] overflow-y-auto custom-scrollbar pr-2">
             {filteredServices.map((service) => {
               const isActive = activeServiceId === service.id;
               return (
                 <div
                   key={service.id}
                   onClick={() => setActiveServiceId(service.id)}
-                  className={`p-4 rounded-2xl cursor-pointer transition-all duration-300 flex items-center justify-between group relative overflow-hidden ${
+                  className={`group cursor-pointer p-5 rounded-2xl transition-all duration-300 border shrink-0 ${
                     isActive
-                      ? 'bg-white/10 dark:bg-white/[0.08] border border-slate-300 dark:border-white/20 shadow-sm'
-                      : 'bg-white/5 dark:bg-white/[0.02] border border-transparent hover:bg-white/10 dark:hover:bg-white/[0.05]'
+                      ? 'bg-white dark:bg-gradient-to-br dark:from-navy-900 dark:to-[#050914] border-cyan-500/50 shadow-xl relative overflow-hidden'
+                      : 'bg-slate-50 dark:bg-white/[0.02] border-slate-200 dark:border-white/5 hover:bg-slate-100 dark:hover:bg-white/[0.05] hover:border-slate-300 dark:hover:border-white/20'
                   }`}
                 >
-                  {/* Subtle active indicator line */}
                   {isActive && (
-                    <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-cyan-600 dark:bg-cyan-brand rounded-r-full"></div>
+                    <div className="absolute inset-0 bg-cyan-500/5 pointer-events-none" />
                   )}
                   
-                  <div className="flex items-center gap-4">
-                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors border ${
+                  <div className="flex items-center gap-5 relative z-10">
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-colors shrink-0 border ${
                       isActive 
-                        ? 'bg-slate-50 dark:bg-white/10 border-slate-200 dark:border-white/10 text-cyan-700 dark:text-cyan-brand' 
-                        : 'bg-slate-100 dark:bg-white/5 border-transparent text-slate-500 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white'
+                        ? 'bg-cyan-50 dark:bg-cyan-500/20 border-cyan-200 dark:border-cyan-500/30 text-cyan-600 dark:text-cyan-400' 
+                        : 'bg-white dark:bg-white/5 border-slate-200 dark:border-white/10 text-slate-400 group-hover:text-cyan-600 dark:group-hover:text-cyan-brand'
                     }`}>
                       {getServiceIcon(service.icon)}
                     </div>
-                    <div>
-                      <span className={`text-[10px] font-mono tracking-widest uppercase block mb-0.5 ${isActive ? 'text-cyan-700 dark:text-cyan-brand font-bold' : 'text-slate-500 dark:text-slate-500'}`}>
+                    <div className="flex-1">
+                      <span className={`text-[10px] font-mono tracking-widest uppercase block mb-1 ${isActive ? 'text-cyan-600 dark:text-cyan-400 font-bold' : 'text-slate-500'}`}>
                         {service.category}
                       </span>
-                      <h4 className={`text-sm font-bold transition-colors ${isActive ? 'text-slate-900 dark:text-white' : 'text-slate-600 dark:text-slate-400 group-hover:text-slate-300'}`}>
+                      <h4 className={`text-base font-bold transition-colors ${isActive ? 'text-slate-900 dark:text-white' : 'text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-slate-200'}`}>
                         {service.title}
                       </h4>
                     </div>
+                    <ChevronRight className={`w-5 h-5 transition-transform ${isActive ? 'text-cyan-600 dark:text-cyan-400 opacity-100' : 'text-slate-400 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0'}`} />
                   </div>
-                  <ChevronRight className={`w-4 h-4 transition-transform ${isActive ? 'text-cyan-600 dark:text-cyan-brand opacity-100 translate-x-1' : 'text-slate-400 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0'}`} />
                 </div>
               );
             })}
           </div>
 
           {/* Right Area: Active Service Content */}
-          <div className="lg:col-span-8">
-            <div className="glass-panel p-6 sm:p-8 md:p-10 rounded-3xl border border-slate-200 dark:border-white/10 shadow-xl transition-all duration-500">
+          <div className="lg:col-span-8 h-full">
+            <div className="relative bg-white dark:bg-[#050914] rounded-[2rem] border border-slate-200 dark:border-white/10 overflow-hidden shadow-2xl h-full flex flex-col">
               
-              {/* Feature Image with Overlay */}
-              <div className="w-full h-[250px] sm:h-[350px] rounded-2xl overflow-hidden relative mb-8 border border-white/10 shadow-lg group">
-                <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-slate-900/80 to-transparent z-10 pointer-events-none"></div>
-                
+              {/* Top Banner Image */}
+              <div className="relative w-full h-64 sm:h-80 shrink-0 group overflow-hidden bg-slate-100 dark:bg-navy-950">
                 <img 
-                  key={activeService.id} // Forces re-render/animation on image change
+                  key={activeService.id}
                   src={getServiceImage(activeService.id)} 
                   alt={activeService.title}
                   className="w-full h-full object-cover animate-fade-in group-hover:scale-105 transition-transform duration-1000"
                 />
-
-                <div className="absolute bottom-6 left-6 right-6 z-20 flex justify-between items-end">
-                  <div>
-                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/20 backdrop-blur-md border border-cyan-500/30 text-cyan-300 text-[10px] font-bold uppercase tracking-widest mb-3 shadow-sm">
-                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-                      SERVICE {activeService.number}
-                    </span>
-                    <h2 className="text-3xl sm:text-4xl font-bold text-white drop-shadow-md">
-                      {activeService.title}
-                    </h2>
-                  </div>
+                
+                {/* Floating Badge */}
+                <div className="absolute top-6 right-6">
+                  <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 dark:bg-black/40 backdrop-blur-md border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white text-xs font-bold uppercase tracking-widest shadow-sm">
+                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 dark:bg-cyan-400 animate-pulse" />
+                    Service {activeService.number}
+                  </span>
                 </div>
               </div>
 
-              {/* Description & Capabilities */}
-              <div className="space-y-8 animate-fade-in">
-                <p className="text-slate-600 dark:text-slate-300 leading-relaxed sm:text-lg">
-                  {activeService.fullDesc}
-                </p>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6">
-                  {activeService.features.map((feat, fIdx) => (
-                    <div key={fIdx} className="flex items-start gap-3 p-3 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/5">
-                      <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-cyan-mint shrink-0 mt-0.5 drop-shadow-sm" />
-                      <span className="text-sm text-slate-700 dark:text-slate-300 font-medium">{feat}</span>
+              {/* Content Area */}
+              <div className="p-8 sm:p-12 relative flex-1 flex flex-col justify-between -mt-16 sm:-mt-24 z-10">
+                <div className="animate-fade-in">
+                  <div className="inline-flex items-center gap-3 mb-6">
+                    <div className="w-12 h-12 rounded-full bg-white dark:bg-cyan-500/20 border border-slate-200 dark:border-cyan-500/30 flex items-center justify-center shadow-md">
+                      {getServiceIcon(activeService.icon)}
                     </div>
-                  ))}
+                    <span className="text-cyan-700 dark:text-cyan-400 font-mono text-sm tracking-widest uppercase font-bold bg-white/50 dark:bg-transparent px-3 py-1 rounded-full border border-white/50 dark:border-transparent backdrop-blur-sm">
+                      {activeService.category}
+                    </span>
+                  </div>
+                  
+                  <h3 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-6 leading-tight tracking-tight">
+                    {activeService.title}
+                  </h3>
+                  
+                  <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed mb-10 max-w-3xl font-medium">
+                    {activeService.fullDesc}
+                  </p>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-12">
+                    {activeService.features.map((feat, fIdx) => (
+                      <div key={fIdx} className="flex items-start gap-4 p-5 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200 dark:border-white/5 hover:bg-slate-100 dark:hover:bg-white/[0.06] transition-colors">
+                        <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-cyan-400 shrink-0 mt-0.5" />
+                        <span className="text-sm font-semibold text-slate-700 dark:text-slate-200 leading-snug">{feat}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
-                <div className="pt-4 border-t border-slate-200 dark:border-white/10">
+                <div className="pt-8 border-t border-slate-200 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6">
+                  <div className="text-center sm:text-left">
+                    <p className="text-slate-500 dark:text-slate-400 text-xs font-mono uppercase tracking-widest mb-1">
+                      Ready to build this?
+                    </p>
+                    <p className="text-slate-900 dark:text-white text-sm font-semibold">
+                      Schedule a technical consultation.
+                    </p>
+                  </div>
                   <button
-                    onClick={() => onOpenQuote(activeService.title)}
-                    className="btn-primary w-full sm:w-auto px-8 py-3.5 rounded-xl text-sm font-bold uppercase tracking-widest cursor-pointer shadow-lg shadow-cyan-900/20 flex items-center justify-center gap-2"
+                    onClick={() => onNavigate('packages')}
+                    className="btn-primary w-full sm:w-auto px-8 py-4 rounded-xl text-sm font-bold uppercase tracking-widest flex items-center justify-center gap-3 transition-all hover:-translate-y-1 shadow-xl shadow-cyan-900/20"
                   >
-                    <span>Request Proposal for {activeService.title}</span>
+                    <span>Request Proposal</span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
               </div>
-
             </div>
           </div>
         </div>

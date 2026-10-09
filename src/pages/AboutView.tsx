@@ -57,12 +57,6 @@ export const AboutView: React.FC<AboutViewProps> = ({ onOpenQuote, onNavigate })
 
           <div className="pt-2 flex flex-wrap gap-4">
             <button
-              onClick={onOpenQuote}
-              className="btn-primary px-6 py-3 rounded-full text-xs font-mono uppercase tracking-wider font-semibold cursor-pointer"
-            >
-              Start Collaboration →
-            </button>
-            <button
               onClick={() => onNavigate('services')}
               className="btn-secondary px-6 py-3 rounded-full text-xs font-mono uppercase tracking-wider cursor-pointer"
             >
@@ -275,7 +269,7 @@ export const AboutView: React.FC<AboutViewProps> = ({ onOpenQuote, onNavigate })
 
         <div className="pt-4">
           <button
-            onClick={onOpenQuote}
+            onClick={() => onNavigate('careers')}
             className="btn-primary px-8 py-3.5 rounded-full text-sm font-semibold cursor-pointer"
           >
             Work With Us →

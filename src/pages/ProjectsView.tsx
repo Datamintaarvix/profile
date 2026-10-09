@@ -5,9 +5,10 @@ import { ArrowRight, Sparkles, Code2, ChevronDown, FileText } from 'lucide-react
 
 interface ProjectsViewProps {
   onOpenQuote: (serviceCategory?: string) => void;
+  onNavigate: (tabId: string) => void;
 }
 
-export const ProjectsView: React.FC<ProjectsViewProps> = ({ onOpenQuote }) => {
+export const ProjectsView: React.FC<ProjectsViewProps> = ({ onOpenQuote, onNavigate }) => {
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
 
@@ -115,9 +116,6 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({ onOpenQuote }) => {
                       <span>{project.metrics}</span>
                     </div>
                     
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-cyan-600 border border-cyan-500 flex items-center justify-center text-navy-950 group-hover:scale-110 group-hover:bg-cyan-500 transition-all duration-300 shadow-lg shadow-cyan-900/50 shrink-0">
-                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
-                    </div>
                   </div>
                 </div>
               </div>
@@ -143,7 +141,7 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({ onOpenQuote }) => {
         </p>
         <div className="pt-2">
           <button
-            onClick={() => onOpenQuote()}
+            onClick={() => onNavigate('contact')}
             className="btn-primary px-8 py-3.5 rounded-full text-xs font-semibold uppercase tracking-wider cursor-pointer"
           >
             <span>Start a Project Discussion</span>

@@ -83,7 +83,7 @@ export const Header: React.FC<HeaderProps> = ({
             <div className="flex items-center gap-2 sm:gap-3">
 
               <button
-                onClick={onOpenQuote}
+                onClick={() => handleNavClick('contact')}
                 className="hidden sm:inline-flex btn-primary px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs md:text-sm font-semibold group cursor-pointer"
               >
                 <span>Get a Quote</span>
@@ -135,10 +135,7 @@ export const Header: React.FC<HeaderProps> = ({
 
           <div className="pt-6 border-t border-slate-200 space-y-4 relative z-10">
             <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenQuote();
-              }}
+              onClick={() => handleNavClick('contact')}
               className="w-full btn-primary py-3.5 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer"
             >
               <span>Get a Quote</span>

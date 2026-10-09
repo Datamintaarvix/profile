@@ -319,6 +319,21 @@ export const services: Service[] = [
     ],
     icon: "BarChart3",
     category: "Intelligence"
+  },
+  {
+    id: "social-media-management",
+    number: "10",
+    title: "Social Media Management",
+    shortDesc: "Comprehensive social media strategy, content creation, and community engagement.",
+    fullDesc: "We elevate your brand's digital presence across platforms through targeted strategies, high-quality content creation, and proactive community management, driving engagement and growth.",
+    features: [
+      "Targeted Content Strategy & Creation",
+      "Community Engagement & Moderation",
+      "Paid Ad Campaign Management",
+      "Performance Analytics & Reporting"
+    ],
+    icon: "Megaphone",
+    category: "Marketing"
   }
 ];
 
@@ -853,7 +868,6 @@ export const faqs: FAQItem[] = [
 // ==========================================
 export const socialLinks: SocialLink[] = [
   { platform: "LinkedIn", url: "https://www.linkedin.com/company/datamint-aarvix/", handle: "datamint-aarvix" },
-  { platform: "GitHub", url: "https://github.com/datamint-arvix", handle: "datamint-arvix" },
   { platform: "X", url: "https://x.com/datamintarvix", handle: "@datamintarvix" },
   { platform: "Instagram", url: "https://www.instagram.com/datamint_aarvix", handle: "@datamint_aarvix" }
 ];

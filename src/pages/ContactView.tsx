@@ -31,50 +31,49 @@ export const ContactView: React.FC = () => {
           {/* Right Column: Text, Grid & Map */}
           <div className="space-y-12 pt-4">
             <p className="text-slate-300 leading-relaxed text-sm sm:text-base">
-              In tempus nisl turpis, at ultricies dui eleifend a. Quisque et quam vel nunc consectetur pharetra euismod et elit. Morbi nibh tortor, ullamcorper id purus eu, rhoncus consequat velit.
+              Whether you're looking to discuss a new project, require technical support, or want to explore partnership opportunities, our team is ready to assist. Reach out to us directly through any of the channels below, and we'll connect you with the right experts to move your ideas forward.
             </p>
 
             <div className="grid grid-cols-2 gap-y-10 gap-x-6 text-center sm:text-left">
-              <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
-                <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center mb-4 text-white hover:border-cyan-brand transition-colors">
+              <a href={`tel:${companyInfo.phone.replace(/[\s-]/g, '')}`} className="flex flex-col items-center sm:items-start text-center sm:text-left group cursor-pointer">
+                <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center mb-4 text-white group-hover:border-cyan-brand group-hover:text-cyan-brand transition-all shadow-sm">
                   <Phone className="w-5 h-5" />
                 </div>
                 <h4 className="text-base font-bold text-white mb-1">Phone Number</h4>
-                <p className="text-sm text-slate-400">
-                  <a href={`tel:${companyInfo.phone}`} className="hover:text-cyan-brand transition-colors">{companyInfo.phone}</a>
+                <p className="text-sm text-slate-400 group-hover:text-cyan-brand transition-colors">
+                  {companyInfo.phone}
                 </p>
-              </div>
+              </a>
 
-              <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
-                <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center mb-4 text-white hover:border-cyan-brand transition-colors">
+              <a href={`mailto:${companyInfo.email}`} className="flex flex-col items-center sm:items-start text-center sm:text-left group cursor-pointer">
+                <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center mb-4 text-white group-hover:border-cyan-brand group-hover:text-cyan-brand transition-all shadow-sm">
                   <Mail className="w-5 h-5" />
                 </div>
                 <h4 className="text-base font-bold text-white mb-1">Email Address</h4>
-                <p className="text-sm text-slate-400">
-                  <a href={`mailto:${companyInfo.email}`} className="hover:text-cyan-brand transition-colors">{companyInfo.email}</a>
+                <p className="text-sm text-slate-400 group-hover:text-cyan-brand transition-colors">
+                  {companyInfo.email}
                 </p>
-              </div>
+              </a>
 
-              <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
-                <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center mb-4 text-white hover:border-cyan-brand transition-colors">
+              <a href={`https://wa.me/${companyInfo.phone.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center sm:items-start text-center sm:text-left group cursor-pointer">
+                <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center mb-4 text-white group-hover:border-cyan-brand group-hover:text-cyan-brand transition-all shadow-sm">
                   <MessageSquare className="w-5 h-5" />
                 </div>
                 <h4 className="text-base font-bold text-white mb-1">Whatsapp</h4>
-                <p className="text-sm text-slate-400">
-                  <a href="#" className="hover:text-cyan-brand transition-colors">
-                    +91 9787076296</a>
+                <p className="text-sm text-slate-400 group-hover:text-cyan-brand transition-colors">
+                  {companyInfo.phone}
                 </p>
-              </div>
+              </a>
 
-              <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
-                <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center mb-4 text-white hover:border-cyan-brand transition-colors">
+              <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(companyInfo.location)}`} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center sm:items-start text-center sm:text-left group cursor-pointer">
+                <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center mb-4 text-white group-hover:border-cyan-brand group-hover:text-cyan-brand transition-all shadow-sm">
                   <MapPin className="w-5 h-5" />
                 </div>
                 <h4 className="text-base font-bold text-white mb-1">Our Office</h4>
-                <p className="text-sm text-slate-400">
+                <p className="text-sm text-slate-400 group-hover:text-cyan-brand transition-colors">
                   {companyInfo.location}
                 </p>
-              </div>
+              </a>
             </div>
 
             {/* Map Block (Contained within right column) */}
@@ -97,19 +96,19 @@ export const ContactView: React.FC = () => {
 
       {/* 3. Bottom Banner Section */}
       <section className="relative w-full py-24 sm:py-32 mt-12 flex items-center justify-center text-center">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center bg-fixed" />
+        <div className="absolute inset-0 bg-[url('/contact.png')] bg-cover bg-center bg-fixed" />
         <div className="absolute inset-0 bg-navy-950/60" />
 
         <div className="relative z-10 max-w-3xl mx-auto px-4">
           <span className="text-white font-mono text-sm tracking-widest block mb-4">
-            Hire Us Now
+            LET'S WORK TOGETHER
           </span>
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-10">
-            We Are Always Ready To Take A Perfect Shot
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-6">
+            Let’s Build Something Great Together
           </h2>
-          <button className="bg-white text-navy-950 px-8 py-3.5 rounded-full text-sm font-semibold tracking-wide hover:bg-cyan-brand transition-colors duration-300">
-            Get Started
-          </button>
+          <p className="text-slate-200 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+            Have a project in mind or looking for the right digital solution? Let’s turn your ideas into impactful digital experiences.
+          </p>
         </div>
       </section>
     </div>

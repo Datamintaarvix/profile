@@ -10,6 +10,7 @@ import {
 
 interface PackagesViewProps {
   onSelectPlan: (planName: string) => void;
+  onNavigate: (tabId: string) => void;
 }
 
 const tabContent = {
@@ -47,7 +48,7 @@ const tabContent = {
   }
 };
 
-export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectPlan }) => {
+export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectPlan, onNavigate }) => {
   const [activeTab, setActiveTab] = useState('website');
   
   const currentContent = tabContent[activeTab as keyof typeof tabContent];
@@ -73,7 +74,10 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectPlan }) => {
             </p>
             
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-8 mb-16">
-              <button className="group bg-electric-600 hover:bg-electric-500 dark:bg-cyan-brand dark:hover:bg-cyan-brand/80 text-white dark:text-navy-950 px-6 py-3 rounded-full text-sm font-semibold transition-all hover:shadow-[0_0_20px_rgba(0,102,255,0.3)] dark:hover:shadow-[0_0_20px_rgba(0,240,255,0.3)] hover:-translate-y-0.5 flex items-center gap-2">
+              <button 
+                onClick={() => document.getElementById('packages-section')?.scrollIntoView({ behavior: 'smooth' })}
+                className="group bg-electric-600 hover:bg-electric-500 dark:bg-cyan-brand dark:hover:bg-cyan-brand/80 text-white dark:text-navy-950 px-6 py-3 rounded-full text-sm font-semibold transition-all hover:shadow-[0_0_20px_rgba(0,102,255,0.3)] dark:hover:shadow-[0_0_20px_rgba(0,240,255,0.3)] hover:-translate-y-0.5 flex items-center gap-2"
+              >
                 Explore Packages <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
@@ -110,7 +114,7 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectPlan }) => {
         </section>
 
         {/* 02 - CHOOSE A PACKAGE / DYNAMIC CONTENT SWITCHER */}
-        <section className="mb-32">
+        <section id="packages-section" className="mb-32">
           <p className="text-[10px] font-bold tracking-[0.2em] text-electric-600 dark:text-cyan-brand uppercase mb-4 flex items-center gap-2">
             <span className="w-8 h-px bg-electric-600 dark:bg-cyan-brand"></span>
             Choose a Package
@@ -179,12 +183,9 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectPlan }) => {
               <p className="text-[10px] font-bold tracking-[0.2em] text-slate-500 uppercase mb-2">
                 BEST FOR
               </p>
-              <p className="text-sm text-slate-900 dark:text-white font-semibold mb-8 leading-relaxed">
+              <p className="text-sm text-slate-900 dark:text-white font-semibold leading-relaxed">
                 {currentContent.bestFor}
               </p>
-              <button className="group bg-electric-600 hover:bg-electric-500 dark:bg-cyan-brand dark:hover:bg-cyan-brand/80 text-white dark:text-navy-950 px-6 py-3 rounded-full text-sm font-bold transition-all hover:shadow-[0_0_20px_rgba(0,102,255,0.3)] dark:hover:shadow-[0_0_20px_rgba(0,240,255,0.3)] flex items-center justify-center gap-2 w-full sm:w-auto">
-                {currentContent.ctaText} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
             </div>
           </div>
         </section>
@@ -241,7 +242,7 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectPlan }) => {
                       ? 'bg-electric-600 dark:bg-cyan-brand text-white dark:text-navy-950 hover:bg-electric-700 dark:hover:bg-cyan-brand/90 hover:shadow-lg hover:-translate-y-0.5' 
                       : 'bg-slate-100 dark:bg-white/5 text-slate-900 dark:text-white border border-transparent hover:border-slate-300 dark:hover:border-white/10 hover:bg-slate-200 dark:hover:bg-white/10'
                   }`}
-                  onClick={() => onSelectPlan(pkg.name)}>
+                  onClick={() => onNavigate('contact')}>
                     Get a Quote <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
@@ -422,7 +423,7 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectPlan }) => {
             </p>
           </div>
           <button className="group relative z-10 bg-electric-600 dark:bg-cyan-brand hover:bg-electric-700 dark:hover:bg-cyan-brand/80 text-white dark:text-navy-950 px-8 py-5 rounded-full text-sm font-bold transition-all hover:shadow-[0_0_30px_rgba(0,102,255,0.3)] dark:hover:shadow-[0_0_30px_rgba(0,240,255,0.3)] hover:-translate-y-1 flex items-center gap-3 whitespace-nowrap"
-          onClick={() => onSelectPlan('Custom')}
+          onClick={() => onNavigate('contact')}
           >
             Get a Custom Quote <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>

@@ -6,9 +6,10 @@ import { solutions } from '../data/siteData';
 
 interface SolutionsViewProps {
   onOpenQuote: (solutionTitle?: string) => void;
+  onNavigate: (tabId: string) => void;
 }
 
-export const SolutionsView: React.FC<SolutionsViewProps> = ({ onOpenQuote }) => {
+export const SolutionsView: React.FC<SolutionsViewProps> = ({ onOpenQuote, onNavigate }) => {
   return (
     <div className="pt-40 md:pt-48 pb-24 space-y-16 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative">
       {/* Background Glow */}
@@ -40,7 +41,7 @@ export const SolutionsView: React.FC<SolutionsViewProps> = ({ onOpenQuote }) => 
           <SolutionCard
             key={solution.id}
             solution={solution}
-            onExplore={(s) => onOpenQuote(s.title)}
+            onExplore={() => onNavigate('contact')}
           />
         ))}
       </section>
@@ -63,7 +64,7 @@ export const SolutionsView: React.FC<SolutionsViewProps> = ({ onOpenQuote }) => 
           </p>
 
           <button
-            onClick={() => onOpenQuote('Custom Solution')}
+            onClick={() => onNavigate('contact')}
             className="bg-cyan-500 hover:bg-cyan-400 text-slate-900 px-8 py-3.5 rounded-full text-sm font-bold tracking-wider flex items-center justify-center sm:justify-start gap-3 transition-colors shadow-[0_0_20px_rgba(34,211,238,0.3)] cursor-pointer w-full sm:w-auto"
           >
             <span>Consult an Architect</span>

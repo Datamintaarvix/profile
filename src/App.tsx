@@ -98,24 +98,28 @@ function MainLayout() {
         {currentTab === 'services' && (
           <ServicesView
             onOpenQuote={handleOpenQuote}
+            onNavigate={handleNavigate}
           />
         )}
 
         {currentTab === 'solutions' && (
           <SolutionsView
             onOpenQuote={handleOpenQuote}
+            onNavigate={handleNavigate}
           />
         )}
 
         {currentTab === 'packages' && (
           <PackagesView
             onSelectPlan={(plan) => handleOpenQuote(undefined, plan)}
+            onNavigate={handleNavigate}
           />
         )}
 
         {currentTab === 'projects' && (
           <ProjectsView
             onOpenQuote={handleOpenQuote}
+            onNavigate={handleNavigate}
           />
         )}
 
