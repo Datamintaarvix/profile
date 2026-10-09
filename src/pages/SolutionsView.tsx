@@ -50,7 +50,7 @@ export const SolutionsView: React.FC<SolutionsViewProps> = ({ onOpenQuote, onNav
       <section className="glass-panel rounded-3xl border border-white/10 relative overflow-hidden flex flex-col md:flex-row items-center justify-between shadow-[inset_0_0_80px_rgba(34,211,238,0.05)] bg-[#0a0f1d] mt-12 z-10">
         <div className="absolute inset-0 bg-gradient-to-r from-cyan-900/10 to-purple-900/10 pointer-events-none" />
 
-        <div className="p-8 sm:p-12 md:p-16 flex-1 relative z-10 text-left">
+        <div className="p-8 sm:p-12 md:p-16 relative z-10 text-left md:max-w-[65%] w-full">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-cyan-400 text-[10px] font-bold font-mono uppercase tracking-widest mb-5">
             <span>BESPOKE ENGINEERING</span>
           </div>
@@ -72,16 +72,16 @@ export const SolutionsView: React.FC<SolutionsViewProps> = ({ onOpenQuote, onNav
           </button>
         </div>
 
-        {/* Abstract Cubes Visual placeholder (CSS art matching the screenshot vibe) */}
-        <div className="hidden md:flex w-[40%] relative z-10 items-center justify-center p-10 h-full min-h-[350px]">
-          <div className="absolute inset-0 bg-gradient-to-l from-transparent to-[#0a0f1d] z-20 pointer-events-none" />
-          <div className="relative w-full h-full flex items-center justify-center">
-            {/* Decorative CSS Cubes */}
-            <div className="w-40 h-40 border border-cyan-500/40 bg-cyan-500/10 rounded-xl backdrop-blur-sm rotate-12 absolute z-10 shadow-[0_0_50px_rgba(34,211,238,0.2)] right-10"></div>
-            <div className="w-32 h-32 border border-purple-500/40 bg-purple-500/10 rounded-xl backdrop-blur-sm -rotate-12 absolute -translate-x-12 translate-y-12 z-0"></div>
-            <div className="w-24 h-24 border border-blue-500/40 bg-blue-500/10 rounded-xl backdrop-blur-sm rotate-45 absolute translate-x-4 -translate-y-16 z-20"></div>
-            <div className="w-48 h-48 border border-white/5 bg-white/[0.02] rounded-xl backdrop-blur-md -rotate-6 absolute left-0 bottom-0 z-0"></div>
-          </div>
+        {/* Custom Visual Image with Seamless Fade */}
+        <div className="hidden md:flex absolute right-0 top-0 bottom-0 w-[55%] z-0 pointer-events-none overflow-hidden rounded-r-3xl items-center justify-end">
+          {/* Left edge fade to prevent any hard lines */}
+          <div className="absolute left-0 top-0 bottom-0 w-1/2 bg-gradient-to-r from-[#0a0f1d] to-transparent z-20" />
+          
+          <img 
+            src="/solution/fa.png" 
+            alt="Bespoke Engineering Challenge" 
+            className="relative z-10 w-full h-[120%] object-contain object-right opacity-90 mix-blend-screen translate-x-8" 
+          />
         </div>
       </section>
     </div>

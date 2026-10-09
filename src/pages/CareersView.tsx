@@ -87,6 +87,10 @@ export const CareersView: React.FC = () => {
   const positionOptions = careers.map(c => c.title);
 
   const [openAppFile, setOpenAppFile] = useState<File | null>(null);
+<<<<<<< HEAD
+=======
+  const [honeypot, setHoneypot] = useState('');
+>>>>>>> 50b981a (Update website)
   const [appStatus, setAppStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -127,6 +131,7 @@ export const CareersView: React.FC = () => {
       setErrorMessage('Please upload your resume (PDF).');
       return;
     }
+<<<<<<< HEAD
     
     setAppStatus('submitting');
     try {
@@ -143,6 +148,34 @@ export const CareersView: React.FC = () => {
           linkedin: applicationForm.linkedin,
           portfolio: applicationForm.portfolio,
           message: applicationForm.message,
+=======
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(applicationForm.email.trim())) {
+      setAppStatus('error');
+      setErrorMessage('Please enter a valid email address.');
+      return;
+    }
+    
+    setAppStatus('submitting');
+    setErrorMessage('');
+    try {
+      await sendAdminNotification({
+        formType: 'Careers',
+        sourcePage: window.location.href,
+        data: {
+          name: applicationForm.fullName.trim(),
+          email: applicationForm.email.trim(),
+          phone: applicationForm.phone.trim(),
+          position: applicationForm.position,
+          role: applicationForm.position,
+          experience: applicationForm.experience,
+          location: applicationForm.location.trim(),
+          linkedin: applicationForm.linkedin.trim(),
+          portfolio: applicationForm.portfolio.trim(),
+          message: applicationForm.message.trim(),
+          _honeypot: honeypot,
+>>>>>>> 50b981a (Update website)
         },
         file: openAppFile
       });
@@ -484,6 +517,21 @@ export const CareersView: React.FC = () => {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-8">
+<<<<<<< HEAD
+=======
+                  {/* Honeypot Spam Protection Field */}
+                  <input
+                    type="text"
+                    name="_gotcha"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                    style={{ display: 'none' }}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                  />
+
+>>>>>>> 50b981a (Update website)
                   {appStatus === 'error' && (
                     <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm flex items-center gap-3">
                       <AlertCircle className="w-5 h-5 shrink-0" />

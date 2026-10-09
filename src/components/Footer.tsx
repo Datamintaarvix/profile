@@ -5,7 +5,7 @@ import { useTheme } from '../context/ThemeContext';
 import { companyInfo, navigationItems, services, socialLinks } from '../data/siteData';
 
 interface FooterProps {
-  onNavigate: (tabId: string) => void;
+  onNavigate: (tabId: string, subId?: string) => void;
   onOpenPrivacy?: () => void;
   onOpenTerms?: () => void;
 }
@@ -49,12 +49,12 @@ export const Footer: React.FC<FooterProps> = ({
     }
   };
 
-  const handleNav = (tabId: string) => {
-    onNavigate(tabId);
+  const handleNav = (tabId: string, subId?: string) => {
+    onNavigate(tabId, subId);
   };
 
   return (
-    <footer className="relative bg-white/90 backdrop-blur-xl border-t border-slate-200/80 pt-16 pb-12 overflow-hidden transition-colors duration-300 shadow-[0_-4px_20px_-2px_rgba(15,23,42,0.03)]">
+    <footer className="relative bg-white/90 backdrop-blur-xl border-t border-slate-200/80 pt-16 pb-4 overflow-hidden transition-colors duration-300 shadow-[0_-4px_20px_-2px_rgba(15,23,42,0.03)]">
       {/* Subtle background ambient mesh */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-24 bg-cyan-500/5 blur-3xl pointer-events-none" />
 
@@ -121,12 +121,13 @@ export const Footer: React.FC<FooterProps> = ({
             <ul className="space-y-2.5 text-sm">
               {services.slice(0, 6).map((service) => (
                 <li key={service.id}>
-                  <button
-                    onClick={() => handleNav('services')}
-                    className="text-slate-600 hover:text-cyan-600 transition-colors cursor-pointer text-left font-medium"
+                  <a
+                    href="#services"
+                    onClick={(e) => { e.preventDefault(); handleNav('services', service.id); }}
+                    className="text-slate-600 hover:text-cyan-600 transition-colors cursor-pointer text-left font-medium block"
                   >
                     {service.title}
-                  </button>
+                  </a>
                 </li>
               ))}
             </ul>

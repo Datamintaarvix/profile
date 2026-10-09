@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { CheckCircle2, ArrowRight, ArrowLeft, Send, Sparkles, ShieldCheck } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { sendAdminNotification } from '../services/formService';
+import { PhoneInput } from '../components/PhoneInput';
 
 interface QuoteViewProps {
   initialService?: string;
@@ -183,13 +184,10 @@ export const QuoteView: React.FC<QuoteViewProps> = ({
                     <label className="block text-lg font-bold text-white">
                       Step 4 • Direct Contact Phone
                     </label>
-                    <input
-                      type="tel"
-                      autoFocus
+                    <PhoneInput
                       value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="+91 90000 00000"
-                      className="w-full px-5 py-4 rounded-xl bg-white/[0.04] border border-white/15 text-white placeholder-slate-500 text-lg focus:outline-none focus:border-cyan-brand focus:ring-1 focus:ring-cyan-brand"
+                      onChange={(val) => setFormData({ ...formData, phone: val })}
+                      required
                     />
                   </div>
                 )}

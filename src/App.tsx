@@ -22,6 +22,7 @@ function MainLayout() {
   const [quoteServicePrefill, setQuoteServicePrefill] = useState<string | undefined>(undefined);
   const [quotePackagePrefill, setQuotePackagePrefill] = useState<string | undefined>(undefined);
   const [legalModalType, setLegalModalType] = useState<'privacy' | 'terms' | null>(null);
+  const [activeSubId, setActiveSubId] = useState<string | null>(null);
 
   // Sync hash routing
   useEffect(() => {
@@ -42,8 +43,9 @@ function MainLayout() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [currentTab]);
 
-  const handleNavigate = (tabId: string) => {
+  const handleNavigate = (tabId: string, subId?: string) => {
     setCurrentTab(tabId);
+    if (subId) setActiveSubId(subId);
     window.location.hash = tabId === 'home' ? '' : tabId;
   };
 
@@ -54,7 +56,7 @@ function MainLayout() {
   };
 
   const handleSelectServiceFromHome = (service: Service) => {
-    handleNavigate('services');
+    handleNavigate('services', service.id);
   };
 
   return (
@@ -99,6 +101,10 @@ function MainLayout() {
           <ServicesView
             onOpenQuote={handleOpenQuote}
             onNavigate={handleNavigate}
+<<<<<<< HEAD
+=======
+            selectedServiceInit={activeSubId ? services.find(s => s.id === activeSubId) || null : null}
+>>>>>>> 50b981a (Update website)
           />
         )}
 

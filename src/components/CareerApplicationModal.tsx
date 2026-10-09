@@ -64,8 +64,9 @@ export const CareerApplicationModal: React.FC<CareerApplicationModalProps> = ({
       return;
     }
 
-    if (!formData.email.includes('@')) {
-      setErrorMsg('Please enter a valid email address containing "@".');
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(formData.email.trim())) {
+      setErrorMsg('Please enter a valid email address.');
       return;
     }
 
@@ -76,20 +77,21 @@ export const CareerApplicationModal: React.FC<CareerApplicationModalProps> = ({
         formType: 'Careers',
         sourcePage: window.location.href,
         data: {
-          name: formData.fullName,
-          email: formData.email,
-          phone: formData.phone,
+          name: formData.fullName.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim(),
           position: job.title,
+          role: job.title,
           experience: 'Not specified',
           location: job.location,
-          portfolio: formData.portfolioUrl,
-          coverLetter: formData.resumeNote,
+          portfolio: formData.portfolioUrl.trim(),
+          coverLetter: formData.resumeNote.trim(),
         },
         file: resumeFile,
       });
       setIsSuccess(true);
-    } catch (error) {
-      setErrorMsg('Failed to submit application. Please try again later.');
+    } catch (error: any) {
+      setErrorMsg(error?.message || 'Failed to submit application. Please try again later.');
     } finally {
       setIsSubmitting(false);
     }

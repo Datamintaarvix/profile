@@ -45,20 +45,14 @@ export const PhoneInput: React.FC<PhoneInputProps> = ({ value, onChange, require
   };
 
   const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const rawValue = e.target.value;
+    // Strip non-digits from input to handle deletions properly and prevent letters
+    const digits = e.target.value.replace(/\D/g, '');
     
     // Use libphonenumber-js AsYouType to format strictly to the selected country
     const formatter = new AsYouType(selectedCountry.code as CountryCode);
-    const formatted = formatter.input(rawValue);
+    const formatted = formatter.input(digits);
     
-    // Prevent typing beyond the country's valid length if the library recognizes it
-    // Some countries have variable lengths, but formatter.isValid() can hint at it.
-    // By re-parsing, if the formatted string is identical but they typed a new char,
-    // and it's no longer formatting nicely, it might be too long. But standard behavior
-    // is to just let the formatter handle it. We will limit the physical input size 
-    // strictly for sanity, but rely on the formatter for the visual spacing.
-    const cleanNum = formatted.replace(/[^0-9]/g, '');
-    if (cleanNum.length > 15) return; // absolute max fallback
+    if (digits.length > 15) return; // absolute max fallback
     
     onChange(`${selectedCountry.dialCode} ${formatted}`);
   };

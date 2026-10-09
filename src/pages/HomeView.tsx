@@ -174,20 +174,22 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
       {/* 03. STATISTICS */}
       <section className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 -mt-8 md:-mt-12">
-        <div className="bg-[#061525]/60 backdrop-blur-xl rounded-2xl border border-[rgba(0,180,255,0.18)] p-8 shadow-2xl">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-white/10">
+        <div className="bg-[#061525]/60 backdrop-blur-xl rounded-2xl border border-[rgba(0,180,255,0.18)] p-6 md:p-8 shadow-2xl">
+          <div className="grid grid-cols-1 md:grid-cols-4">
             {statistics.map((stat, idx) => (
-              <div key={idx} className={`flex flex-col ${idx !== 0 ? 'pl-8' : ''}`}>
-                <div className="flex items-center gap-3 mb-2">
+              <div key={idx} className={`flex flex-col ${
+                idx !== 0 ? 'pt-6 mt-6 border-t md:pt-0 md:mt-0 md:pl-8 md:border-t-0 md:border-l border-white/10' : ''
+              }`}>
+                <div className="flex items-center gap-3 mb-2 flex-wrap">
                   <span className="text-4xl font-extrabold text-white">{stat.value}</span>
                   {stat.trend && (
-                    <span className="text-[10px] font-mono text-cyan-400 bg-cyan-400/10 px-2 py-1 rounded-full border border-cyan-400/20">
+                    <span className="text-[10px] font-mono text-cyan-400 bg-cyan-400/10 px-2 py-1 rounded-full border border-cyan-400/20 whitespace-nowrap">
                       {stat.trend}
                     </span>
                   )}
                 </div>
                 <h4 className="text-sm font-semibold text-white mb-1">{stat.label}</h4>
-                <p className="text-xs text-[#8EA3B8] leading-relaxed pr-4">{stat.description}</p>
+                <p className="text-xs text-[#8EA3B8] leading-relaxed md:pr-4">{stat.description}</p>
               </div>
             ))}
           </div>
@@ -268,7 +270,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
       </section>
 
       {/* 06. ENGINEERING PHILOSOPHY (RESTYLED) */}
-      <section className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 pt-32">
+      <section className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 pt-20 md:pt-32">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
           <div className="max-w-2xl">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
@@ -341,7 +343,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
       </section>
 
       {/* 07. METHODOLOGY */}
-      <section className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 pt-32">
+      <section className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 pt-20 md:pt-32 pb-20 md:pb-32">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
           
           {/* Left Column */}
@@ -375,7 +377,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
           {/* Right Column: Cards Carousel */}
           <div 
             ref={methodologyCarouselRef}
-            className="lg:col-span-8 flex gap-6 overflow-x-auto pb-12 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+            className="lg:col-span-8 flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
           >
             {processSteps.map((step, idx) => (
               <div 
@@ -424,7 +426,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
       </section>
 
       {/* 08. DIGITAL SOLUTIONS */}
-      <section className="relative w-full pt-32 pb-32">
+      <section className="relative w-full pt-20 md:pt-32 pb-20 md:pb-32">
         {/* Using a tech-focused image for solutions for the whole section */}
         <div className="absolute inset-0 bg-[url('/home/futuristicskylineofficeinterior.png')] bg-cover bg-center bg-fixed" />
         
@@ -478,7 +480,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
       </section>
 
       {/* 09. SELECTED WORK / PORTFOLIO */}
-      <section className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 pt-32 pb-16">
+      <section className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 pt-20 md:pt-32 pb-16">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div className="space-y-4 max-w-2xl">
             <div className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-widest uppercase text-cyan-400">

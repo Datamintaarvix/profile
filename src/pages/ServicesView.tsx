@@ -14,9 +14,20 @@ interface ServicesViewProps {
 export const ServicesView: React.FC<ServicesViewProps> = ({
   onOpenQuote,
   onNavigate,
+<<<<<<< HEAD
+=======
+  selectedServiceInit,
+>>>>>>> 50b981a (Update website)
 }) => {
   const [activeCategory, setActiveCategory] = useState<string>('All');
-  const [activeServiceId, setActiveServiceId] = useState<string>(services[0].id);
+  const [activeServiceId, setActiveServiceId] = useState<string>(selectedServiceInit?.id || services[0].id);
+
+  useEffect(() => {
+    if (selectedServiceInit) {
+      setActiveServiceId(selectedServiceInit.id);
+      setActiveCategory('All'); // Reset category so the service is visible
+    }
+  }, [selectedServiceInit]);
 
   const categories = ['All', 'Engineering', 'Design', 'Mobile', 'Commerce', 'Intelligence', 'Infrastructure', 'Consulting'];
 
@@ -49,20 +60,22 @@ export const ServicesView: React.FC<ServicesViewProps> = ({
 
   const getServiceImage = (serviceId: string) => {
     switch (serviceId) {
-      case 'web-development': return '/service/web_development.jpg';
-      case 'software-development': return '/service/software_development.jpg';
-      case 'ui-ux-design': return '/service/ui_ux_design.jpg';
-      case 'mobile-app-development': return '/service/mobile_app_development.jpg';
-      case 'ecommerce-solutions': return '/service/e-commerce.jpg';
-      case 'ai-automation': return '/service/ai_and_automation.jpg';
-      case 'cloud-deployment': return '/service/cloud_and_deployment.jpg';
-      case 'custom-solutions': return '/service/data_analytics.jpg';
-      default: return '/service/software_development.jpg';
+      case 'web-development': return '/service/webdevelopment.png';
+      case 'software-development': return '/service/softwaredevelopment.png';
+      case 'ui-ux-design': return '/service/uiux.png';
+      case 'mobile-app-development': return '/service/mobileappdevelopment.png';
+      case 'ecommerce-solutions': return '/service/ecom.png';
+      case 'ai-automation': return '/service/ai.png';
+      case 'cloud-deployment': return '/service/cloud-deployment.png';
+      case 'custom-solutions': return '/service/customsolutions.png';
+      case 'data-analytics': return '/service/dataanalytics.png';
+      case 'social-media-management': return '/service/socialmedia.png';
+      default: return '/service/softwaredevelopment.png';
     }
   };
 
   return (
-    <div className="pt-40 md:pt-48 pb-24 space-y-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div id="services" className="pt-40 md:pt-48 pb-24 space-y-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Header */}
       <section className="text-left max-w-3xl">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 dark:bg-cyan-brand/10 border border-cyan-500/30 dark:border-cyan-brand/30 text-cyan-700 dark:text-cyan-brand text-xs font-mono uppercase tracking-widest mb-4 font-semibold">
@@ -106,12 +119,20 @@ export const ServicesView: React.FC<ServicesViewProps> = ({
             </p>
           </div>
 
+<<<<<<< HEAD
           <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+=======
+          <div className="flex flex-nowrap sm:flex-wrap overflow-x-auto hide-scrollbar items-center gap-2 sm:gap-3 pb-2 sm:pb-0">
+>>>>>>> 50b981a (Update website)
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
+<<<<<<< HEAD
                 className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold tracking-widest uppercase transition-all duration-300 cursor-pointer ${
+=======
+                className={`shrink-0 px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold tracking-widest uppercase transition-all duration-300 cursor-pointer whitespace-nowrap ${
+>>>>>>> 50b981a (Update website)
                   activeCategory === cat
                     ? 'bg-cyan-600 text-white shadow-lg shadow-cyan-600/20 border border-cyan-500'
                     : 'bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-white/10'

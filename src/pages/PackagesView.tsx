@@ -58,7 +58,7 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectPlan, onNavi
       <div className="max-w-[1440px] mx-auto px-6 lg:px-12 pt-32 md:pt-48 relative z-10">
         
         {/* 01 - HERO SECTION */}
-        <section className="flex flex-col lg:flex-row gap-16 mb-32 relative">
+        <section className="flex flex-col lg:flex-row gap-16 mb-20 md:mb-32 relative">
           {/* Left Hero */}
           <div className="flex-1 relative z-10">
             <p className="text-[10px] font-bold tracking-[0.2em] text-electric-600 dark:text-cyan-brand uppercase mb-4 flex items-center gap-2">
@@ -114,7 +114,11 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectPlan, onNavi
         </section>
 
         {/* 02 - CHOOSE A PACKAGE / DYNAMIC CONTENT SWITCHER */}
+<<<<<<< HEAD
         <section id="packages-section" className="mb-32">
+=======
+        <section id="packages-section" className="mb-20 md:mb-32">
+>>>>>>> 50b981a (Update website)
           <p className="text-[10px] font-bold tracking-[0.2em] text-electric-600 dark:text-cyan-brand uppercase mb-4 flex items-center gap-2">
             <span className="w-8 h-px bg-electric-600 dark:bg-cyan-brand"></span>
             Choose a Package
@@ -191,7 +195,7 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectPlan, onNavi
         </section>
 
         {/* 03 - PACKAGES */}
-        <section className="mb-32">
+        <section className="mb-20 md:mb-32">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-12">
             <div>
               <p className="text-[10px] font-bold tracking-[0.2em] text-electric-600 dark:text-cyan-brand uppercase mb-4 flex items-center gap-2">
@@ -252,7 +256,7 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectPlan, onNavi
         </section>
 
         {/* 04 - ENTERPRISE */}
-        <section className="mb-32 relative overflow-hidden rounded-[2.5rem] bg-slate-100 dark:bg-[#08111C] border border-slate-200 dark:border-white/5 flex flex-col md:flex-row items-center shadow-lg dark:shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+        <section className="mb-20 md:mb-32 relative overflow-hidden rounded-[2.5rem] bg-slate-100 dark:bg-[#08111C] border border-slate-200 dark:border-white/5 flex flex-col md:flex-row items-center shadow-lg dark:shadow-[0_0_50px_rgba(0,0,0,0.5)]">
           <div className="absolute right-0 top-0 bottom-0 w-1/2 opacity-5 dark:opacity-10 pointer-events-none mix-blend-overlay" style={{backgroundImage: "url('https://www.transparenttextures.com/patterns/cubes.png')"}} />
           <div className="absolute right-0 top-0 bottom-0 w-1/2 bg-gradient-to-l from-slate-200/50 dark:from-black/60 to-transparent pointer-events-none" />
 
@@ -282,14 +286,14 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectPlan, onNavi
                 </li>
               ))}
             </ul>
-            <button className="group bg-slate-900 dark:bg-white text-white dark:text-black px-8 py-4 rounded-full text-sm font-bold hover:bg-slate-800 dark:hover:bg-slate-200 transition-all hover:shadow-lg flex items-center gap-2 w-fit">
+            <a href="#contact" className="group bg-slate-900 dark:bg-white text-white dark:text-black px-8 py-4 rounded-full text-sm font-bold hover:bg-slate-800 dark:hover:bg-slate-200 transition-all hover:shadow-lg flex items-center gap-2 w-fit">
               Talk to an Expert <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
+            </a>
           </div>
         </section>
 
         {/* 05 - INCLUDED */}
-        <section className="mb-32">
+        <section className="mb-20 md:mb-32">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-16">
             <div>
               <p className="text-[10px] font-bold tracking-[0.2em] text-electric-600 dark:text-cyan-brand uppercase mb-4 flex items-center gap-2">
@@ -309,14 +313,22 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectPlan, onNavi
             {/* Ambient inner glow */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-cyan-500/50 dark:via-cyan-brand/50 to-transparent opacity-50" />
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-slate-200 dark:divide-white/10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
               {[
                 { icon: Code2, title: 'Code Ownership', desc: '100% intellectual property and source code handover.' },
                 { icon: CalendarClock, title: 'Guaranteed Timelines', desc: 'Milestone-based delivery with regular progress updates.' },
                 { icon: ShieldCheck, title: 'Quality Assurance', desc: 'Rigorous testing across devices and browsers before launch.' },
                 { icon: Headset, title: 'Dedicated Support', desc: 'Ongoing assistance, updates and technical guidance.' },
               ].map((item, idx) => (
-                <div key={idx} className="relative group p-8 lg:p-10 transition-all hover:bg-slate-50/80 dark:hover:bg-white/[0.02]">
+                <div 
+                  key={idx} 
+                  className={`relative group p-8 lg:p-10 transition-all hover:bg-slate-50/80 dark:hover:bg-white/[0.02] border-slate-200 dark:border-white/10
+                    ${idx > 0 ? 'border-t lg:border-t-0 lg:border-l' : ''}
+                    ${idx === 1 ? 'md:border-t-0 md:border-l' : ''}
+                    ${idx === 2 ? 'md:border-l-0 lg:border-l' : ''}
+                    ${idx === 3 ? 'md:border-l' : ''}
+                  `}
+                >
                   {/* Subtle top highlight on hover */}
                   <div className="absolute top-0 left-0 w-full h-0.5 bg-cyan-500 dark:bg-cyan-brand scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500" />
                   
@@ -331,7 +343,7 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectPlan, onNavi
         </section>
 
         {/* 06 - ADD-ONS */}
-        <section className="mb-32">
+        <section className="mb-20 md:mb-32">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-16">
             <div>
               <p className="text-[10px] font-bold tracking-[0.2em] text-electric-600 dark:text-cyan-brand uppercase mb-4 flex items-center gap-2">
@@ -371,7 +383,7 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectPlan, onNavi
         </section>
 
         {/* 07 - PROCESS */}
-        <section className="mb-32">
+        <section className="mb-20 md:mb-32">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-16">
             <div>
               <p className="text-[10px] font-bold tracking-[0.2em] text-electric-600 dark:text-cyan-brand uppercase mb-4 flex items-center gap-2">

@@ -105,8 +105,8 @@ export const ValuesCoverflow: React.FC<ValuesCoverflowProps> = ({ beliefs }) => 
                   isCenter ? 'border-white/20 shadow-[0_0_50px_rgba(0,0,0,0.8)]' : 'border-transparent shadow-2xl'
                 }`}
               >
-                {/* Background Image Placeholder */}
-                <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900 -z-20"></div>
+                {/* Background Image */}
+                <img src={`/about/whatwebelieve${(index % beliefs.length) + 1}.png`} alt={belief.title} className="absolute inset-0 w-full h-full object-cover -z-20" />
                 
                 {/* Image Overlay Texture */}
                 <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-overlay -z-10"></div>

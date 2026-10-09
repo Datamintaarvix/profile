@@ -1,5 +1,4 @@
 // Centralized Form Submission Service
-const API_URL = 'http://localhost:5000/api/forms/submit';
 
 export interface FormSubmissionPayload {
   formType: 'Contact' | 'Get a Quote' | 'Careers' | 'Package' | 'Service' | 'Consultation' | 'Newsletter' | string;
@@ -8,14 +7,19 @@ export interface FormSubmissionPayload {
   file?: File | null;
 }
 
-// Helper to convert File to Base64
+// Helper to convert File to Base64 with client-side size check (max 5MB)
 const fileToBase64 = (file: File): Promise<{ content: string; name: string; type: string }> => {
   return new Promise((resolve, reject) => {
+    if (file.size > 5 * 1024 * 1024) {
+      reject(new Error('File size exceeds the 5MB limit. Please upload a smaller file.'));
+      return;
+    }
+
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-      let encoded = reader.result as string;
-      // Strip off the data:url prefix to get just the base64 string
+      const encoded = reader.result as string;
+      // Strip off the data:url prefix to obtain the raw base64 string
       const base64Data = encoded.replace(/^data:(.*,)?/, '');
       resolve({
         content: base64Data,
@@ -23,7 +27,7 @@ const fileToBase64 = (file: File): Promise<{ content: string; name: string; type
         type: file.type,
       });
     };
-    reader.onerror = error => reject(error);
+    reader.onerror = () => reject(new Error('Failed to read file. Please try selecting the file again.'));
   });
 };
 
@@ -36,12 +40,12 @@ export const sendAdminNotification = async ({ formType, data, sourcePage, file }
 
     const payload = {
       formType,
-      sourcePage,
+      sourcePage: sourcePage || window.location.href,
       data,
-      file: fileData
+      file: fileData,
     };
 
-    // Use relative path so Vercel Serverless Functions can pick it up natively
+    // Submits to /api/forms/submit (proxied to Express port 5000 in dev, or Vercel serverless in prod)
     const response = await fetch('/api/forms/submit', {
       method: 'POST',
       headers: {
@@ -50,15 +54,22 @@ export const sendAdminNotification = async ({ formType, data, sourcePage, file }
       body: JSON.stringify(payload),
     });
 
-    const result = await response.json();
-    
-    if (!response.ok) {
-      throw new Error(result.error || 'Submission failed.');
+    let result: any = null;
+    try {
+      result = await response.json();
+    } catch {
+      // Non-JSON response
+      throw new Error(`Server returned status ${response.status} (${response.statusText}).`);
+    }
+
+    if (!response.ok || !result.success) {
+      const errorMsg = result?.error || result?.message || `Submission failed with status ${response.status}.`;
+      throw new Error(errorMsg);
     }
 
     return result;
   } catch (error: any) {
     console.error('Error submitting form:', error);
-    throw new Error(error.message || 'Something went wrong. Please try again.');
+    throw error;
   }
 };

@@ -67,12 +67,14 @@ export const AboutView: React.FC<AboutViewProps> = ({ onOpenQuote, onNavigate })
 
         <div className="lg:col-span-5">
           <div className="glass-panel p-4 rounded-3xl border border-slate-200 dark:border-white/15">
-            <ImagePlaceholder
-              label="ABOUT / CULTURE"
-              sublabel="Engineering collaboration & technology workspace"
-              aspectRatio="square"
-              badge="WHO WE ARE"
-            />
+            <div className="relative aspect-square rounded-2xl overflow-hidden group">
+              <div className="absolute top-3 left-3 z-10">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium tracking-wide uppercase bg-white/90 dark:bg-navy-900/80 border border-slate-200 dark:border-cyan-brand/30 text-cyan-700 dark:text-cyan-brand backdrop-blur-md shadow-sm">
+                  WHO WE ARE
+                </span>
+              </div>
+              <img src="/about/hero.png" alt="About Culture" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            </div>
           </div>
         </div>
       </section>
@@ -135,8 +137,8 @@ export const AboutView: React.FC<AboutViewProps> = ({ onOpenQuote, onNavigate })
         <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-6">
           {/* Card 1 */}
           <div className="relative h-[450px] lg:h-[520px] rounded-3xl overflow-hidden group">
-            {/* Background Image Placeholder */}
-            <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900 group-hover:scale-105 transition-transform duration-700"></div>
+            {/* Background Image */}
+            <img src="/about/businessunderstanding.png" alt="Business Understanding" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
             {/* Gradient Overlay for text readability */}
             <div className="absolute inset-0 bg-gradient-to-t from-[#03101D] via-[#03101D]/60 to-transparent"></div>
             
@@ -154,8 +156,8 @@ export const AboutView: React.FC<AboutViewProps> = ({ onOpenQuote, onNavigate })
           
           {/* Card 2 */}
           <div className="relative h-[450px] lg:h-[520px] rounded-3xl overflow-hidden group">
-            {/* Background Image Placeholder */}
-            <div className="absolute inset-0 bg-gradient-to-br from-slate-700 to-slate-800 group-hover:scale-105 transition-transform duration-700"></div>
+            {/* Background Image */}
+            <img src="/about/humancentricdesign.png" alt="Human-Centric Design" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
             {/* Gradient Overlay for text readability */}
             <div className="absolute inset-0 bg-gradient-to-t from-[#03101D] via-[#03101D]/60 to-transparent"></div>
             
@@ -173,8 +175,8 @@ export const AboutView: React.FC<AboutViewProps> = ({ onOpenQuote, onNavigate })
           
           {/* Card 3 */}
           <div className="relative h-[450px] lg:h-[520px] rounded-3xl overflow-hidden group">
-            {/* Background Image Placeholder */}
-            <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900 group-hover:scale-105 transition-transform duration-700"></div>
+            {/* Background Image */}
+            <img src="/about/rigorousengineering.png" alt="Rigorous Engineering" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
             {/* Gradient Overlay for text readability */}
             <div className="absolute inset-0 bg-gradient-to-t from-[#03101D] via-[#03101D]/60 to-transparent"></div>
             

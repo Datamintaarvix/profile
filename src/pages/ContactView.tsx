@@ -6,7 +6,7 @@ import { companyInfo } from '../data/siteData';
 
 export const ContactView: React.FC = () => {
   return (
-    <div className="pt-40 md:pt-48 pb-0 font-sans">
+    <div id="contact" className="pt-40 md:pt-48 pb-0 font-sans">
 
       {/* 1. Hero Section - Standard Style */}
       <section className="relative text-left px-4 sm:px-6 lg:px-8 mb-16 max-w-7xl mx-auto">
@@ -34,7 +34,11 @@ export const ContactView: React.FC = () => {
               Whether you're looking to discuss a new project, require technical support, or want to explore partnership opportunities, our team is ready to assist. Reach out to us directly through any of the channels below, and we'll connect you with the right experts to move your ideas forward.
             </p>
 
+<<<<<<< HEAD
             <div className="grid grid-cols-2 gap-y-10 gap-x-6 text-center sm:text-left">
+=======
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-10 gap-x-6 text-center sm:text-left">
+>>>>>>> 50b981a (Update website)
               <a href={`tel:${companyInfo.phone.replace(/[\s-]/g, '')}`} className="flex flex-col items-center sm:items-start text-center sm:text-left group cursor-pointer">
                 <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center mb-4 text-white group-hover:border-cyan-brand group-hover:text-cyan-brand transition-all shadow-sm">
                   <Phone className="w-5 h-5" />

@@ -18,25 +18,39 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({ onOpenQuote, onNavig
     ? projects
     : projects.filter((p) => p.category.toLowerCase() === activeCategory.toLowerCase());
 
+  const getProjectImage = (id: string) => {
+    switch (id) {
+      case 'project-01': return '/project/businessdashboardworkspace.png';
+      case 'project-02': return '/project/moderncorporateworkspacewebsiteshowcase.png';
+      case 'project-03': return '/project/onlinestorefulfillmentworkspace.png';
+      case 'project-04': return '/project/ai.png';
+      case 'project-05': return '/project/Industrialfieldworkdeskbytheplant.png';
+      case 'project-06': return '/project/moderncustomerportalworkspace.png';
+      default: return '/project/businessdashboardworkspace.png';
+    }
+  };
+
   return (
     <div className="pt-40 md:pt-48 pb-24 space-y-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Header */}
-      <section className="text-left max-w-3xl">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-brand/10 border border-cyan-brand/30 text-cyan-brand text-xs font-mono uppercase tracking-widest mb-4">
-          <span>PORTFOLIO</span>
+      <section className="text-left w-full">
+        <div className="max-w-3xl">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-brand/10 border border-cyan-brand/30 text-cyan-brand text-xs font-mono uppercase tracking-widest mb-4">
+            <span>PORTFOLIO</span>
+          </div>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-tight">
+            Selected work.
+          </h1>
+          <p className="mt-4 text-lg text-slate-300 leading-relaxed">
+            Case studies in engineering scalable web platforms, high-throughput enterprise backends, and practical AI tools.
+          </p>
+          <p className="mt-3 text-sm text-cyan-brand font-mono tracking-wide">
+            * Please note: The following are only curated samples. Many of our enterprise projects are protected under strict NDAs.
+          </p>
         </div>
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-tight">
-          Selected work.
-        </h1>
-        <p className="mt-4 text-lg text-slate-300 leading-relaxed">
-          Case studies in engineering scalable web platforms, high-throughput enterprise backends, and practical AI tools.
-        </p>
-        <p className="mt-3 text-sm text-cyan-brand font-mono tracking-wide">
-          * Please note: The following are only curated samples. Many of our enterprise projects are protected under strict NDAs.
-        </p>
 
         {/* Filter Pills */}
-        <div className="flex items-center gap-2 pt-6 overflow-x-auto flex-nowrap hide-scrollbar pb-2">
+        <div className="flex items-center gap-2 pt-8 overflow-x-auto flex-nowrap hide-scrollbar pb-2 w-full">
           {categories.map((cat) => (
             <button
               key={cat}
@@ -59,13 +73,19 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({ onOpenQuote, onNavig
           {filteredProjects.map((project, idx) => (
             <div
               key={project.id}
-              onClick={() => onOpenQuote(project.category)}
-              className="group snap-center shrink-0 w-[85vw] sm:w-[450px] lg:w-[550px] rounded-[2rem] overflow-hidden glass-panel border border-white/10 flex flex-col relative cursor-pointer"
+              className="group snap-center shrink-0 w-[85vw] sm:w-[450px] lg:w-[550px] rounded-[2rem] overflow-hidden glass-panel border border-white/10 flex flex-col relative"
             >
               {/* Image / Header Area */}
               <div className="relative h-48 sm:h-64 w-full bg-navy-950 overflow-hidden shrink-0">
-                {/* Background abstract effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-900/30 to-navy-950/80 z-10 transition-opacity duration-500 group-hover:opacity-80" />
+                {/* Project Image */}
+                <img 
+                  src={getProjectImage(project.id)} 
+                  alt={project.title} 
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                />
+                
+                {/* Background abstract effect for text readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/50 to-transparent z-10 transition-opacity duration-500 group-hover:opacity-80" />
                 
                 {/* Large watermark number */}
                 <div className="absolute -right-8 -bottom-8 text-[150px] font-black font-mono text-white/5 leading-none z-0 rotate-12 transition-transform duration-700 group-hover:scale-110 group-hover:-rotate-12">
