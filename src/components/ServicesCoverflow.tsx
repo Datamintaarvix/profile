@@ -49,6 +49,35 @@ export const ServicesCoverflow: React.FC<ServicesCoverflowProps> = ({
     setTouchStart(null);
   };
 
+  // Mouse drag support
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStartX, setDragStartX] = useState<number | null>(null);
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setIsDragging(true);
+    setDragStartX(e.clientX);
+  };
+
+  const handleMouseUp = (e: React.MouseEvent) => {
+    if (!isDragging || dragStartX === null) {
+      setIsDragging(false);
+      setDragStartX(null);
+      return;
+    }
+    const dragEndX = e.clientX;
+    const diff = dragStartX - dragEndX;
+    if (diff > 40) nextSlide();
+    else if (diff < -40) prevSlide();
+    setIsDragging(false);
+    setDragStartX(null);
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent) => {
+    if (isDragging) {
+      handleMouseUp(e);
+    }
+  };
+
   const getServiceBadge = (service: Service) => {
     switch (service.number) {
       case '01': return '01 • CORE SERVICE';
@@ -73,7 +102,10 @@ export const ServicesCoverflow: React.FC<ServicesCoverflowProps> = ({
         ref={containerRef}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
-        className="relative h-[580px] sm:h-[620px] md:h-[640px] w-full flex items-center justify-center overflow-visible"
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseLeave}
+        className="relative h-[580px] sm:h-[620px] md:h-[640px] w-full flex items-center justify-center overflow-visible cursor-grab active:cursor-grabbing"
         style={{ perspective: '1400px' }}
       >
         {services.map((service, index) => {

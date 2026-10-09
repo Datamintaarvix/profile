@@ -127,15 +127,6 @@ export const ContactForm: React.FC<ContactFormProps> = ({
         formType: 'Service Request',
         sourcePage: window.location.href,
         data: {
-<<<<<<< HEAD
-          name: formData.fullName,
-          email: formData.email,
-          phone: formData.phone,
-          company: formData.companyName,
-          service: formData.serviceRequired,
-          budget: formData.projectBudget,
-          message: formData.projectDetails,
-=======
           name: formData.fullName.trim(),
           email: formData.email.trim(),
           phone: formData.phone.trim(),
@@ -144,7 +135,6 @@ export const ContactForm: React.FC<ContactFormProps> = ({
           budget: formData.projectBudget,
           message: formData.projectDetails.trim(),
           _honeypot: honeypot,
->>>>>>> 50b981a (Update website)
         }
       });
       setStatus('success');
@@ -198,8 +188,6 @@ export const ContactForm: React.FC<ContactFormProps> = ({
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
-<<<<<<< HEAD
-=======
             {/* Spam Protection Honeypot Field */}
             <input
               type="text"
@@ -212,7 +200,6 @@ export const ContactForm: React.FC<ContactFormProps> = ({
               aria-hidden="true"
             />
 
->>>>>>> 50b981a (Update website)
             {status === 'error' && (
               <div className="p-3.5 rounded-xl bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-300 text-xs flex items-center gap-2">
                 <AlertCircle className="w-4 h-4 shrink-0 text-red-500" />
@@ -249,15 +236,6 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 
               <div>
                 <label className="block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-slate-400 mb-2">Phone *</label>
-<<<<<<< HEAD
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                  placeholder="+91..."
-=======
                 <PhoneInput
                   value={formData.phone}
                   onChange={(val) => handleChange({ target: { name: 'phone', value: val } } as any)}
@@ -273,26 +251,11 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                   value={formData.companyName}
                   onChange={handleChange}
                   placeholder="Your Company (Optional)"
->>>>>>> 50b981a (Update website)
                   className="w-full bg-white/50 dark:bg-white/[0.03] border border-slate-300 dark:border-white/10 rounded-lg px-4 py-3 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:border-cyan-500 dark:focus:border-cyan-brand transition-all"
                 />
               </div>
 
-<<<<<<< HEAD
-              <div>
-                <label className="block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-slate-400 mb-2">Company Name</label>
-                <input
-                  type="text"
-                  name="companyName"
-                  value={formData.companyName}
-                  onChange={handleChange}
-                  placeholder="Your Company (Optional)"
-                  className="w-full bg-white/50 dark:bg-white/[0.03] border border-slate-300 dark:border-white/10 rounded-lg px-4 py-3 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:border-cyan-500 dark:focus:border-cyan-brand transition-all"
-                />
-              </div>
 
-=======
->>>>>>> 50b981a (Update website)
               <div className="md:col-span-2">
                 <label className="block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-slate-400 mb-2">Service Required *</label>
                 <CustomSelect

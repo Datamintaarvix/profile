@@ -49,22 +49,55 @@ export const ValuesCoverflow: React.FC<ValuesCoverflowProps> = ({ beliefs }) => 
     if (touchStart === null) return;
     const touchEnd = e.changedTouches[0].clientX;
     const diff = touchStart - touchEnd;
-    if (diff > 40) prevSlide(); // swipe right goes to previous
-    else if (diff < -40) nextSlide(); // swipe left goes to next
+    if (diff > 40) prevSlide();
+    else if (diff < -40) nextSlide();
     setTouchStart(null);
+  };
+
+  // Mouse drag support
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStartX, setDragStartX] = useState<number | null>(null);
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setIsDragging(true);
+    setDragStartX(e.clientX);
+  };
+
+  const handleMouseUp = (e: React.MouseEvent) => {
+    if (!isDragging || dragStartX === null) {
+      setIsDragging(false);
+      setDragStartX(null);
+      return;
+    }
+    const dragEndX = e.clientX;
+    const diff = dragStartX - dragEndX;
+    // We only trigger if the user dragged significantly
+    if (diff > 40) prevSlide();
+    else if (diff < -40) nextSlide();
+    setIsDragging(false);
+    setDragStartX(null);
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent) => {
+    if (isDragging) {
+      handleMouseUp(e);
+    }
   };
 
   // Calculate the current rotation of the entire ring
   const ringRotation = activeIndex * angleDeg;
 
   return (
-    <div className="relative w-full py-8 sm:py-16 overflow-hidden">
+    <div className="relative w-full py-8 sm:py-16 overflow-hidden select-none">
       
       {/* 3D Ring Stage */}
       <div
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
-        className="relative h-[400px] sm:h-[450px] md:h-[500px] w-full flex items-center justify-center overflow-visible"
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseLeave}
+        className="relative h-[400px] sm:h-[450px] md:h-[500px] w-full flex items-center justify-center overflow-visible cursor-grab active:cursor-grabbing"
         style={{ perspective: '1000px' }}
       >
         <div 

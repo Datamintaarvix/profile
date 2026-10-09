@@ -114,11 +114,7 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectPlan, onNavi
         </section>
 
         {/* 02 - CHOOSE A PACKAGE / DYNAMIC CONTENT SWITCHER */}
-<<<<<<< HEAD
-        <section id="packages-section" className="mb-32">
-=======
         <section id="packages-section" className="mb-20 md:mb-32">
->>>>>>> 50b981a (Update website)
           <p className="text-[10px] font-bold tracking-[0.2em] text-electric-600 dark:text-cyan-brand uppercase mb-4 flex items-center gap-2">
             <span className="w-8 h-px bg-electric-600 dark:bg-cyan-brand"></span>
             Choose a Package

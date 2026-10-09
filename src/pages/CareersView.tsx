@@ -87,10 +87,7 @@ export const CareersView: React.FC = () => {
   const positionOptions = careers.map(c => c.title);
 
   const [openAppFile, setOpenAppFile] = useState<File | null>(null);
-<<<<<<< HEAD
-=======
   const [honeypot, setHoneypot] = useState('');
->>>>>>> 50b981a (Update website)
   const [appStatus, setAppStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -131,25 +128,6 @@ export const CareersView: React.FC = () => {
       setErrorMessage('Please upload your resume (PDF).');
       return;
     }
-<<<<<<< HEAD
-    
-    setAppStatus('submitting');
-    try {
-      await sendAdminNotification({
-        formType: 'career',
-        sourcePage: window.location.href,
-        data: {
-          name: applicationForm.fullName,
-          email: applicationForm.email,
-          phone: applicationForm.phone,
-          role: applicationForm.position,
-          experience: applicationForm.experience,
-          location: applicationForm.location,
-          linkedin: applicationForm.linkedin,
-          portfolio: applicationForm.portfolio,
-          message: applicationForm.message,
-=======
-
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(applicationForm.email.trim())) {
       setAppStatus('error');
@@ -175,7 +153,6 @@ export const CareersView: React.FC = () => {
           portfolio: applicationForm.portfolio.trim(),
           message: applicationForm.message.trim(),
           _honeypot: honeypot,
->>>>>>> 50b981a (Update website)
         },
         file: openAppFile
       });
@@ -226,7 +203,7 @@ export const CareersView: React.FC = () => {
           </div>
           <div className="order-1 lg:order-2 relative rounded-3xl overflow-hidden aspect-[4/3] sm:aspect-[5/4] border border-white/10 w-full">
             <img 
-              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" 
+              src="/carear/c3.png" 
               alt="Professional workplace and collaborative team" 
               className="w-full h-full object-cover" 
             />
@@ -240,7 +217,7 @@ export const CareersView: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             <div className="relative rounded-3xl overflow-hidden aspect-[4/3] border border-white/10">
               <img 
-                src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1200&q=80" 
+                src="/carear/c2.png" 
                 alt="Developers working together" 
                 className="w-full h-full object-cover" 
               />
@@ -329,7 +306,7 @@ export const CareersView: React.FC = () => {
             </div>
             <div className="order-1 lg:order-2 relative rounded-3xl overflow-hidden aspect-[4/3] border border-white/10">
               <img 
-                src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80" 
+                src="/carear/c1.png" 
                 alt="Team discussion and design review" 
                 className="w-full h-full object-cover" 
               />
@@ -517,8 +494,6 @@ export const CareersView: React.FC = () => {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-8">
-<<<<<<< HEAD
-=======
                   {/* Honeypot Spam Protection Field */}
                   <input
                     type="text"
@@ -531,7 +506,6 @@ export const CareersView: React.FC = () => {
                     aria-hidden="true"
                   />
 
->>>>>>> 50b981a (Update website)
                   {appStatus === 'error' && (
                     <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm flex items-center gap-3">
                       <AlertCircle className="w-5 h-5 shrink-0" />

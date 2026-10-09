@@ -45,7 +45,7 @@ function MainLayout() {
 
   const handleNavigate = (tabId: string, subId?: string) => {
     setCurrentTab(tabId);
-    if (subId) setActiveSubId(subId);
+    setActiveSubId(subId || null);
     window.location.hash = tabId === 'home' ? '' : tabId;
   };
 
@@ -101,10 +101,7 @@ function MainLayout() {
           <ServicesView
             onOpenQuote={handleOpenQuote}
             onNavigate={handleNavigate}
-<<<<<<< HEAD
-=======
             selectedServiceInit={activeSubId ? services.find(s => s.id === activeSubId) || null : null}
->>>>>>> 50b981a (Update website)
           />
         )}
 

@@ -14,10 +14,7 @@ interface ServicesViewProps {
 export const ServicesView: React.FC<ServicesViewProps> = ({
   onOpenQuote,
   onNavigate,
-<<<<<<< HEAD
-=======
   selectedServiceInit,
->>>>>>> 50b981a (Update website)
 }) => {
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [activeServiceId, setActiveServiceId] = useState<string>(selectedServiceInit?.id || services[0].id);
@@ -26,6 +23,13 @@ export const ServicesView: React.FC<ServicesViewProps> = ({
     if (selectedServiceInit) {
       setActiveServiceId(selectedServiceInit.id);
       setActiveCategory('All'); // Reset category so the service is visible
+      setTimeout(() => {
+        const element = document.getElementById('detailed-services');
+        if (element) {
+          const y = element.getBoundingClientRect().top + window.scrollY - 100;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }, 150);
     }
   }, [selectedServiceInit]);
 
@@ -106,7 +110,7 @@ export const ServicesView: React.FC<ServicesViewProps> = ({
       <div className="glowing-divider" />
 
       {/* Filter Pills & Detailed Section */}
-      <section className="relative w-full py-12 space-y-12">
+      <section id="detailed-services" className="relative w-full py-12 space-y-12">
         
         {/* Header & Filters */}
         <div className="flex flex-col gap-8 md:gap-10">
@@ -119,20 +123,12 @@ export const ServicesView: React.FC<ServicesViewProps> = ({
             </p>
           </div>
 
-<<<<<<< HEAD
-          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-=======
           <div className="flex flex-nowrap sm:flex-wrap overflow-x-auto hide-scrollbar items-center gap-2 sm:gap-3 pb-2 sm:pb-0">
->>>>>>> 50b981a (Update website)
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-<<<<<<< HEAD
-                className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold tracking-widest uppercase transition-all duration-300 cursor-pointer ${
-=======
                 className={`shrink-0 px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold tracking-widest uppercase transition-all duration-300 cursor-pointer whitespace-nowrap ${
->>>>>>> 50b981a (Update website)
                   activeCategory === cat
                     ? 'bg-cyan-600 text-white shadow-lg shadow-cyan-600/20 border border-cyan-500'
                     : 'bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-white/10'
