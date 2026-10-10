@@ -282,7 +282,7 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectPlan, onNavi
                 </li>
               ))}
             </ul>
-            <a href="#contact" className="group bg-slate-900 dark:bg-white text-white dark:text-black px-8 py-4 rounded-full text-sm font-bold hover:bg-slate-800 dark:hover:bg-slate-200 transition-all hover:shadow-lg flex items-center gap-2 w-fit">
+            <a href="/contact" className="group bg-slate-900 dark:bg-white text-white dark:text-black px-8 py-4 rounded-full text-sm font-bold hover:bg-slate-800 dark:hover:bg-slate-200 transition-all hover:shadow-lg flex items-center gap-2 w-fit">
               Talk to an Expert <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
           </div>

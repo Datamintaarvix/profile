@@ -281,7 +281,7 @@ export const ServicesView: React.FC<ServicesViewProps> = ({
         {/* Right Side: Scrollable List */}
         <div className="lg:col-span-7 h-[500px] overflow-y-auto pr-2 md:pr-4 space-y-4 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-white/10 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-white/20">
           {addOnServices.map((addon, idx) => (
-            <a href="#contact" key={idx} className="bg-white/[0.03] backdrop-blur-xl border border-white/10 p-6 rounded-2xl flex items-center justify-between gap-6 hover:bg-white/[0.06] hover:border-cyan-500/30 transition-all cursor-pointer group block">
+            <a href="/contact" key={idx} className="bg-white/[0.03] backdrop-blur-xl border border-white/10 p-6 rounded-2xl flex items-center justify-between gap-6 hover:bg-white/[0.06] hover:border-cyan-500/30 transition-all cursor-pointer group block">
               <div className="flex-1">
                 <span className="text-[10px] font-mono uppercase tracking-wider text-cyan-400 block mb-2 font-semibold">
                   {addon.category}

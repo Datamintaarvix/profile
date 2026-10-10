@@ -122,7 +122,7 @@ export const Footer: React.FC<FooterProps> = ({
               {services.slice(0, 6).map((service) => (
                 <li key={service.id}>
                   <a
-                    href="#services"
+                    href="/services"
                     onClick={(e) => { e.preventDefault(); handleNav('services', service.id); }}
                     className="text-slate-600 hover:text-cyan-600 transition-colors cursor-pointer text-left font-medium block"
                   >
