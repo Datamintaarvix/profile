@@ -55,16 +55,21 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectPlan, onNavi
 
   return (
     <div className="font-sans pb-20 relative">
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-12 pt-32 md:pt-48 relative z-10">
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-12 pt-36 sm:pt-40 md:pt-48 lg:pt-52 relative z-10">
         
         {/* 01 - HERO SECTION */}
-        <section className="flex flex-col lg:flex-row gap-16 mb-20 md:mb-32 relative">
+        <section id="hero-packages" className="flex flex-col lg:flex-row gap-12 lg:gap-16 mb-8 md:mb-12 relative">
           {/* Left Hero */}
           <div className="flex-1 relative z-10">
-            <p className="text-[10px] font-bold tracking-[0.2em] text-electric-600 dark:text-cyan-brand uppercase mb-4 flex items-center gap-2">
+            <button 
+              onClick={() => document.getElementById('packages-section')?.scrollIntoView({ behavior: 'smooth' })}
+              className="text-[10px] font-bold tracking-[0.2em] text-electric-600 dark:text-cyan-brand uppercase mb-4 flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
+              title="Explore Packages"
+            >
               <span className="w-8 h-px bg-electric-600 dark:bg-cyan-brand"></span>
-              Engagement Packages
-            </p>
+              <span>Engagement Packages</span>
+              <ArrowRight className="w-3 h-3" />
+            </button>
             <h1 className="text-5xl lg:text-7xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.1] mb-6">
               Transparent <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric-600 to-cyan-500 dark:from-cyan-brand dark:to-blue-500">Packages.</span>
@@ -73,10 +78,10 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectPlan, onNavi
               Structured scopes designed for each growth phase. Every tier includes clean engineering, responsive QA, and dedicated post-launch support.
             </p>
             
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-8 mb-16">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-8 mb-12">
               <button 
                 onClick={() => document.getElementById('packages-section')?.scrollIntoView({ behavior: 'smooth' })}
-                className="group bg-electric-600 hover:bg-electric-500 dark:bg-cyan-brand dark:hover:bg-cyan-brand/80 text-white dark:text-navy-950 px-6 py-3 rounded-full text-sm font-semibold transition-all hover:shadow-[0_0_20px_rgba(0,102,255,0.3)] dark:hover:shadow-[0_0_20px_rgba(0,240,255,0.3)] hover:-translate-y-0.5 flex items-center gap-2"
+                className="group bg-electric-600 hover:bg-electric-500 dark:bg-cyan-brand dark:hover:bg-cyan-brand/80 text-white dark:text-navy-950 px-6 py-3 rounded-full text-sm font-semibold transition-all hover:shadow-[0_0_20px_rgba(0,102,255,0.3)] dark:hover:shadow-[0_0_20px_rgba(0,240,255,0.3)] hover:-translate-y-0.5 flex items-center gap-2 cursor-pointer"
               >
                 Explore Packages <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
@@ -113,12 +118,49 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectPlan, onNavi
           </div>
         </section>
 
-        {/* 02 - CHOOSE A PACKAGE / DYNAMIC CONTENT SWITCHER */}
-        <section id="packages-section" className="mb-20 md:mb-32">
-          <p className="text-[10px] font-bold tracking-[0.2em] text-electric-600 dark:text-cyan-brand uppercase mb-4 flex items-center gap-2">
-            <span className="w-8 h-px bg-electric-600 dark:bg-cyan-brand"></span>
-            Choose a Package
+        {/* Topic Quick Navigation Bar */}
+        <div className="mb-12 pt-4 border-t border-slate-200/50 dark:border-white/10">
+          <p className="text-xs font-mono text-cyan-400 uppercase tracking-widest mb-3 flex items-center gap-1.5 font-bold">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            Explore Topics:
           </p>
+          <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
+            {[
+              { id: 'hero-packages', label: '1. Engagement' },
+              { id: 'packages-section', label: '2. Choose Plan' },
+              { id: 'website-packages', label: '3. Website Packages' },
+              { id: 'enterprise-section', label: '4. Enterprise' },
+              { id: 'included-section', label: '5. What\'s Included' },
+              { id: 'addons-section', label: '6. Extend / Add-ons' },
+              { id: 'process-section', label: '7. Our Process' },
+            ].map((topic, idx) => (
+              <button
+                key={idx}
+                onClick={() => {
+                  const el = document.getElementById(topic.id);
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold uppercase tracking-wider bg-cyan-500/10 hover:bg-cyan-500/25 border border-cyan-500/30 text-cyan-400 hover:text-white transition-all cursor-pointer shadow-sm focus:outline-none flex items-center gap-1.5"
+                title={`Jump to ${topic.label}`}
+              >
+                <span>{topic.label}</span>
+                <ArrowRight className="w-3 h-3 opacity-60" />
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* 02 - CHOOSE A PACKAGE / DYNAMIC CONTENT SWITCHER */}
+        <section id="packages-section" className="mb-12 md:mb-16">
+          <button 
+            onClick={() => document.getElementById('packages-section')?.scrollIntoView({ behavior: 'smooth' })}
+            className="text-[10px] font-bold tracking-[0.2em] text-electric-600 dark:text-cyan-brand uppercase mb-4 flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
+            title="Choose a Package"
+          >
+            <span className="w-8 h-px bg-electric-600 dark:bg-cyan-brand"></span>
+            <span>Choose a Package</span>
+            <ArrowRight className="w-3 h-3" />
+          </button>
           <h2 className="text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
             What are you building?
           </h2>
@@ -139,10 +181,10 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectPlan, onNavi
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
+                  className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 cursor-pointer ${
                     isActive 
-                      ? 'bg-electric-600 dark:bg-cyan-brand text-white dark:text-navy-950 shadow-md shadow-electric-600/20 dark:shadow-cyan-brand/20' 
-                      : 'bg-transparent text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-white/5'
+                      ? 'bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 text-white shadow-md shadow-cyan-500/25' 
+                      : 'bg-transparent text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-white/5'
                   }`}
                 >
                   <Icon className="w-4 h-4" /> {tab.label}
@@ -191,13 +233,18 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectPlan, onNavi
         </section>
 
         {/* 03 - PACKAGES */}
-        <section className="mb-20 md:mb-32">
+        <section id="website-packages" className="mb-20 md:mb-32">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-12">
             <div>
-              <p className="text-[10px] font-bold tracking-[0.2em] text-electric-600 dark:text-cyan-brand uppercase mb-4 flex items-center gap-2">
+              <button 
+                onClick={() => document.getElementById('website-packages')?.scrollIntoView({ behavior: 'smooth' })}
+                className="text-[10px] font-bold tracking-[0.2em] text-electric-600 dark:text-cyan-brand uppercase mb-4 flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
+                title="Website Packages"
+              >
                 <span className="w-8 h-px bg-electric-600 dark:bg-cyan-brand"></span>
-                Website Development Packages
-              </p>
+                <span>Website Development Packages</span>
+                <ArrowRight className="w-3 h-3" />
+              </button>
               <h2 className="text-4xl font-extrabold text-slate-900 dark:text-white">
                 Flexible packages for every stage.
               </h2>
@@ -211,36 +258,36 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectPlan, onNavi
             {packages.slice(0, 3).map((pkg, idx) => {
               const isPopular = pkg.popular;
               return (
-                <div key={pkg.id} className={`group p-8 lg:p-12 relative transition-colors hover:bg-slate-50 dark:hover:bg-white/[0.02] ${idx !== 2 ? 'border-b md:border-b-0 md:border-r border-slate-200 dark:border-white/10' : ''}`}>
+                <div key={pkg.id} className={`group p-8 lg:p-12 relative transition-all hover:bg-slate-50 dark:hover:bg-white/[0.02] ${isPopular ? 'bg-cyan-500/[0.03] dark:bg-cyan-500/[0.06] shadow-sm' : ''} ${idx !== 2 ? 'border-b md:border-b-0 md:border-r border-slate-200 dark:border-white/10' : ''}`}>
                   {isPopular && (
-                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-electric-600 to-cyan-500 dark:from-cyan-brand dark:to-blue-500" />
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600" />
                   )}
                   <div className="flex items-center justify-between mb-6">
-                    <span className="text-electric-600 dark:text-cyan-brand text-sm font-mono font-bold tracking-widest">0{idx + 1}</span>
+                    <span className="text-cyan-600 dark:text-cyan-brand text-sm font-mono font-bold tracking-widest">0{idx + 1}</span>
                     {isPopular && (
-                      <span className="text-[10px] bg-electric-100 dark:bg-cyan-brand/10 border border-electric-200 dark:border-cyan-brand/20 text-electric-600 dark:text-cyan-brand px-3 py-1 rounded-full uppercase tracking-wider font-bold">
+                      <span className="text-[11px] bg-cyan-500/10 border border-cyan-500/30 text-cyan-600 dark:text-cyan-300 px-3 py-1 rounded-full uppercase tracking-wider font-bold shadow-sm">
                         Popular Choice
                       </span>
                     )}
                   </div>
-                  <h3 className="text-3xl font-extrabold text-slate-900 dark:text-white mb-4 group-hover:text-electric-600 dark:group-hover:text-cyan-brand transition-colors">{pkg.name}</h3>
+                  <h3 className="text-3xl font-extrabold text-slate-900 dark:text-white mb-4 group-hover:text-cyan-600 dark:group-hover:text-cyan-brand transition-colors">{pkg.name}</h3>
                   <p className="text-sm text-slate-600 dark:text-slate-400 min-h-[60px] mb-8 font-medium">{pkg.idealFor}</p>
 
                   <ul className="space-y-5 mb-12">
                     {pkg.features.map((feature, fIdx) => (
                       <li key={fIdx} className="flex items-start gap-4 text-sm text-slate-700 dark:text-slate-300 font-medium">
-                        <div className="w-5 h-5 rounded-full bg-electric-50 dark:bg-cyan-brand/10 flex items-center justify-center shrink-0 mt-0.5">
-                          <Check className="w-3 h-3 text-electric-600 dark:text-cyan-brand" />
+                        <div className="w-5 h-5 rounded-full bg-cyan-50 dark:bg-cyan-brand/10 flex items-center justify-center shrink-0 mt-0.5">
+                          <Check className="w-3 h-3 text-cyan-600 dark:text-cyan-brand" />
                         </div>
                         <span className="leading-snug">{feature}</span>
                       </li>
                     ))}
                   </ul>
 
-                  <button className={`w-full py-3.5 rounded-xl text-sm font-bold flex items-center justify-center gap-2 transition-all ${
+                  <button className={`w-full py-3.5 rounded-xl text-sm font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
                     isPopular 
-                      ? 'bg-electric-600 dark:bg-cyan-brand text-white dark:text-navy-950 hover:bg-electric-700 dark:hover:bg-cyan-brand/90 hover:shadow-lg hover:-translate-y-0.5' 
-                      : 'bg-slate-100 dark:bg-white/5 text-slate-900 dark:text-white border border-transparent hover:border-slate-300 dark:hover:border-white/10 hover:bg-slate-200 dark:hover:bg-white/10'
+                      ? 'btn-primary shadow-lg shadow-cyan-500/20 hover:scale-[1.02]' 
+                      : 'bg-slate-100 dark:bg-white/5 text-slate-900 dark:text-white border border-slate-200 dark:border-white/10 hover:border-cyan-500/30 hover:bg-slate-200 dark:hover:bg-white/10'
                   }`}
                   onClick={() => onNavigate('contact')}>
                     Get a Quote <ArrowRight className="w-4 h-4" />
@@ -252,14 +299,18 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectPlan, onNavi
         </section>
 
         {/* 04 - ENTERPRISE */}
-        <section className="mb-20 md:mb-32 relative overflow-hidden rounded-[2.5rem] bg-slate-100 dark:bg-[#08111C] border border-slate-200 dark:border-white/5 flex flex-col md:flex-row items-center shadow-lg dark:shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+        <section id="enterprise-section" className="mb-20 md:mb-32 relative overflow-hidden rounded-[2.5rem] bg-slate-100 dark:bg-[#08111C] border border-slate-200 dark:border-white/5 flex flex-col md:flex-row items-center shadow-lg dark:shadow-[0_0_50px_rgba(0,0,0,0.5)]">
           <div className="absolute right-0 top-0 bottom-0 w-1/2 opacity-5 dark:opacity-10 pointer-events-none mix-blend-overlay" style={{backgroundImage: "url('https://www.transparenttextures.com/patterns/cubes.png')"}} />
           <div className="absolute right-0 top-0 bottom-0 w-1/2 bg-gradient-to-l from-slate-200/50 dark:from-black/60 to-transparent pointer-events-none" />
 
           <div className="flex-1 p-12 lg:p-24 relative z-10">
-            <p className="text-[10px] font-bold tracking-[0.2em] text-electric-600 dark:text-cyan-brand uppercase mb-4">
-              04 Enterprise
-            </p>
+            <button 
+              onClick={() => document.getElementById('enterprise-section')?.scrollIntoView({ behavior: 'smooth' })}
+              className="text-[10px] font-bold tracking-[0.2em] text-electric-600 dark:text-cyan-brand uppercase mb-4 flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
+            >
+              <span>04 Enterprise</span>
+              <ArrowRight className="w-3 h-3" />
+            </button>
             <h2 className="text-4xl font-extrabold text-slate-900 dark:text-white mb-6">
               Custom solutions for <br className="hidden lg:block"/>complex needs.
             </h2>
@@ -289,13 +340,17 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectPlan, onNavi
         </section>
 
         {/* 05 - INCLUDED */}
-        <section className="mb-20 md:mb-32">
+        <section id="included-section" className="mb-20 md:mb-32">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-16">
             <div>
-              <p className="text-[10px] font-bold tracking-[0.2em] text-electric-600 dark:text-cyan-brand uppercase mb-4 flex items-center gap-2">
+              <button 
+                onClick={() => document.getElementById('included-section')?.scrollIntoView({ behavior: 'smooth' })}
+                className="text-[10px] font-bold tracking-[0.2em] text-electric-600 dark:text-cyan-brand uppercase mb-4 flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
+              >
                 <span className="w-8 h-px bg-electric-600 dark:bg-cyan-brand"></span>
-                What's Always Included
-              </p>
+                <span>What's Always Included</span>
+                <ArrowRight className="w-3 h-3" />
+              </button>
               <h2 className="text-4xl font-extrabold text-slate-900 dark:text-white">
                 Built for long-term success.
               </h2>
@@ -339,13 +394,17 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectPlan, onNavi
         </section>
 
         {/* 06 - ADD-ONS */}
-        <section className="mb-20 md:mb-32">
+        <section id="addons-section" className="mb-20 md:mb-32">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-16">
             <div>
-              <p className="text-[10px] font-bold tracking-[0.2em] text-electric-600 dark:text-cyan-brand uppercase mb-4 flex items-center gap-2">
+              <button 
+                onClick={() => document.getElementById('addons-section')?.scrollIntoView({ behavior: 'smooth' })}
+                className="text-[10px] font-bold tracking-[0.2em] text-electric-600 dark:text-cyan-brand uppercase mb-4 flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
+              >
                 <span className="w-8 h-px bg-electric-600 dark:bg-cyan-brand"></span>
-                Extend Your Package
-              </p>
+                <span>Extend Your Package</span>
+                <ArrowRight className="w-3 h-3" />
+              </button>
               <h2 className="text-4xl font-extrabold text-slate-900 dark:text-white">
                 Add-on capabilities.
               </h2>
@@ -379,13 +438,17 @@ export const PackagesView: React.FC<PackagesViewProps> = ({ onSelectPlan, onNavi
         </section>
 
         {/* 07 - PROCESS */}
-        <section className="mb-20 md:mb-32">
+        <section id="process-section" className="mb-20 md:mb-32">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-16">
             <div>
-              <p className="text-[10px] font-bold tracking-[0.2em] text-electric-600 dark:text-cyan-brand uppercase mb-4 flex items-center gap-2">
+              <button 
+                onClick={() => document.getElementById('process-section')?.scrollIntoView({ behavior: 'smooth' })}
+                className="text-[10px] font-bold tracking-[0.2em] text-electric-600 dark:text-cyan-brand uppercase mb-4 flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
+              >
                 <span className="w-8 h-px bg-electric-600 dark:bg-cyan-brand"></span>
-                Our Process
-              </p>
+                <span>Our Process</span>
+                <ArrowRight className="w-3 h-3" />
+              </button>
               <h2 className="text-4xl font-extrabold text-slate-900 dark:text-white">
                 From idea to impact.
               </h2>

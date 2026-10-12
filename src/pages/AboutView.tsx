@@ -19,11 +19,11 @@ export const AboutView: React.FC<AboutViewProps> = ({ onOpenQuote, onNavigate })
   ];
 
   return (
-    <div className="pt-40 md:pt-48 pb-24 space-y-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="pt-36 sm:pt-40 md:pt-48 lg:pt-52 pb-20 space-y-12 sm:space-y-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* 1. HERO */}
       <section className="relative text-left">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 dark:bg-cyan-brand/10 border border-cyan-500/30 dark:border-cyan-brand/30 text-cyan-700 dark:text-cyan-brand text-xs font-mono uppercase tracking-widest mb-4 font-semibold">
-          <span>ABOUT DATAMINT ARVIX</span>
+          <span>ABOUT DATAMINT AARVIX</span>
         </div>
 
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight max-w-4xl">
@@ -34,17 +34,49 @@ export const AboutView: React.FC<AboutViewProps> = ({ onOpenQuote, onNavigate })
         </h1>
 
         <p className="mt-6 text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl leading-relaxed">
-          DATAMINT ARVIX is an engineering and digital product studio. We partner with forward-thinking enterprises to design, architect, and deploy reliable digital software solutions.
+          DATAMINT AARVIX is an engineering and digital product studio. We partner with forward-thinking enterprises to design, architect, and deploy reliable digital software solutions.
         </p>
+
+        {/* Topic Quick Navigation Bar */}
+        <div className="mt-8 pt-4 border-t border-slate-200/50 dark:border-white/10">
+          <p className="text-xs font-mono text-cyan-400 uppercase tracking-widest mb-3 flex items-center gap-1.5 font-bold">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            Explore Topics:
+          </p>
+          <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
+            {[
+              { id: 'about-foundation', label: '1. Foundation' },
+              { id: 'about-who-we-are', label: '2. Who We Are' },
+              { id: 'about-values', label: '3. Core Values' },
+              { id: 'about-methodology', label: '4. Methodology' },
+              { id: 'about-leadership', label: '5. Leadership' },
+              { id: 'about-horizon', label: '6. Long-Term Horizon' },
+            ].map((item, idx) => (
+              <button
+                key={idx}
+                onClick={() => {
+                  const el = document.getElementById(item.id);
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold uppercase tracking-wider bg-cyan-500/10 hover:bg-cyan-500/25 border border-cyan-500/30 text-cyan-400 hover:text-white transition-all cursor-pointer shadow-sm focus:outline-none flex items-center gap-1.5"
+                title={`Jump to ${item.label}`}
+              >
+                <span>{item.label}</span>
+                <ArrowRight className="w-3 h-3 opacity-60" />
+              </button>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* 2. WHO WE ARE */}
-      <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <section id="about-foundation" className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <div className="lg:col-span-7 space-y-6">
           <SectionHeader
             eyebrow="FOUNDATION"
             heading="Who We Are."
             className="mb-4"
+            onEyebrowClick={() => document.getElementById('about-foundation')?.scrollIntoView({ behavior: 'smooth' })}
           />
           <div className="space-y-4 text-slate-600 dark:text-slate-300 text-base leading-relaxed">
             <p>
@@ -65,13 +97,17 @@ export const AboutView: React.FC<AboutViewProps> = ({ onOpenQuote, onNavigate })
           </div>
         </div>
 
-        <div className="lg:col-span-5">
+        <div id="about-who-we-are" className="lg:col-span-5">
           <div className="glass-panel p-4 rounded-3xl border border-slate-200 dark:border-white/15">
             <div className="relative aspect-square rounded-2xl overflow-hidden group">
               <div className="absolute top-3 left-3 z-10">
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium tracking-wide uppercase bg-white/90 dark:bg-navy-900/80 border border-slate-200 dark:border-cyan-brand/30 text-cyan-700 dark:text-cyan-brand backdrop-blur-md shadow-sm">
-                  WHO WE ARE
-                </span>
+                <button 
+                  onClick={() => document.getElementById('about-who-we-are')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium tracking-wide uppercase bg-white/90 dark:bg-navy-900/80 border border-slate-200 dark:border-cyan-brand/30 text-cyan-700 dark:text-cyan-brand backdrop-blur-md shadow-sm cursor-pointer hover:border-cyan-400"
+                >
+                  <span>WHO WE ARE</span>
+                  <ArrowRight className="w-3 h-3" />
+                </button>
               </div>
               <img src="/about/hero.png" alt="About Culture" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
             </div>
@@ -82,12 +118,13 @@ export const AboutView: React.FC<AboutViewProps> = ({ onOpenQuote, onNavigate })
       <div className="glowing-divider" />
 
       {/* 3. WHAT WE BELIEVE */}
-      <section>
+      <section id="about-values">
         <SectionHeader
           align="center"
           eyebrow="CORE VALUES"
           heading="What We Believe."
           subtitle="Good technology should serve human intent and business longevity."
+          onEyebrowClick={() => document.getElementById('about-values')?.scrollIntoView({ behavior: 'smooth' })}
         />
 
         <div className="mt-12">
@@ -99,14 +136,18 @@ export const AboutView: React.FC<AboutViewProps> = ({ onOpenQuote, onNavigate })
 
       {/* 4. OUR APPROACH */}
       {/* 4. OUR APPROACH */}
-      <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <section id="about-methodology" className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
         {/* Left Content */}
         <div className="lg:col-span-4 space-y-8 pr-4">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-[10px] font-bold uppercase tracking-widest mb-6">
+            <button 
+              onClick={() => document.getElementById('about-methodology')?.scrollIntoView({ behavior: 'smooth' })}
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-[10px] font-bold uppercase tracking-widest mb-6 cursor-pointer hover:bg-cyan-500/20 hover:text-white transition-colors"
+            >
               <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-              METHODOLOGY
-            </div>
+              <span>METHODOLOGY</span>
+              <ArrowRight className="w-3 h-3" />
+            </button>
             
             <h2 className="text-4xl md:text-5xl lg:text-[54px] font-bold text-white tracking-tight leading-[1.15]">
               Our Approach.
@@ -191,12 +232,13 @@ export const AboutView: React.FC<AboutViewProps> = ({ onOpenQuote, onNavigate })
       <div className="glowing-divider" />
 
       {/* 5. LEADERSHIP */}
-      <section>
+      <section id="about-leadership">
         <SectionHeader
           align="center"
           eyebrow="LEADERSHIP"
           heading="Meet the Founders."
           subtitle="The visionaries steering DATAMINT AARVIX towards the future."
+          onEyebrowClick={() => document.getElementById('about-leadership')?.scrollIntoView({ behavior: 'smooth' })}
         />
 
         <div className="mt-12 max-w-5xl mx-auto glass-panel p-8 sm:p-12 rounded-[2.5rem] border border-slate-200 dark:border-white/15 relative overflow-hidden group">
@@ -247,13 +289,17 @@ export const AboutView: React.FC<AboutViewProps> = ({ onOpenQuote, onNavigate })
       <div className="glowing-divider" />
 
       {/* 6. OUR VISION */}
-      <section className="glass-panel p-8 sm:p-12 rounded-3xl text-center max-w-4xl mx-auto space-y-6 relative overflow-hidden">
+      <section id="about-horizon" className="glass-panel p-8 sm:p-12 rounded-3xl text-center max-w-4xl mx-auto space-y-6 relative overflow-hidden">
         <div className="absolute top-0 right-1/2 translate-x-1/2 w-96 h-96 bg-cyan-500/10 dark:bg-cyan-brand/10 blur-3xl pointer-events-none" />
 
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 dark:bg-cyan-brand/10 border border-cyan-500/30 dark:border-cyan-brand/30 text-cyan-700 dark:text-cyan-brand text-xs font-mono uppercase tracking-widest font-semibold">
+        <button 
+          onClick={() => document.getElementById('about-horizon')?.scrollIntoView({ behavior: 'smooth' })}
+          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 dark:bg-cyan-brand/10 border border-cyan-500/30 dark:border-cyan-brand/30 text-cyan-700 dark:text-cyan-brand text-xs font-mono uppercase tracking-widest font-semibold cursor-pointer hover:bg-cyan-500/20 transition-colors mx-auto"
+        >
           <Target className="w-3.5 h-3.5" />
           <span>LONG-TERM HORIZON</span>
-        </div>
+          <ArrowRight className="w-3.5 h-3.5" />
+        </button>
 
         <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
           Our Vision

@@ -152,7 +152,7 @@ export const ServicesCoverflow: React.FC<ServicesCoverflowProps> = ({
                 {/* Top Row: Brand & Category */}
                 <div className="flex items-center justify-between gap-2 mb-6 text-xs font-mono">
                   <span className="font-bold tracking-widest text-slate-500 dark:text-slate-300 uppercase text-[11px] sm:text-xs">
-                    DATAMINT ARVIX
+                    DATAMINT AARVIX
                   </span>
                   <div className="flex items-center gap-1.5 text-cyan-700 dark:text-cyan-brand font-semibold text-[11px] sm:text-xs">
                     <span className="w-2 h-2 rounded-full bg-cyan-600 dark:bg-cyan-brand animate-pulse" />

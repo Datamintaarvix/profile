@@ -273,7 +273,7 @@ export const services: Service[] = [
       "Operational Workflow Automation"
     ],
     icon: "Cpu",
-    category: "Intelligence"
+    category: "AI & Automation"
   },
   {
     id: "cloud-deployment",
@@ -318,7 +318,7 @@ export const services: Service[] = [
       "Business Intelligence (BI) Integration"
     ],
     icon: "BarChart3",
-    category: "Intelligence"
+    category: "Analytics"
   },
   {
     id: "social-media-management",
@@ -857,7 +857,7 @@ export const faqs: FAQItem[] = [
     category: "Legal"
   },
   {
-    question: "Where is DATAMINT ARVIX located?",
+    question: "Where is DATAMINT AARVIX located?",
     answer: "We are headquartered in Bangalore, Karnataka, India, operating with a hybrid team that collaborates seamlessly with clients across global timezones.",
     category: "General"
   }
@@ -868,6 +868,6 @@ export const faqs: FAQItem[] = [
 // ==========================================
 export const socialLinks: SocialLink[] = [
   { platform: "LinkedIn", url: "https://www.linkedin.com/company/datamint-aarvix/", handle: "datamint-aarvix" },
-  { platform: "X", url: "https://x.com/datamintarvix", handle: "@datamintarvix" },
+  { platform: "X", url: "https://x.com/datamintaarvix", handle: "@datamintaarvix" },
   { platform: "Instagram", url: "https://www.instagram.com/datamint_aarvix", handle: "@datamint_aarvix" }
 ];

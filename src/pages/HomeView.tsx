@@ -91,12 +91,11 @@ export const HomeView: React.FC<HomeViewProps> = ({
   };
 
   return (
-    <div className="space-y-24 md:space-y-32 pb-24 bg-[#03101D] text-slate-100 min-h-screen relative overflow-hidden font-sans">
+    <div className="space-y-12 md:space-y-16 pb-20 bg-transparent text-slate-100 min-h-screen relative overflow-hidden font-sans">
       
       {/* Global Background Effects */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         {/* Subtle grid */}
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-overlay"></div>
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,184,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,184,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
         {/* Glows */}
         <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[120px]"></div>
@@ -105,7 +104,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
       </div>
 
       {/* 02. HERO SECTION */}
-      <section className="relative pt-40 pb-16 md:pt-48 md:pb-24 z-10 w-full">
+      <section className="relative pt-36 pb-12 sm:pt-40 md:pt-48 lg:pt-52 md:pb-16 z-10 w-full">
         {/* Edge-to-edge Background Video */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <video
@@ -119,14 +118,14 @@ export const HomeView: React.FC<HomeViewProps> = ({
           </video>
         </div>
 
-        <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16">
+        <div className="relative z-20 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Left: Content */}
           <div className="lg:col-span-6 space-y-8">
             <div className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-widest uppercase text-cyan-400">
               <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-              ABOUT / DATAMINT ARVIX
+              ABOUT / DATAMINT AARVIX
             </div>
             
             <h1 className="text-5xl sm:text-6xl md:text-[5rem] font-extrabold tracking-tight text-white leading-[1.05]">
@@ -141,10 +140,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
               {companyInfo.subheadline}
             </p>
             
-            <div className="flex flex-wrap items-center gap-4 pt-4">
+            <div className="flex flex-wrap items-center gap-4 pt-4 relative z-30">
               <button
-                onClick={() => onNavigate('contact')}
-                className="px-8 py-4 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 hover:opacity-90 transition-opacity flex items-center gap-2"
+                onClick={() => onOpenQuote()}
+                className="px-8 py-4 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 hover:opacity-90 transition-opacity flex items-center gap-2 cursor-pointer"
               >
                 <span>Start a Project</span>
                 <ArrowRight className="w-4 h-4" />
@@ -173,8 +172,8 @@ export const HomeView: React.FC<HomeViewProps> = ({
       </section>
 
       {/* 03. STATISTICS */}
-      <section className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 -mt-8 md:-mt-12">
-        <div className="bg-[#061525]/60 backdrop-blur-xl rounded-2xl border border-[rgba(0,180,255,0.18)] p-6 md:p-8 shadow-2xl">
+      <section className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 -mt-4 md:-mt-8">
+        <div className="bg-white/[0.03] dark:bg-navy-900/40 backdrop-blur-xl rounded-2xl border border-white/10 p-6 md:p-8 shadow-2xl">
           <div className="grid grid-cols-1 md:grid-cols-4">
             {statistics.map((stat, idx) => (
               <div key={idx} className={`flex flex-col ${
@@ -197,19 +196,24 @@ export const HomeView: React.FC<HomeViewProps> = ({
       </section>
 
       {/* 04. ABOUT / INTRODUCTION */}
-      <section className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 pt-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div className="space-y-8">
-            <div className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-widest uppercase text-cyan-400">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-              ABOUT DATAMINT ARVIX
-            </div>
+      <section className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 pt-8 md:pt-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="space-y-6 md:space-y-8">
+            <button 
+              onClick={() => onNavigate('about')}
+              className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-widest uppercase text-cyan-400 hover:text-cyan-300 cursor-pointer transition-colors group focus:outline-none"
+              title="Open About Page"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 group-hover:scale-125 transition-transform" />
+              <span>ABOUT DATAMINT AARVIX</span>
+              <ArrowRight className="w-3.5 h-3.5 opacity-70 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+            </button>
             <h2 className="text-4xl md:text-5xl font-extrabold text-white leading-tight">
               Technology designed around <br/> real business needs.
             </h2>
             <div className="space-y-4 text-base text-[#8EA3B8] leading-relaxed max-w-lg">
               <p>
-                <strong className="text-white font-semibold">DATAMINT ARVIX</strong> is a technology and digital solutions company focused on creating reliable, scalable and user-focused digital experiences.
+                <strong className="text-white font-semibold">DATAMINT AARVIX</strong> is a technology and digital solutions company focused on creating reliable, scalable and user-focused digital experiences.
               </p>
               <p>
                 We combine design, engineering and modern technology to transform ideas and business requirements into practical digital products. Our pragmatic approach bridges business objectives with resilient software architectures.
@@ -227,7 +231,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
             <button
                 onClick={() => onNavigate('about')}
-                className="mt-4 px-6 py-3 rounded-full text-sm font-semibold text-white bg-white/5 border border-white/10 hover:bg-white/10 transition-colors flex items-center gap-2"
+                className="mt-4 px-6 py-3 rounded-full text-sm font-semibold text-white bg-white/5 border border-white/10 hover:bg-white/10 transition-colors flex items-center gap-2 cursor-pointer"
               >
                 <span>Discover Our Company</span>
                 <ArrowRight className="w-4 h-4" />
@@ -236,28 +240,38 @@ export const HomeView: React.FC<HomeViewProps> = ({
           
           <div className="relative w-full">
             <div className="absolute -inset-4 bg-gradient-to-tr from-cyan-500/10 to-transparent rounded-[2rem] blur-2xl" />
-            <div className="relative bg-[#061525]/80 backdrop-blur-xl border border-[rgba(0,180,255,0.18)] rounded-[24px] p-6 shadow-2xl overflow-hidden aspect-[4/3] flex flex-col items-center justify-center">
+            <div className="relative bg-white/[0.03] dark:bg-navy-900/40 backdrop-blur-xl border border-white/10 rounded-[24px] p-6 shadow-2xl overflow-hidden aspect-[4/3] flex flex-col items-center justify-center">
                <img
                   src="/home/focusedworkinanaioffice.png"
                   alt="Corporate technology workflow"
                   className="absolute inset-0 w-full h-full object-cover z-0"
                 />
                <div className="absolute inset-0 bg-navy-950/20 z-0 pointer-events-none"></div>
-               <div className="absolute top-4 left-4 text-[10px] font-mono text-cyan-400 tracking-wider z-10">
-                 [ ABOUT / CULTURE ]
-               </div>
+               <button 
+                 onClick={() => onNavigate('about')}
+                 className="absolute top-4 left-4 text-[10px] font-mono text-cyan-400 tracking-wider z-10 cursor-pointer hover:text-white transition-colors bg-[#050914]/80 backdrop-blur-md px-3 py-1 rounded-full border border-cyan-500/30 flex items-center gap-1.5 focus:outline-none"
+                 title="Open About Page"
+               >
+                 <span>ABOUT / CULTURE</span>
+                 <ArrowRight className="w-3 h-3" />
+               </button>
             </div>
           </div>
         </div>
       </section>
 
       {/* 05. EXPERTISE / SERVICES */}
-      <section className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 pt-16">
-        <div className="text-center space-y-4 mb-16">
-          <div className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-widest uppercase text-cyan-400">
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-            OUR EXPERTISE
-          </div>
+      <section className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 pt-8 md:pt-12">
+        <div className="text-center space-y-3 mb-10 md:mb-12">
+          <button 
+            onClick={() => onNavigate('services')}
+            className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-widest uppercase text-cyan-400 hover:text-cyan-300 cursor-pointer transition-colors group mx-auto focus:outline-none"
+            title="Open Services Page"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 group-hover:scale-125 transition-transform" />
+            <span>OUR EXPERTISE</span>
+            <ArrowRight className="w-3.5 h-3.5 opacity-70 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+          </button>
           <h2 className="text-4xl md:text-5xl font-extrabold text-white">
             What we build.
           </h2>
@@ -270,8 +284,8 @@ export const HomeView: React.FC<HomeViewProps> = ({
       </section>
 
       {/* 06. ENGINEERING PHILOSOPHY (RESTYLED) */}
-      <section className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 pt-20 md:pt-32">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
+      <section className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 pt-8 md:pt-12">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-12 gap-8">
           <div className="max-w-2xl">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
               Built with purpose.<br />Engineered for growth.
@@ -282,10 +296,18 @@ export const HomeView: React.FC<HomeViewProps> = ({
               We focus on long-term architecture rather than quick superficial fixes.
             </p>
             <div className="flex gap-4">
-              <button onClick={prevPillar} className="w-12 h-12 flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-white/10 transition-all cursor-pointer">
+              <button 
+                onClick={prevPillar} 
+                className="w-12 h-12 flex items-center justify-center rounded-full border border-cyan-500/40 bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500/25 hover:border-cyan-400 hover:text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(0,180,255,0.12)]"
+                aria-label="Previous pillar"
+              >
                 <ArrowLeft className="w-5 h-5" />
               </button>
-              <button onClick={nextPillar} className="w-12 h-12 flex items-center justify-center rounded-full border border-cyan-500/50 bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500/20 transition-all cursor-pointer">
+              <button 
+                onClick={nextPillar} 
+                className="w-12 h-12 flex items-center justify-center rounded-full border border-cyan-500/40 bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500/25 hover:border-cyan-400 hover:text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(0,180,255,0.12)]"
+                aria-label="Next pillar"
+              >
                 <ArrowRight className="w-5 h-5" />
               </button>
             </div>
@@ -343,31 +365,47 @@ export const HomeView: React.FC<HomeViewProps> = ({
       </section>
 
       {/* 07. METHODOLOGY */}
-      <section className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 pt-20 md:pt-32 pb-20 md:pb-32">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
+      <section id="home-methodology-section" className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 pt-8 md:pt-12 pb-12 md:pb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8">
           
           {/* Left Column */}
           <div className="lg:col-span-4 flex flex-col justify-between">
             <div>
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/20 text-xs font-semibold tracking-wide text-white mb-8 hover:bg-white/5 transition-colors cursor-pointer uppercase">
+              <button 
+                onClick={() => {
+                  const el = document.getElementById('home-methodology-section');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  else onNavigate('about');
+                }}
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/40 bg-cyan-500/10 text-xs font-semibold tracking-wide text-cyan-400 hover:bg-cyan-500/25 hover:text-white transition-all cursor-pointer uppercase shadow-[0_0_15px_rgba(0,180,255,0.12)] mb-6 group focus:outline-none"
+                title="View Methodology"
+              >
                 <span>Methodology</span>
-                <ArrowRight className="w-3.5 h-3.5 -rotate-45" />
-              </div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium text-white leading-tight mb-8">
+                <ArrowRight className="w-3.5 h-3.5 -rotate-45 group-hover:rotate-0 transition-transform" />
+              </button>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium text-white leading-tight mb-6">
                 From idea to launch <ArrowRight className="inline-block w-8 h-8 ml-1 rotate-45 text-white/50" />
               </h2>
             </div>
             
-            <div className="mt-8 lg:mt-32 space-y-12">
+            <div className="mt-6 lg:mt-24 space-y-8">
               <p className="text-[#8EA3B8] text-sm max-w-xs leading-relaxed font-medium">
                 A structured, transparent delivery pipeline ensuring quality at every milestone. Design, Develop And Run Any Business Software You Need.
               </p>
               
               <div className="flex gap-4">
-                <button onClick={() => scrollMethodology('left')} className="w-12 h-12 flex items-center justify-center rounded-full border border-white/20 text-white hover:bg-white/10 transition-all cursor-pointer focus:outline-none">
+                <button 
+                  onClick={() => scrollMethodology('left')} 
+                  className="w-12 h-12 flex items-center justify-center rounded-full border border-cyan-500/40 bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500/25 hover:border-cyan-400 hover:text-white transition-all cursor-pointer focus:outline-none shadow-[0_0_15px_rgba(0,180,255,0.12)]"
+                  aria-label="Previous step"
+                >
                   <ArrowLeft className="w-5 h-5" />
                 </button>
-                <button onClick={() => scrollMethodology('right')} className="w-12 h-12 flex items-center justify-center rounded-full border border-cyan-500/50 bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500/20 transition-all cursor-pointer focus:outline-none">
+                <button 
+                  onClick={() => scrollMethodology('right')} 
+                  className="w-12 h-12 flex items-center justify-center rounded-full border border-cyan-500/40 bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500/25 hover:border-cyan-400 hover:text-white transition-all cursor-pointer focus:outline-none shadow-[0_0_15px_rgba(0,180,255,0.12)]"
+                  aria-label="Next step"
+                >
                   <ArrowRight className="w-5 h-5" />
                 </button>
               </div>
@@ -426,19 +464,24 @@ export const HomeView: React.FC<HomeViewProps> = ({
       </section>
 
       {/* 08. DIGITAL SOLUTIONS */}
-      <section className="relative w-full pt-20 md:pt-32 pb-20 md:pb-32">
+      <section className="relative w-full pt-10 md:pt-14 pb-12 md:pb-16">
         {/* Using a tech-focused image for solutions for the whole section */}
         <div className="absolute inset-0 bg-[url('/home/futuristicskylineofficeinterior.png')] bg-cover bg-center bg-fixed" />
         
         {/* Banner Header Text */}
-        <div className="relative w-full flex flex-col items-center justify-center text-center mb-16 z-10 px-4">
-          <span className="text-white font-mono text-sm tracking-widest block mb-4 uppercase">
-            Digital Solutions
-          </span>
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-6">
+        <div className="relative w-full flex flex-col items-center justify-center text-center mb-12 z-10 px-4">
+          <button 
+            onClick={() => onNavigate('solutions')}
+            className="text-white hover:text-cyan-400 font-mono text-sm tracking-widest inline-flex items-center gap-2 mb-3 uppercase cursor-pointer transition-colors group focus:outline-none"
+            title="Open Digital Solutions Page"
+          >
+            <span>Digital Solutions</span>
+            <ArrowRight className="w-4 h-4 opacity-70 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+          </button>
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-4">
             Solutions built for different business needs.
           </h2>
-          <p className="text-slate-300 text-lg mb-10 max-w-2xl mx-auto">
+          <p className="text-slate-300 text-base md:text-lg mb-8 max-w-2xl mx-auto">
             Tailored digital architectures addressing specific organizational challenges.
           </p>
           <button
@@ -480,13 +523,18 @@ export const HomeView: React.FC<HomeViewProps> = ({
       </section>
 
       {/* 09. SELECTED WORK / PORTFOLIO */}
-      <section className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 pt-20 md:pt-32 pb-16">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <div className="space-y-4 max-w-2xl">
-            <div className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-widest uppercase text-cyan-400">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-              PORTFOLIO & CASE STUDIES
-            </div>
+      <section className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 pt-8 md:pt-14 pb-12 md:pb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 md:mb-10 gap-6">
+          <div className="space-y-3 max-w-2xl">
+            <button 
+              onClick={() => onNavigate('projects')}
+              className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-widest uppercase text-cyan-400 hover:text-cyan-300 cursor-pointer transition-colors group focus:outline-none"
+              title="Open Projects Page"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 group-hover:scale-125 transition-transform" />
+              <span>PORTFOLIO & CASE STUDIES</span>
+              <ArrowRight className="w-3.5 h-3.5 opacity-70 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+            </button>
             <h2 className="text-4xl md:text-5xl font-extrabold text-white">
               Selected work.
             </h2>
@@ -496,7 +544,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
           </div>
           <button
             onClick={() => onNavigate('projects')}
-            className="text-cyan-400 text-xs font-mono uppercase tracking-widest hover:text-white flex items-center gap-2 transition-colors shrink-0"
+            className="text-cyan-400 text-xs font-mono uppercase tracking-widest hover:text-white flex items-center gap-2 transition-colors shrink-0 cursor-pointer"
           >
             <span>View All Projects</span>
             <ArrowRight className="w-4 h-4" />
@@ -505,9 +553,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {projects.slice(0, 4).map((project, idx) => (
-            <div key={project.id} className="group relative bg-[#03101D] rounded-tl-[40px] rounded-br-[40px] rounded-tr-xl rounded-bl-xl border border-white/10 overflow-hidden hover:border-[rgba(0,180,255,0.3)] transition-all">
-              <div className="aspect-square w-full overflow-hidden relative">
-                 <div className="absolute inset-0 bg-gradient-to-t from-[#03101D] via-transparent to-transparent z-10 opacity-80" />
+            <div key={project.id} className="group relative bg-white/[0.03] backdrop-blur-xl rounded-2xl sm:rounded-3xl border border-white/10 overflow-hidden hover:border-cyan-500/40 hover:bg-white/[0.05] transition-all flex flex-col shadow-xl">
+              <div className="aspect-[16/10] sm:aspect-square w-full overflow-hidden relative">
+                 <div className="absolute inset-0 bg-gradient-to-t from-[#050914] via-[#050914]/40 to-transparent z-10 opacity-80" />
                  <img
                     src={[
                       '/home/businessmanagementdashboardinterface.png',
@@ -519,20 +567,20 @@ export const HomeView: React.FC<HomeViewProps> = ({
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                  <div className="absolute top-3 left-3 z-20">
-                    <span className="text-[10px] font-mono text-cyan-400 bg-[#061525]/80 backdrop-blur-md px-2 py-1 rounded border border-white/10">
+                    <span className="text-[10px] font-mono text-cyan-400 bg-[#050914]/80 backdrop-blur-md px-2.5 py-1 rounded-full border border-cyan-500/20 font-semibold">
                       {project.category}
                     </span>
                  </div>
               </div>
-              <div className="p-5 relative z-20 -mt-6">
-                <h3 className="text-lg font-bold text-white mb-2 line-clamp-1">{project.title}</h3>
-                <p className="text-xs text-[#8EA3B8] line-clamp-2 mb-4">{project.shortDesc}</p>
+              <div className="p-5 relative z-20 flex flex-col flex-1">
+                <h3 className="text-base sm:text-lg font-bold text-white mb-1.5 leading-snug group-hover:text-cyan-400 transition-colors line-clamp-2">{project.title}</h3>
+                <p className="text-xs text-[#8EA3B8] line-clamp-2 mb-4 leading-relaxed flex-1">{project.shortDesc}</p>
                 
-                <div className="flex items-center justify-between pt-4 border-t border-white/5">
-                  <span className="text-[10px] text-white/50 font-mono">{project.year}</span>
+                <div className="flex items-center justify-between pt-3 border-t border-white/5 mt-auto">
+                  <span className="text-[11px] text-white/50 font-mono">{project.year}</span>
                   <button 
                     onClick={() => onNavigate('projects')}
-                    className="text-xs font-semibold text-cyan-400 flex items-center gap-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
+                    className="text-xs font-semibold text-cyan-400 flex items-center gap-1 group-hover:translate-x-1 transition-all duration-300 cursor-pointer"
                   >
                     View Project <ArrowRight className="w-3 h-3" />
                   </button>

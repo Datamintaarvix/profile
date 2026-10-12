@@ -33,7 +33,7 @@ export const Logo: React.FC<LogoProps> = ({
           src="/logo.png"
           alt="DATAMINT AARVIX"
           style={{ height: `${numericHeight}px` }}
-          className={`w-auto object-contain transition-transform duration-300 hover:scale-[1.02] ${
+          className={`w-auto max-h-[52px] sm:max-h-[70px] md:max-h-none object-contain transition-transform duration-300 hover:scale-[1.02] ${
             isDark ? 'brightness-110 contrast-105' : ''
           }`}
           onError={() => setImgError(true)}
@@ -50,7 +50,7 @@ export const Logo: React.FC<LogoProps> = ({
         viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="transition-transform duration-300 hover:scale-[1.02] filter drop-shadow-sm"
+        className="transition-transform duration-300 hover:scale-[1.02] filter drop-shadow-sm max-h-[52px] sm:max-h-[70px] md:max-h-none w-auto"
       >
         <defs>
           {/* Bottom Left Leaf / Flame Gradient (Cyan -> Electric Blue) */}

@@ -6,10 +6,10 @@ import { companyInfo } from '../data/siteData';
 
 export const ContactView: React.FC = () => {
   return (
-    <div id="contact" className="pt-40 md:pt-48 pb-0 font-sans">
+    <div id="contact" className="pt-36 sm:pt-40 md:pt-48 lg:pt-52 pb-0 font-sans">
 
       {/* 1. Hero Section - Standard Style */}
-      <section className="relative text-left px-4 sm:px-6 lg:px-8 mb-16 max-w-7xl mx-auto">
+      <section className="relative text-left px-4 sm:px-6 lg:px-8 mb-8 sm:mb-10 max-w-7xl mx-auto">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 dark:bg-cyan-brand/10 border border-cyan-500/30 dark:border-cyan-brand/30 text-cyan-700 dark:text-cyan-brand text-xs font-mono uppercase tracking-widest mb-4 font-semibold">
           <span>CONTACT DATAMINT AARVIX</span>
         </div>
@@ -20,7 +20,7 @@ export const ContactView: React.FC = () => {
       </section>
 
       {/* 2. Main Content Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-start">
 
           {/* Left Column: Contact Form */}
@@ -76,20 +76,35 @@ export const ContactView: React.FC = () => {
               </a>
             </div>
 
-            {/* Map Block (Contained within right column) */}
-            <div className="w-full h-[250px] sm:h-[300px] rounded-2xl overflow-hidden glass-panel border border-white/10 relative transition-all duration-700 mt-8">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d124406.87784381393!2d77.50289196504245!3d12.98971485303723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670c9b44e6d%3A0xf8dfc3e8517e4fe0!2sBengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1709123456789!5m2!1sen!2sin"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen={false}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="absolute inset-0"
-              ></iframe>
-            </div>
+          </div>
+        </div>
 
+        {/* Full-width Map Container */}
+        <div className="w-full mt-16 sm:mt-24">
+          <div className="w-full h-[400px] rounded-2xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none glass-panel border border-slate-200 dark:border-white/10 relative transition-all duration-700 group">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5043.187242721573!2d77.62293942833507!3d12.918705805464995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae148e4c9e8995%3A0x3392cdca1bf93e2d!2sBHIVE%20Workspace%20HSR%20Silk%20Board!5e0!3m2!1sen!2sin!4v1791609260990!5m2!1sen!2sin"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+              className="absolute inset-0 grayscale-[20%] contrast-[1.1] opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
+            ></iframe>
+            
+            {/* Get Directions Button Overlay */}
+            <div className="absolute bottom-6 left-6 right-6 sm:right-auto flex justify-center sm:justify-start pointer-events-none">
+              <a
+                href="https://maps.app.goo.gl/tW53D68qR56kYgHw5"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pointer-events-auto bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-6 py-3 rounded-full text-sm font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all flex items-center gap-2"
+              >
+                <MapPin className="w-4 h-4" />
+                Get Directions
+              </a>
+            </div>
           </div>
         </div>
       </div>

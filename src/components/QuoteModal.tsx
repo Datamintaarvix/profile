@@ -399,7 +399,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
                 Quote Request Submitted
               </h3>
               <p className="text-slate-600 dark:text-slate-300 text-sm max-w-md mx-auto leading-relaxed">
-                Thank you for your interest in DATAMINT ARVIX. We have received your project details for{' '}
+                Thank you for your interest in DATAMINT AARVIX. We have received your project details for{' '}
                 <span className="text-cyan-700 dark:text-cyan-brand font-semibold">{formData.service}</span>. Our engineering architect will prepare a formal proposal.
               </p>
             </div>

@@ -93,7 +93,7 @@ export const QuoteView: React.FC<QuoteViewProps> = ({
   };
 
   return (
-    <div className="pt-40 md:pt-48 pb-24 space-y-12 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="pt-36 sm:pt-40 md:pt-48 lg:pt-52 pb-20 space-y-10 sm:space-y-12 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Header */}
       <div className="text-left space-y-3">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-brand/10 border border-cyan-brand/30 text-cyan-brand text-xs font-mono uppercase tracking-widest">

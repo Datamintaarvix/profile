@@ -31,12 +31,12 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({ onOpenQuote, onNavig
   };
 
   return (
-    <div className="pt-40 md:pt-48 pb-24 space-y-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="pt-36 sm:pt-40 md:pt-48 lg:pt-52 pb-20 space-y-12 sm:space-y-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Header */}
       <section className="text-left w-full">
         <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-brand/10 border border-cyan-brand/30 text-cyan-brand text-xs font-mono uppercase tracking-widest mb-4">
-            <span>PORTFOLIO</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 dark:bg-cyan-brand/10 border border-cyan-500/30 dark:border-cyan-brand/30 text-cyan-700 dark:text-cyan-brand text-xs font-mono uppercase tracking-widest mb-4 font-semibold">
+            <span>03 / CORE PROJECTS</span>
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-tight">
             Selected work.
@@ -50,7 +50,7 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({ onOpenQuote, onNavig
         </div>
 
         {/* Filter Pills */}
-        <div className="flex items-center gap-2 pt-8 overflow-x-auto flex-nowrap hide-scrollbar pb-2 w-full">
+        <div className="flex items-center gap-2 pt-6 overflow-x-auto flex-nowrap hide-scrollbar pb-2 w-full">
           {categories.map((cat) => (
             <button
               key={cat}
@@ -68,7 +68,7 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({ onOpenQuote, onNavig
       </section>
 
       {/* Horizontal Carousel */}
-      <section className="mt-12 mb-32 -mx-4 sm:-mx-6 lg:-mx-8">
+      <section className="mt-6 mb-16 sm:mb-20 -mx-4 sm:-mx-6 lg:-mx-8">
         <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar pb-12 pt-4 px-4 sm:px-6 lg:px-8 gap-6 lg:gap-10">
           {filteredProjects.map((project, idx) => (
             <div

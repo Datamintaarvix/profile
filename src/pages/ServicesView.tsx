@@ -33,7 +33,20 @@ export const ServicesView: React.FC<ServicesViewProps> = ({
     }
   }, [selectedServiceInit]);
 
-  const categories = ['All', 'Engineering', 'Design', 'Mobile', 'Commerce', 'Intelligence', 'Infrastructure', 'Consulting'];
+  const categories = ['All', 'Engineering', 'Design', 'Mobile', 'Commerce', 'AI & Automation', 'Infrastructure', 'Consulting', 'Analytics', 'Marketing'];
+
+  const handleSelectService = (serviceId: string) => {
+    setActiveServiceId(serviceId);
+    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+      setTimeout(() => {
+        const detailEl = document.getElementById('service-detail-panel');
+        if (detailEl) {
+          const y = detailEl.getBoundingClientRect().top + window.scrollY - 90;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }, 50);
+    }
+  };
 
   const filteredServices = activeCategory === 'All'
     ? services
@@ -79,26 +92,62 @@ export const ServicesView: React.FC<ServicesViewProps> = ({
   };
 
   return (
-    <div id="services" className="pt-40 md:pt-48 pb-24 space-y-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div id="services" className="pt-36 sm:pt-40 md:pt-48 lg:pt-52 pb-20 space-y-12 sm:space-y-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Header */}
       <section className="text-left max-w-3xl">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 dark:bg-cyan-brand/10 border border-cyan-500/30 dark:border-cyan-brand/30 text-cyan-700 dark:text-cyan-brand text-xs font-mono uppercase tracking-widest mb-4 font-semibold">
+        <button 
+          onClick={() => document.getElementById('detailed-services')?.scrollIntoView({ behavior: 'smooth' })}
+          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 dark:bg-cyan-brand/10 border border-cyan-500/30 dark:border-cyan-brand/30 text-cyan-700 dark:text-cyan-brand text-xs font-mono uppercase tracking-widest mb-4 font-semibold cursor-pointer hover:bg-cyan-500/20 transition-colors"
+          title="Jump to Specifications"
+        >
           <span>02 / OUR EXPERTISE</span>
-        </div>
+          <ArrowRight className="w-3 h-3" />
+        </button>
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
           What we build.
         </h1>
         <p className="mt-4 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
           Modern technology solutions engineered to solve real business challenges. From enterprise software platforms to intelligent AI automation workflows.
         </p>
+
+        {/* Topic Quick Navigation Bar */}
+        <div className="mt-8 pt-4 border-t border-slate-200/50 dark:border-white/10">
+          <p className="text-xs font-mono text-cyan-400 uppercase tracking-widest mb-3 flex items-center gap-1.5 font-bold">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            Explore Topics:
+          </p>
+          <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
+            {[
+              { label: '1. Interactive 3D', action: () => document.getElementById('interactive-3d-section')?.scrollIntoView({ behavior: 'smooth' }) },
+              { label: '2. Infrastructure', action: () => { setActiveCategory('Infrastructure'); document.getElementById('detailed-services')?.scrollIntoView({ behavior: 'smooth' }); } },
+              { label: '3. Cloud', action: () => { setActiveCategory('Engineering'); handleSelectService('cloud-deployment'); document.getElementById('detailed-services')?.scrollIntoView({ behavior: 'smooth' }); } },
+              { label: '4. Creative / Design', action: () => { setActiveCategory('Design'); document.getElementById('detailed-services')?.scrollIntoView({ behavior: 'smooth' }); } },
+              { label: '5. Detailed Specs', action: () => document.getElementById('detailed-services')?.scrollIntoView({ behavior: 'smooth' }) },
+            ].map((topic, idx) => (
+              <button
+                key={idx}
+                onClick={topic.action}
+                className="px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold uppercase tracking-wider bg-cyan-500/10 hover:bg-cyan-500/25 border border-cyan-500/30 text-cyan-400 hover:text-white transition-all cursor-pointer shadow-sm focus:outline-none flex items-center gap-1.5"
+                title={`Explore ${topic.label}`}
+              >
+                <span>{topic.label}</span>
+                <ArrowRight className="w-3 h-3 opacity-60" />
+              </button>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* 3D Showcase Carousel Section */}
-      <section className="relative">
+      <section id="interactive-3d-section" className="relative">
         <div className="flex items-center justify-between mb-4">
-          <span className="text-xs font-mono uppercase tracking-widest text-cyan-700 dark:text-cyan-brand font-semibold">
-            Interactive 3D Portfolio
-          </span>
+          <button 
+            onClick={() => document.getElementById('interactive-3d-section')?.scrollIntoView({ behavior: 'smooth' })}
+            className="text-xs font-mono uppercase tracking-widest text-cyan-700 dark:text-cyan-brand font-semibold cursor-pointer hover:underline flex items-center gap-1.5"
+          >
+            <span>Interactive 3D Portfolio</span>
+            <ArrowRight className="w-3 h-3" />
+          </button>
           <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
             Click cards or use arrows to navigate
           </span>
@@ -110,7 +159,7 @@ export const ServicesView: React.FC<ServicesViewProps> = ({
       <div className="glowing-divider" />
 
       {/* Filter Pills & Detailed Section */}
-      <section id="detailed-services" className="relative w-full py-12 space-y-12">
+      <section id="detailed-services" className="relative w-full py-8 space-y-8 sm:space-y-10">
         
         {/* Header & Filters */}
         <div className="flex flex-col gap-8 md:gap-10">
@@ -127,7 +176,10 @@ export const ServicesView: React.FC<ServicesViewProps> = ({
             {categories.map((cat) => (
               <button
                 key={cat}
-                onClick={() => setActiveCategory(cat)}
+                onClick={() => {
+                  setActiveCategory(cat);
+                  document.getElementById('detailed-services')?.scrollIntoView({ behavior: 'smooth' });
+                }}
                 className={`shrink-0 px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold tracking-widest uppercase transition-all duration-300 cursor-pointer whitespace-nowrap ${
                   activeCategory === cat
                     ? 'bg-cyan-600 text-white shadow-lg shadow-cyan-600/20 border border-cyan-500'
@@ -150,7 +202,7 @@ export const ServicesView: React.FC<ServicesViewProps> = ({
               return (
                 <div
                   key={service.id}
-                  onClick={() => setActiveServiceId(service.id)}
+                  onClick={() => handleSelectService(service.id)}
                   className={`group cursor-pointer p-5 rounded-2xl transition-all duration-300 border shrink-0 ${
                     isActive
                       ? 'bg-white dark:bg-gradient-to-br dark:from-navy-900 dark:to-[#050914] border-cyan-500/50 shadow-xl relative overflow-hidden'
@@ -185,7 +237,7 @@ export const ServicesView: React.FC<ServicesViewProps> = ({
           </div>
 
           {/* Right Area: Active Service Content */}
-          <div className="lg:col-span-8 h-full">
+          <div id="service-detail-panel" className="lg:col-span-8 h-full scroll-mt-24">
             <div className="relative bg-white dark:bg-[#050914] rounded-[2rem] border border-slate-200 dark:border-white/10 overflow-hidden shadow-2xl h-full flex flex-col">
               
               {/* Top Banner Image */}

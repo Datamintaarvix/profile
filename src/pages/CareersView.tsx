@@ -180,16 +180,16 @@ export const CareersView: React.FC = () => {
     <div className="font-sans text-slate-300">
       
       {/* 1. Hero Section (Text left, Image right) */}
-      <section className="pt-40 sm:pt-48 md:pt-56 pb-20 sm:pb-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="pt-36 sm:pt-40 md:pt-48 lg:pt-52 pb-16 sm:pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div className="order-2 lg:order-1">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-400 text-xs font-mono uppercase tracking-widest mb-8">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-400 text-xs font-mono uppercase tracking-widest mb-6">
               Careers at Datamint Aarvix
             </div>
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-extrabold text-white leading-[1.05] mb-8 tracking-tight">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-extrabold text-white leading-[1.05] mb-6 tracking-tight">
               Build What<br className="hidden sm:block" /> Comes Next.
             </h1>
-            <p className="text-slate-400 text-lg sm:text-xl md:text-2xl leading-relaxed mb-12 max-w-xl">
+            <p className="text-slate-400 text-lg sm:text-xl md:text-2xl leading-relaxed mb-8 max-w-xl">
               Join a team creating modern digital experiences, scalable software, and technology solutions that solve real business problems.
             </p>
             <div className="flex flex-wrap items-center gap-4">
@@ -199,6 +199,36 @@ export const CareersView: React.FC = () => {
               >
                 Explore Open Positions <ArrowRight className="w-4 h-4" />
               </button>
+            </div>
+
+            {/* Topic Quick Navigation Bar */}
+            <div className="mt-8 pt-4 border-t border-white/10">
+              <p className="text-xs font-mono text-cyan-brand uppercase tracking-widest mb-3 flex items-center gap-1.5 font-bold">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-brand"></span>
+                Explore Topics:
+              </p>
+              <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
+                {[
+                  { id: 'why-datamint-aarvix', label: '1. Why Datamint Aarvix' },
+                  { id: 'our-culture', label: '2. Our Culture' },
+                  { id: 'career-opportunities', label: '3. Opportunities' },
+                  { id: 'open-positions', label: '4. Open Positions' },
+                  { id: 'career-application-form', label: '5. Apply Now' },
+                ].map((topic, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => {
+                      const el = document.getElementById(topic.id);
+                      if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold uppercase tracking-wider bg-cyan-500/10 hover:bg-cyan-500/25 border border-cyan-500/30 text-cyan-400 hover:text-white transition-all cursor-pointer shadow-sm focus:outline-none flex items-center gap-1.5"
+                    title={`Jump to ${topic.label}`}
+                  >
+                    <span>{topic.label}</span>
+                    <ArrowRight className="w-3 h-3 opacity-60" />
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
           <div className="order-1 lg:order-2 relative rounded-3xl overflow-hidden aspect-[4/3] sm:aspect-[5/4] border border-white/10 w-full">
@@ -212,7 +242,7 @@ export const CareersView: React.FC = () => {
       </section>
 
       {/* 2. Introduction - Our Approach (Image left, Text right) */}
-      <section className="py-20 sm:py-32 border-t border-white/10">
+      <section id="why-datamint-aarvix" className="py-20 sm:py-32 border-t border-white/10 scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             <div className="relative rounded-3xl overflow-hidden aspect-[4/3] border border-white/10">
@@ -223,7 +253,14 @@ export const CareersView: React.FC = () => {
               />
             </div>
             <div>
-              <div className="text-xs font-mono text-cyan-brand uppercase tracking-widest mb-4">Why Datamint Aarvix</div>
+              <button 
+                onClick={() => document.getElementById('why-datamint-aarvix')?.scrollIntoView({ behavior: 'smooth' })}
+                className="text-xs font-mono text-cyan-brand uppercase tracking-widest mb-4 flex items-center gap-1.5 cursor-pointer hover:opacity-80 transition-opacity"
+                title="Why Datamint Aarvix"
+              >
+                <span>Why Datamint Aarvix</span>
+                <ArrowRight className="w-3 h-3" />
+              </button>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">Work on Ideas<br className="hidden sm:block" /> That Matter.</h2>
               <p className="text-slate-400 leading-relaxed mb-12 text-base sm:text-lg">
                 At DATAMINT AARVIX, we bring together technology, design, and problem-solving to build digital solutions for modern businesses. We value clear thinking, continuous learning, ownership, and collaboration.
@@ -273,11 +310,18 @@ export const CareersView: React.FC = () => {
       </section>
 
       {/* 3. Our Work Culture (Text left, Image right) */}
-      <section className="py-20 sm:py-32 border-t border-white/10 bg-white/[0.01]">
+      <section id="our-culture" className="py-20 sm:py-32 border-t border-white/10 bg-white/[0.01] scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             <div className="order-2 lg:order-1">
-              <div className="text-xs font-mono text-cyan-brand uppercase tracking-widest mb-4">Our Culture</div>
+              <button 
+                onClick={() => document.getElementById('our-culture')?.scrollIntoView({ behavior: 'smooth' })}
+                className="text-xs font-mono text-cyan-brand uppercase tracking-widest mb-4 flex items-center gap-1.5 cursor-pointer hover:opacity-80 transition-opacity"
+                title="Our Culture"
+              >
+                <span>Our Culture</span>
+                <ArrowRight className="w-3 h-3" />
+              </button>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">A Place to Learn,<br className="hidden sm:block" /> Create, and Grow.</h2>
               <p className="text-slate-400 leading-relaxed mb-12 text-base sm:text-lg">
                 We believe good work comes from curiosity, accountability, and people who enjoy solving meaningful problems together.
@@ -316,10 +360,17 @@ export const CareersView: React.FC = () => {
       </section>
 
       {/* 4. What You Can Work On */}
-      <section className="py-20 sm:py-32 border-t border-white/10">
+      <section id="career-opportunities" className="py-20 sm:py-32 border-t border-white/10 scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-16">
-            <div className="text-xs font-mono text-cyan-brand uppercase tracking-widest mb-4">Opportunities</div>
+            <button 
+              onClick={() => document.getElementById('career-opportunities')?.scrollIntoView({ behavior: 'smooth' })}
+              className="text-xs font-mono text-cyan-brand uppercase tracking-widest mb-4 flex items-center gap-1.5 cursor-pointer hover:opacity-80 transition-opacity"
+              title="Opportunities"
+            >
+              <span>Opportunities</span>
+              <ArrowRight className="w-3 h-3" />
+            </button>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">Find Your Place<br className="hidden sm:block" /> on the Team.</h2>
             <p className="text-slate-400 leading-relaxed text-lg">
               Explore opportunities across development, design, and emerging technology. Select a role below to view its details and begin your application.
@@ -363,10 +414,17 @@ export const CareersView: React.FC = () => {
       </section>
 
       {/* 5. Open Positions - Interactive Section */}
-      <section ref={openPositionsRef} className="py-20 sm:py-32 border-t border-white/10 scroll-mt-24">
+      <section id="open-positions" ref={openPositionsRef} className="py-20 sm:py-32 border-t border-white/10 scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-16">
-            <div className="text-xs font-mono text-cyan-brand uppercase tracking-widest mb-4">Open Positions</div>
+            <button 
+              onClick={() => document.getElementById('open-positions')?.scrollIntoView({ behavior: 'smooth' })}
+              className="text-xs font-mono text-cyan-brand uppercase tracking-widest mb-4 flex items-center gap-1.5 cursor-pointer hover:opacity-80 transition-opacity"
+              title="Open Positions"
+            >
+              <span>Open Positions</span>
+              <ArrowRight className="w-3 h-3" />
+            </button>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">Explore Available Roles.</h2>
             <p className="text-slate-400 text-lg">Find an opportunity that matches your interests and experience.</p>
           </div>
@@ -443,7 +501,7 @@ export const CareersView: React.FC = () => {
       </section>
 
       {/* 6. Single Application Form */}
-      <section ref={formRef} className="py-24 sm:py-32 border-t border-white/10 relative overflow-hidden bg-white/[0.01] scroll-mt-24">
+      <section id="career-application-form" ref={formRef} className="py-24 sm:py-32 border-t border-white/10 relative overflow-hidden bg-white/[0.01] scroll-mt-24">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-900/10 via-navy-950/0 to-navy-950/0 pointer-events-none" />
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
