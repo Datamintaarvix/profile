@@ -1,11 +1,11 @@
 /**
  * API Service for Form Submissions
  * 
- * IMPORTANT ARCHITECTURE NOTE:
- * The frontend NEVER exposes the internal testing recipient email (srisaran2694@gmail.com).
- * All submissions are sent to a backend endpoint (/api/contact or /api/careers).
- * The backend server is responsible for reading the TEST_RECIPIENT_EMAIL environment 
- * variable and handling the actual SMTP email delivery.
+ * Form routing architecture:
+ * - Career applications route to: hr@datamintaarvix.com
+ * - Contact and general enquiries route to: info@datamintaarvix.com
+ * Submissions are processed by the backend endpoint (/api/forms/submit).
+ * The backend server is responsible for secure email delivery via Resend/SMTP.
  */
 
 export interface ContactSubmission {
@@ -51,7 +51,7 @@ export const submitContactForm = async (data: ContactSubmission) => {
   } catch (error) {
     // FALLBACK FOR CURRENT TESTING ENVIRONMENT (No real backend running yet)
     console.log('[Dev Mock API] Contact form submitted to backend.');
-    console.log('[Dev Mock API] Backend will send email to TEST_RECIPIENT_EMAIL');
+    console.log('[Dev Mock API] Backend will send email to info@datamintaarvix.com');
     
     return new Promise((resolve) => {
       setTimeout(() => resolve({ success: true }), 1200);
@@ -70,7 +70,7 @@ export const submitCareerApplication = async (data: CareerSubmission) => {
     });
     formData.append('submittedAt', new Date().toISOString());
 
-    // In production, backend handles multipart/form-data and emails TEST_RECIPIENT_EMAIL
+    // In production, backend handles multipart/form-data and emails HR
     const response = await fetch('/api/careers', {
       method: 'POST',
       body: formData,
@@ -84,7 +84,7 @@ export const submitCareerApplication = async (data: CareerSubmission) => {
   } catch (error) {
     // FALLBACK FOR CURRENT TESTING ENVIRONMENT
     console.log('[Dev Mock API] Career form submitted to backend.');
-    console.log('[Dev Mock API] Backend will send email and attachment to TEST_RECIPIENT_EMAIL');
+    console.log('[Dev Mock API] Backend will send email and attachment to hr@datamintaarvix.com');
     
     return new Promise((resolve) => {
       setTimeout(() => resolve({ success: true }), 1500);

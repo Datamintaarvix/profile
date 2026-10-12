@@ -377,13 +377,15 @@ app.get('/api/health', (req, res) => {
   const resendKey = process.env.RESEND_API_KEY;
   const isResendConfigured = Boolean(resendKey && resendKey.startsWith('re_') && resendKey !== 'PASTE_RESEND_API_KEY_HERE');
   const isSmtpConfigured = Boolean(process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS);
-  const recipient = process.env.COMPANY_EMAIL || process.env.ADMIN_EMAIL || 'NOT_CONFIGURED';
+  const contactRecipient = process.env.CONTACT_EMAIL || process.env.INFO_EMAIL || process.env.COMPANY_EMAIL || 'info@datamintaarvix.com';
+  const careersRecipient = process.env.HR_EMAIL || process.env.CAREERS_EMAIL || 'hr@datamintaarvix.com';
 
   res.status(200).json({
     status: 'ok',
     emailServiceConfigured: isResendConfigured || isSmtpConfigured,
     provider: isResendConfigured ? 'Resend' : isSmtpConfigured ? 'SMTP' : 'None',
-    recipientEmail: recipient,
+    contactRecipient,
+    careersRecipient,
     timestamp: new Date().toISOString()
   });
 });
@@ -489,12 +491,23 @@ app.post('/api/forms/submit', async (req, res) => {
     }
 
     // 6. Recipient & Sender Configuration
-    // ALWAYS read recipient from server environment variables (never client input)
-    const companyEmail = process.env.COMPANY_EMAIL || process.env.ADMIN_EMAIL || 'srisaran2694@gmail.com';
+    // Dedicated recipient routing:
+    // - Career form applications -> hr@datamintaarvix.com
+    // - Contact page and general inquiries -> info@datamintaarvix.com
+    const cleanFormType = (formType || '').toLowerCase();
+    const cleanSource = (sourcePage || '').toLowerCase();
+    const isCareer = cleanFormType.includes('career') || 
+                     cleanFormType.includes('job') || 
+                     cleanFormType.includes('intern') || 
+                     cleanSource.includes('/careers') || 
+                     cleanSource.includes('career');
+
+    const hrEmail = process.env.HR_EMAIL || process.env.CAREERS_EMAIL || 'hr@datamintaarvix.com';
+    const contactEmail = process.env.CONTACT_EMAIL || process.env.INFO_EMAIL || process.env.COMPANY_EMAIL || 'info@datamintaarvix.com';
+    const targetEmail = isCareer ? hrEmail : contactEmail;
     const fromEmail = process.env.FROM_EMAIL || 'DATAMINT AARVIX <onboarding@resend.dev>';
 
     // 7. Dynamic Email Subject Generation
-    const cleanFormType = formType.toLowerCase();
     let subject = `New Form Submission - ${candidateName}`;
 
     if (cleanFormType.includes('career')) {
@@ -519,7 +532,7 @@ app.post('/api/forms/submit', async (req, res) => {
     // 9. Deliver Email
     await deliverEmail({
       from: fromEmail,
-      to: companyEmail,
+      to: targetEmail,
       replyTo: String(data.email).trim(),
       subject,
       html: emailHtml,
@@ -527,7 +540,7 @@ app.post('/api/forms/submit', async (req, res) => {
       attachments,
     });
 
-    console.log(`[Form Success] ${formType} submitted by ${candidateName} (${data.email}) -> Sent to ${companyEmail}`);
+    console.log(`[Form Success] ${formType} submitted by ${candidateName} (${data.email}) -> Sent to ${targetEmail}`);
     return res.status(200).json({
       success: true,
       message: 'Your message has been sent successfully. We will get back to you shortly.'
@@ -555,7 +568,8 @@ app.listen(port, () => {
   console.log(`\n========================================`);
   console.log(`  DATAMINT AARVIX Backend Server`);
   console.log(`  Running on: http://localhost:${port}`);
-  console.log(`  Recipient Email: ${process.env.COMPANY_EMAIL || process.env.ADMIN_EMAIL || 'srisaran2694@gmail.com'}`);
+  console.log(`  Contact Recipient: ${process.env.CONTACT_EMAIL || process.env.INFO_EMAIL || process.env.COMPANY_EMAIL || 'info@datamintaarvix.com'}`);
+  console.log(`  Careers Recipient: ${process.env.HR_EMAIL || process.env.CAREERS_EMAIL || 'hr@datamintaarvix.com'}`);
   console.log(`  Health Check: http://localhost:${port}/api/health`);
   console.log(`========================================\n`);
 });

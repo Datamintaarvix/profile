@@ -7,6 +7,7 @@ import { sendAdminNotification } from '../services/formService';
 interface ContactFormProps {
   initialService?: string;
   onSuccess?: () => void;
+  formType?: string;
 }
 
 const CustomSelect: React.FC<{
@@ -74,6 +75,7 @@ const CustomSelect: React.FC<{
 export const ContactForm: React.FC<ContactFormProps> = ({
   initialService = '',
   onSuccess,
+  formType = 'Contact Enquiry',
 }) => {
   const [formData, setFormData] = useState({
     fullName: '',
@@ -124,7 +126,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 
     try {
       await sendAdminNotification({
-        formType: 'Service Request',
+        formType: formType || 'Contact Enquiry',
         sourcePage: window.location.href,
         data: {
           name: formData.fullName.trim(),

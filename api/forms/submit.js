@@ -318,10 +318,24 @@ export default async function handler(req, res) {
       attachmentFileName = sanitizedFilename;
     }
 
-    const companyEmail = process.env.COMPANY_EMAIL || process.env.ADMIN_EMAIL || 'srisaran2694@gmail.com';
+    // 6. Recipient & Sender Configuration
+    // Dedicated recipient routing:
+    // - Career form applications -> hr@datamintaarvix.com
+    // - Contact page and general inquiries -> info@datamintaarvix.com
+    const cleanFormType = (formType || '').toLowerCase();
+    const cleanSource = (sourcePage || '').toLowerCase();
+    const isCareer = cleanFormType.includes('career') || 
+                     cleanFormType.includes('job') || 
+                     cleanFormType.includes('intern') || 
+                     cleanSource.includes('/careers') || 
+                     cleanSource.includes('career');
+
+    const hrEmail = process.env.HR_EMAIL || process.env.CAREERS_EMAIL || 'hr@datamintaarvix.com';
+    const contactEmail = process.env.CONTACT_EMAIL || process.env.INFO_EMAIL || process.env.COMPANY_EMAIL || 'info@datamintaarvix.com';
+    const targetEmail = isCareer ? hrEmail : contactEmail;
     const fromEmail = process.env.FROM_EMAIL || 'DATAMINT AARVIX <onboarding@resend.dev>';
 
-    const cleanFormType = formType.toLowerCase();
+    // 7. Dynamic Email Subject Generation
     let subject = `New Form Submission - ${candidateName}`;
 
     if (cleanFormType.includes('career')) {
@@ -356,7 +370,7 @@ export default async function handler(req, res) {
       const resend = new Resend(resendApiKey);
       const payload = {
         from: fromEmail,
-        to: companyEmail,
+        to: targetEmail,
         replyTo: String(data.email).trim(),
         subject,
         html: emailHtml,
@@ -392,7 +406,7 @@ export default async function handler(req, res) {
 
       await transporter.sendMail({
         from: fromEmail,
-        to: companyEmail,
+        to: targetEmail,
         replyTo: String(data.email).trim(),
         subject,
         html: emailHtml,
