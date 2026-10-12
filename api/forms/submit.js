@@ -234,6 +234,188 @@ ${message || 'N/A'}
 `.trim();
 };
 
+const generateConfirmationHtml = (name, formType, isCareer) => {
+  const accentColor = '#00E5FF';
+  const headerBg = '#0A0F1D';
+  const safeName = escapeHtml(name || 'there');
+  const safeFormType = escapeHtml(formType || 'Enquiry');
+  const contactAddress = isCareer ? 'hr@datamintaarvix.com' : 'info@datamintaarvix.com';
+
+  return `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submission Confirmation</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #F1F5F9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #1E293B;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #F1F5F9; padding: 30px 15px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width: 620px; background-color: #FFFFFF; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid #E2E8F0;">
+          <tr>
+            <td style="background-color: ${headerBg}; padding: 32px 36px; border-bottom: 3px solid ${accentColor};">
+              <div style="font-size: 11px; font-weight: 700; letter-spacing: 2px; color: ${accentColor}; text-transform: uppercase; margin-bottom: 6px;">
+                DATAMINT AARVIX
+              </div>
+              <div style="font-size: 22px; font-weight: 800; color: #FFFFFF; line-height: 1.3;">
+                ${isCareer ? '💼 Application Received' : '📬 We Received Your Message'}
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 32px 36px; font-size: 15px; line-height: 1.6; color: #334155;">
+              <p style="margin-top: 0;">Hi <strong>${safeName}</strong>,</p>
+              ${isCareer ? `
+                <p>Thank you for submitting your application to <strong>DATAMINT AARVIX</strong>. Our talent acquisition team has received your submission and will review your profile.</p>
+                <p>If your experience aligns with our current hiring requirements, our HR team will reach out to you with next steps.</p>
+              ` : `
+                <p>Thank you for getting in touch with <strong>DATAMINT AARVIX</strong>. We have received your request regarding <strong>${safeFormType}</strong>.</p>
+                <p>A member of our engineering & solutions team is reviewing your message and will get back to you shortly.</p>
+              `}
+              <div style="margin-top: 28px; padding-top: 20px; border-top: 1px solid #E2E8F0; font-size: 13px; color: #64748B;">
+                If you have questions or additional details, you can reply directly to this email or reach us at <a href="mailto:${contactAddress}" style="color: #0284C7; text-decoration: none; font-weight: 600;">${contactAddress}</a>.
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color: #F8FAFC; padding: 20px 36px; border-top: 1px solid #E2E8F0; text-align: center; font-size: 12px; color: #94A3B8;">
+              <p style="margin: 0;">&copy; ${new Date().getFullYear()} DATAMINT AARVIX Technologies Private Limited. All rights reserved.</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+  `.trim();
+};
+
+const generateConfirmationText = (name, formType, isCareer) => {
+  const safeName = name || 'there';
+  const contactAddress = isCareer ? 'hr@datamintaarvix.com' : 'info@datamintaarvix.com';
+
+  if (isCareer) {
+    return `
+Hi ${safeName},
+
+Thank you for submitting your application to DATAMINT AARVIX.
+Our talent acquisition team has received your submission and will review your profile.
+
+If your qualifications match our current opportunities, an HR specialist will contact you with next steps.
+
+Questions? Reply to this email or contact ${contactAddress}.
+
+Best regards,
+DATAMINT AARVIX Talent Team
+https://datamintaarvix.com
+    `.trim();
+  }
+
+  return `
+Hi ${safeName},
+
+Thank you for reaching out to DATAMINT AARVIX regarding ${formType || 'your enquiry'}.
+We have received your message and our team will get back to you shortly.
+
+Questions? Reply to this email or contact ${contactAddress}.
+
+Best regards,
+DATAMINT AARVIX Team
+https://datamintaarvix.com
+  `.trim();
+};
+
+// Clean and validate sender email to prevent sandbox "onboarding@resend.dev" issues
+const resolveSenderEmail = (isCareer) => {
+  if (isCareer) {
+    const customHrFrom = process.env.HR_FROM_EMAIL || process.env.FROM_HR_EMAIL;
+    if (customHrFrom && !customHrFrom.includes('resend.dev')) {
+      return customHrFrom;
+    }
+    return 'DATAMINT AARVIX HR <hr@datamintaarvix.com>';
+  }
+
+  const customFrom = process.env.FROM_EMAIL;
+  if (customFrom && !customFrom.includes('resend.dev')) {
+    return customFrom;
+  }
+  return 'DATAMINT AARVIX <info@datamintaarvix.com>';
+};
+
+// Dispatch Email via Resend or SMTP
+const deliverEmail = async ({ from, to, replyTo, subject, html, text, attachments }) => {
+  const resendApiKey = process.env.RESEND_API_KEY;
+  const isResendConfigured = Boolean(
+    resendApiKey && 
+    resendApiKey.startsWith('re_') && 
+    resendApiKey !== 'PASTE_RESEND_API_KEY_HERE'
+  );
+
+  const smtpHost = process.env.SMTP_HOST;
+  const smtpUser = process.env.SMTP_USER;
+  const smtpPass = process.env.SMTP_PASS;
+  const isSmtpConfigured = Boolean(smtpHost && smtpUser && smtpPass);
+
+  // 1. Deliver via Resend
+  if (isResendConfigured) {
+    const resend = new Resend(resendApiKey);
+    const payload = {
+      from,
+      to,
+      replyTo,
+      subject,
+      html,
+      text,
+    };
+
+    if (attachments && attachments.length > 0) {
+      payload.attachments = attachments.map(att => ({
+        filename: att.filename,
+        content: att.content,
+      }));
+    }
+
+    const { data: resendData, error: resendError } = await resend.emails.send(payload);
+    if (resendError) {
+      console.error('[Resend Delivery Error]', resendError.message || resendError);
+      throw new Error(resendError.message || 'Resend email delivery failed.');
+    }
+    return { provider: 'resend', id: resendData?.id };
+  }
+
+  // 2. Deliver via SMTP fallback
+  if (isSmtpConfigured) {
+    const transporter = nodemailer.createTransport({
+      host: smtpHost,
+      port: parseInt(process.env.SMTP_PORT || '587', 10),
+      secure: process.env.SMTP_SECURE === 'true' || process.env.SMTP_PORT === '465',
+      auth: { user: smtpUser, pass: smtpPass },
+    });
+
+    const info = await transporter.sendMail({
+      from,
+      to,
+      replyTo,
+      subject,
+      html,
+      text,
+      attachments: attachments ? attachments.map(att => ({
+        filename: att.filename,
+        content: att.content,
+      })) : [],
+    });
+
+    return { provider: 'smtp', id: info.messageId };
+  }
+
+  const err = new Error('CONFIG_MISSING: Neither RESEND_API_KEY nor SMTP credentials configured.');
+  err.code = 'CONFIG_MISSING';
+  throw err;
+};
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -318,10 +500,10 @@ export default async function handler(req, res) {
       attachmentFileName = sanitizedFilename;
     }
 
-    // 6. Recipient & Sender Configuration
-    // Dedicated recipient routing:
-    // - Career form applications -> hr@datamintaarvix.com
-    // - Contact page and general inquiries -> info@datamintaarvix.com
+    // 6. Recipient & Sender Resolution
+    // - Verified sender domain: datamintaarvix.com
+    // - Career applications -> hr@datamintaarvix.com (From: DATAMINT AARVIX HR <hr@datamintaarvix.com>)
+    // - Contact & general -> info@datamintaarvix.com (From: DATAMINT AARVIX <info@datamintaarvix.com>)
     const cleanFormType = (formType || '').toLowerCase();
     const cleanSource = (sourcePage || '').toLowerCase();
     const isCareer = cleanFormType.includes('career') || 
@@ -333,7 +515,7 @@ export default async function handler(req, res) {
     const hrEmail = process.env.HR_EMAIL || process.env.CAREERS_EMAIL || 'hr@datamintaarvix.com';
     const contactEmail = process.env.CONTACT_EMAIL || process.env.INFO_EMAIL || process.env.COMPANY_EMAIL || 'info@datamintaarvix.com';
     const targetEmail = isCareer ? hrEmail : contactEmail;
-    const fromEmail = process.env.FROM_EMAIL || 'DATAMINT AARVIX <onboarding@resend.dev>';
+    const fromEmail = resolveSenderEmail(isCareer);
 
     // 7. Dynamic Email Subject Generation
     let subject = `New Form Submission - ${candidateName}`;
@@ -353,86 +535,65 @@ export default async function handler(req, res) {
       subject = `New Service Enquiry — ${data.service || candidateName} — ${candidateName}`;
     }
 
+    // 8. Generate Notification Templates
     const emailHtml = generateEmailHtml(formType, data, sourcePage, hasAttachment, attachmentFileName);
     const emailText = generateEmailText(formType, data, sourcePage, hasAttachment, attachmentFileName);
 
-    const resendApiKey = process.env.RESEND_API_KEY;
-    const isResendConfigured = resendApiKey && 
-      resendApiKey !== 'PASTE_RESEND_API_KEY_HERE' && 
-      resendApiKey.startsWith('re_');
+    // 9. Deliver Admin Notification to Business Inbox
+    await deliverEmail({
+      from: fromEmail,
+      to: targetEmail,
+      replyTo: String(data.email).trim(),
+      subject,
+      html: emailHtml,
+      text: emailText,
+      attachments,
+    });
 
-    const smtpHost = process.env.SMTP_HOST;
-    const smtpUser = process.env.SMTP_USER;
-    const smtpPass = process.env.SMTP_PASS;
-    const isSmtpConfigured = Boolean(smtpHost && smtpUser && smtpPass);
+    console.log(`[Form Success] ${formType} submitted by ${candidateName} (${data.email}) -> Sent to ${targetEmail} from ${fromEmail}`);
 
-    if (isResendConfigured) {
-      const resend = new Resend(resendApiKey);
-      const payload = {
-        from: fromEmail,
-        to: targetEmail,
-        replyTo: String(data.email).trim(),
-        subject,
-        html: emailHtml,
-        text: emailText,
-      };
+    // 10. Deliver Customer Acknowledgement Email
+    const customerEmail = String(data.email).trim();
+    if (customerEmail) {
+      try {
+        const confirmSubject = isCareer 
+          ? 'Application Received — DATAMINT AARVIX'
+          : 'Thank you for contacting DATAMINT AARVIX';
+        const confirmHtml = generateConfirmationHtml(candidateName, formType, isCareer);
+        const confirmText = generateConfirmationText(candidateName, formType, isCareer);
 
-      if (attachments.length > 0) {
-        payload.attachments = attachments.map(att => ({
-          filename: att.filename,
-          content: att.content,
-        }));
+        await deliverEmail({
+          from: fromEmail,
+          to: customerEmail,
+          replyTo: isCareer ? hrEmail : contactEmail,
+          subject: confirmSubject,
+          html: confirmHtml,
+          text: confirmText,
+        });
+        console.log(`[Confirmation Success] Sent acknowledgement to ${customerEmail}`);
+      } catch (confirmErr) {
+        console.warn('[Confirmation Warning]', confirmErr.message || confirmErr);
       }
-
-      const { data: resendData, error: resendError } = await resend.emails.send(payload);
-      if (resendError) {
-        console.error('[Resend Error]', resendError);
-        return res.status(500).json({ success: false, error: resendError.message || 'Resend error' });
-      }
-
-      return res.status(200).json({
-        success: true,
-        message: 'Your message has been sent successfully.'
-      });
     }
 
-    if (isSmtpConfigured) {
-      const transporter = nodemailer.createTransport({
-        host: smtpHost,
-        port: parseInt(process.env.SMTP_PORT || '587', 10),
-        secure: process.env.SMTP_SECURE === 'true' || process.env.SMTP_PORT === '465',
-        auth: { user: smtpUser, pass: smtpPass },
-      });
-
-      await transporter.sendMail({
-        from: fromEmail,
-        to: targetEmail,
-        replyTo: String(data.email).trim(),
-        subject,
-        html: emailHtml,
-        text: emailText,
-        attachments: attachments.map(att => ({
-          filename: att.filename,
-          content: att.content,
-        })),
-      });
-
-      return res.status(200).json({
-        success: true,
-        message: 'Your message has been sent successfully.'
-      });
-    }
-
-    return res.status(503).json({
-      success: false,
-      error: 'Email service is not configured. Please set RESEND_API_KEY or SMTP credentials in your environment variables.'
+    return res.status(200).json({
+      success: true,
+      message: 'Your message has been sent successfully. We will get back to you shortly.'
     });
 
   } catch (error) {
-    console.error('[API Error]', error);
+    console.error('[API Error]', error.message || error);
+
+    if (error.code === 'CONFIG_MISSING') {
+      return res.status(503).json({
+        success: false,
+        error: 'Email delivery service is currently not configured on the server. Please check RESEND_API_KEY settings.'
+      });
+    }
+
     return res.status(500).json({
       success: false,
-      error: error.message || 'Something went wrong. Please try again.'
+      error: 'We were unable to deliver your message at this time. Please try again or reach out directly to info@datamintaarvix.com.'
     });
   }
 }
