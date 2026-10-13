@@ -666,8 +666,8 @@ app.post('/api/forms/submit', async (req, res) => {
     const emailHtml = generateEmailHtml(formType, data, sourcePage, hasAttachment, attachmentFileName);
     const emailText = generateEmailText(formType, data, sourcePage, hasAttachment, attachmentFileName);
 
-    // 9. Deliver Admin Notification to Business Inbox
-    await deliverEmail({
+    // 9. Deliver Admin Notification and Customer Confirmation in parallel
+    const adminDelivery = deliverEmail({
       from: fromEmail,
       to: targetEmail,
       replyTo: String(data.email).trim(),
@@ -677,31 +677,30 @@ app.post('/api/forms/submit', async (req, res) => {
       attachments,
     });
 
-    console.log(`[Form Success] ${formType} submitted by ${candidateName} (${data.email}) -> Sent to ${targetEmail} from ${fromEmail}`);
-
-    // 10. Deliver Customer Acknowledgement Email
     const customerEmail = String(data.email).trim();
+    let confirmationDelivery = Promise.resolve(null);
     if (customerEmail) {
-      try {
-        const confirmSubject = isCareer 
-          ? 'Application Received — DATAMINT AARVIX'
-          : 'Thank you for contacting DATAMINT AARVIX';
-        const confirmHtml = generateConfirmationHtml(candidateName, formType, isCareer);
-        const confirmText = generateConfirmationText(candidateName, formType, isCareer);
+      const confirmSubject = isCareer 
+        ? 'Application Received — DATAMINT AARVIX'
+        : 'Thank you for contacting DATAMINT AARVIX';
+      const confirmHtml = generateConfirmationHtml(candidateName, formType, isCareer);
+      const confirmText = generateConfirmationText(candidateName, formType, isCareer);
 
-        await deliverEmail({
-          from: fromEmail,
-          to: customerEmail,
-          replyTo: isCareer ? hrEmail : contactEmail,
-          subject: confirmSubject,
-          html: confirmHtml,
-          text: confirmText,
-        });
-        console.log(`[Confirmation Success] Sent acknowledgement to ${customerEmail}`);
-      } catch (confirmErr) {
+      confirmationDelivery = deliverEmail({
+        from: fromEmail,
+        to: customerEmail,
+        replyTo: isCareer ? hrEmail : contactEmail,
+        subject: confirmSubject,
+        html: confirmHtml,
+        text: confirmText,
+      }).catch(confirmErr => {
         console.warn('[Confirmation Warning]', confirmErr.message || confirmErr);
-      }
+        return null;
+      });
     }
+
+    await Promise.all([adminDelivery, confirmationDelivery]);
+    console.log(`[Form Success] ${formType} submitted by ${candidateName} (${data.email}) -> Sent to ${targetEmail} from ${fromEmail}`);
 
     return res.status(200).json({
       success: true,
