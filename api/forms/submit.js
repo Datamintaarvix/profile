@@ -1,5 +1,4 @@
 import { Resend } from 'resend';
-import nodemailer from 'nodemailer';
 import path from 'path';
 
 // Helper to safely parse request body across Vercel environments
@@ -37,11 +36,11 @@ const parseRequestBody = async (req) => {
   return {};
 };
 
-// In-Memory Rate Limiter for serverless instance (5 in prod, 50 in dev)
+// In-Memory Rate Limiter for serverless instance (30 in prod, 100 in dev)
 const isDev = process.env.NODE_ENV !== 'production';
 const ipHistory = new Map();
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
-const MAX_REQUESTS = isDev ? 50 : 5;
+const MAX_REQUESTS = isDev ? 100 : 30;
 
 const checkRateLimit = (ip) => {
   const now = Date.now();
@@ -436,6 +435,7 @@ const deliverEmail = async ({ from, to, replyTo, subject, html, text, attachment
 
   // 2. Deliver via SMTP fallback
   if (isSmtpConfigured) {
+    const { default: nodemailer } = await import('nodemailer');
     const transporter = nodemailer.createTransport({
       host: smtpHost,
       port: parseInt(process.env.SMTP_PORT || '587', 10),
