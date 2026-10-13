@@ -393,17 +393,22 @@ https://datamintaarvix.com
   `.trim();
 };
 
+const cleanEnvStr = (val) => {
+  if (!val) return '';
+  return String(val).trim().replace(/^["']|["']$/g, '').trim();
+};
+
 // Clean and validate sender email to prevent sandbox "onboarding@resend.dev" issues
 const resolveSenderEmail = (isCareer) => {
   if (isCareer) {
-    const customHrFrom = process.env.HR_FROM_EMAIL || process.env.FROM_HR_EMAIL;
+    const customHrFrom = cleanEnvStr(process.env.HR_FROM_EMAIL || process.env.FROM_HR_EMAIL);
     if (customHrFrom && !customHrFrom.includes('resend.dev')) {
       return customHrFrom;
     }
     return 'DATAMINT AARVIX HR <hr@datamintaarvix.com>';
   }
 
-  const customFrom = process.env.FROM_EMAIL;
+  const customFrom = cleanEnvStr(process.env.FROM_EMAIL);
   if (customFrom && !customFrom.includes('resend.dev')) {
     return customFrom;
   }
@@ -412,7 +417,7 @@ const resolveSenderEmail = (isCareer) => {
 
 // Dispatch Email via Resend or SMTP
 const deliverEmail = async ({ from, to, replyTo, subject, html, text, attachments }) => {
-  const resendApiKey = process.env.RESEND_API_KEY;
+  const resendApiKey = cleanEnvStr(process.env.RESEND_API_KEY);
   const isResendConfigured = Boolean(
     resendApiKey && 
     resendApiKey.startsWith('re_') && 
@@ -615,8 +620,8 @@ app.post('/api/forms/submit', async (req, res) => {
                      cleanSource.includes('/careers') || 
                      cleanSource.includes('career');
 
-    const hrEmail = process.env.HR_EMAIL || process.env.CAREERS_EMAIL || 'hr@datamintaarvix.com';
-    const contactEmail = process.env.CONTACT_EMAIL || process.env.INFO_EMAIL || process.env.COMPANY_EMAIL || 'info@datamintaarvix.com';
+    const hrEmail = cleanEnvStr(process.env.HR_EMAIL || process.env.CAREERS_EMAIL) || 'hr@datamintaarvix.com';
+    const contactEmail = cleanEnvStr(process.env.CONTACT_EMAIL || process.env.INFO_EMAIL || process.env.COMPANY_EMAIL) || 'info@datamintaarvix.com';
     const targetEmail = isCareer ? hrEmail : contactEmail;
     const fromEmail = resolveSenderEmail(isCareer);
 
