@@ -527,8 +527,8 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Central Form Submission Handler
-app.post('/api/forms/submit', async (req, res) => {
+// Central Form Submission Handler (supports /api/forms/submit, /api/contact, /api/careers, /api/submit)
+app.post(['/api/forms/submit', '/api/contact', '/api/careers', '/api/submit'], async (req, res) => {
   try {
     const clientIp = req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress || 'unknown';
 

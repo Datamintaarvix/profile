@@ -1,5 +1,13 @@
 import { Resend } from 'resend';
 import path from 'path';
+import dotenv from 'dotenv';
+
+// Automatically load local .env files when running locally
+if (!process.env.VERCEL) {
+  dotenv.config();
+  dotenv.config({ path: path.resolve(process.cwd(), '.env') });
+  dotenv.config({ path: path.resolve(process.cwd(), 'server/.env') });
+}
 
 // Helper to safely parse request body across Vercel environments
 const parseRequestBody = async (req) => {
