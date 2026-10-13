@@ -385,8 +385,14 @@ const deliverEmail = async ({ from, to, replyTo, subject, html, text, attachment
 
     const { data: resendData, error: resendError } = await resend.emails.send(payload);
     if (resendError) {
-      console.error('[Resend Delivery Error]', resendError.message || resendError);
-      throw new Error(resendError.message || 'Resend email delivery failed.');
+      const errName = resendError.name || 'ResendError';
+      const errStatus = resendError.statusCode || resendError.status || 500;
+      const errMsg = resendError.message || 'Resend email delivery failed.';
+      console.error(`[Resend Delivery Error] Status: ${errStatus} | Name: ${errName} | Message: ${errMsg}`);
+      const err = new Error(errMsg);
+      err.name = errName;
+      err.status = errStatus;
+      throw err;
     }
     return { provider: 'resend', id: resendData?.id };
   }
@@ -587,7 +593,10 @@ export default async function handler(req, res) {
     });
 
   } catch (error) {
-    console.error('[API Error]', error.message || error);
+    const errName = error.name || 'Error';
+    const errStatus = error.status || 500;
+    const errMsg = error.message || 'Unknown server error';
+    console.error(`[API Error] Status: ${errStatus} | Name: ${errName} | Message: ${errMsg}`);
 
     if (error.code === 'CONFIG_MISSING') {
       return res.status(503).json({

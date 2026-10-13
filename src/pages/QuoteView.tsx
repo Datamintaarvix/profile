@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CheckCircle2, ArrowRight, ArrowLeft, Send, Sparkles, ShieldCheck } from 'lucide-react';
+import { CheckCircle2, ArrowRight, ArrowLeft, Send, Sparkles, ShieldCheck, AlertCircle } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { sendAdminNotification } from '../services/formService';
 import { PhoneInput } from '../components/PhoneInput';
@@ -29,6 +29,7 @@ export const QuoteView: React.FC<QuoteViewProps> = ({
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const serviceOptions = [
     'Web Development',
@@ -60,6 +61,7 @@ export const QuoteView: React.FC<QuoteViewProps> = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMessage('');
 
     try {
       await sendAdminNotification({
@@ -86,9 +88,9 @@ export const QuoteView: React.FC<QuoteViewProps> = ({
           colors: ['#00F0FF', '#0066FF', '#00E5BE', '#FFFFFF'],
         });
       } catch (err) {}
-    } catch (error) {
+    } catch (error: any) {
       setIsSubmitting(false);
-      alert('Something went wrong. Please try again.');
+      setErrorMessage(error?.message || 'We were unable to deliver your request at this time. Please try again or reach out directly to info@datamintaarvix.com.');
     }
   };
 
@@ -126,6 +128,13 @@ export const QuoteView: React.FC<QuoteViewProps> = ({
                 />
               </div>
             </div>
+
+            {errorMessage && (
+              <div className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm flex items-center gap-3 animate-fadeIn">
+                <AlertCircle className="w-5 h-5 shrink-0 text-red-400" />
+                <span>{errorMessage}</span>
+              </div>
+            )}
 
             <form onSubmit={handleSubmit} className="min-h-[260px] flex flex-col justify-between">
               <div className="py-2">
