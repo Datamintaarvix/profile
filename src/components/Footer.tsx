@@ -119,7 +119,7 @@ export const Footer: React.FC<FooterProps> = ({
               Services
             </h4>
             <ul className="space-y-2.5 text-sm">
-              {services.slice(0, 6).map((service) => (
+              {services.map((service) => (
                 <li key={service.id}>
                   <a
                     href="/services"
