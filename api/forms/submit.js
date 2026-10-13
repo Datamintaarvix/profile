@@ -77,19 +77,19 @@ const generateEmailHtml = (formType, data, sourcePage, hasAttachment, fileName) 
   const isCareer = formType.toLowerCase().includes('career');
   const accentColor = '#00E5FF';
   const headerBg = '#0A0F1D';
-  const fullName = escapeHtml(data.name || `${data.firstName || ''} ${data.lastName || ''}`.trim() || 'N/A');
+  const fullName = escapeHtml(data.name || data.fullName || `${data.firstName || ''} ${data.lastName || ''}`.trim() || 'N/A');
   const email = escapeHtml(data.email || 'N/A');
   const phone = escapeHtml(data.phone || 'N/A');
   const position = escapeHtml(data.position || data.role || '');
   const experience = escapeHtml(data.experience || '');
   const location = escapeHtml(data.location || '');
-  const company = escapeHtml(data.company || '');
-  const service = escapeHtml(data.service || '');
-  const budget = escapeHtml(data.budget || '');
+  const company = escapeHtml(data.company || data.companyName || '');
+  const service = escapeHtml(data.service || data.serviceRequired || '');
+  const budget = escapeHtml(data.budget || data.projectBudget || '');
   const pkg = escapeHtml(data.package || '');
   const linkedin = data.linkedin ? escapeHtml(data.linkedin) : '';
   const portfolio = (data.portfolio || data.portfolioUrl) ? escapeHtml(data.portfolio || data.portfolioUrl) : '';
-  const rawMessage = data.message || data.coverLetter || data.projectDetails || '';
+  const rawMessage = data.message || data.coverLetter || data.projectDetails || data.details || '';
   const formattedMessage = escapeHtml(rawMessage).replace(/\n/g, '<br/>');
 
   return `
@@ -428,7 +428,7 @@ const deliverEmail = async ({ from, to, replyTo, subject, html, text, attachment
       console.error(`[Resend Exception] ${errMsg}`);
       const err = new Error(errMsg);
       err.name = 'ResendException';
-      err.status = 502;
+      err.status = 503;
       throw err;
     }
   }
@@ -499,17 +499,29 @@ export default async function handler(req, res) {
       return res.status(400).json({ success: false, error: 'Invalid or malformed JSON payload.' });
     }
 
-    const { formType, sourcePage, data, file } = body;
+    // Support both wrapped ({ formType, data, sourcePage, file }) and flat submissions
+    let formType = body.formType;
+    let data = body.data;
+    const sourcePage = body.sourcePage || req.headers?.referer || '';
+    const file = body.file;
+
+    if (!data && typeof body === 'object') {
+      data = { ...body };
+      if (!formType) {
+        const reqUrl = (req.url || '').toLowerCase();
+        formType = reqUrl.includes('career') ? 'Careers' : 'Contact';
+      }
+    }
 
     if (!formType || typeof formType !== 'string' || !data || typeof data !== 'object') {
       return res.status(400).json({ success: false, error: 'Invalid submission data.' });
     }
 
-    if (data._honeypot || req.body._honeypot) {
+    if (data._honeypot || req.body?._honeypot || body._honeypot) {
       return res.status(200).json({ success: true, message: 'Submission received successfully.' });
     }
 
-    const candidateName = (data.name || `${data.firstName || ''} ${data.lastName || ''}`).trim();
+    const candidateName = (data.name || data.fullName || `${data.firstName || ''} ${data.lastName || ''}`).trim();
     if (!candidateName || candidateName.length < 2) {
       return res.status(400).json({ success: false, error: 'Please enter a valid full name.' });
     }
@@ -645,16 +657,23 @@ export default async function handler(req, res) {
     if (error.code === 'CONFIG_MISSING') {
       return res.status(503).json({
         success: false,
-        error: 'Email delivery service is currently not configured on the server. Please check RESEND_API_KEY settings.'
+        error: 'Email delivery service is currently not configured on the server. Please check RESEND_API_KEY settings.',
+        code: 'CONFIG_MISSING'
       });
     }
 
     const isDomainError = errMsg.toLowerCase().includes('domain') || errMsg.toLowerCase().includes('verified');
-    return res.status(500).json({
+    const httpStatus = isDomainError
+      ? (errStatus === 403 || errStatus === 422 ? errStatus : 500)
+      : (typeof errStatus === 'number' && errStatus >= 400 && errStatus < 600 ? errStatus : 500);
+
+    return res.status(httpStatus).json({
       success: false,
       error: isDomainError
         ? `Email delivery failed: Domain verification check failed (${errMsg}). Please verify your Resend API key belongs to the workspace where datamintaarvix.com is verified.`
-        : 'We were unable to deliver your message at this time. Please try again or reach out directly to info@datamintaarvix.com.'
+        : 'We were unable to deliver your message at this time. Please try again or reach out directly to info@datamintaarvix.com.',
+      errorType: errName,
+      statusCode: httpStatus
     });
   }
 }
