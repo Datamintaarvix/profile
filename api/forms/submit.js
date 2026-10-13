@@ -2,12 +2,39 @@ import { Resend } from 'resend';
 import nodemailer from 'nodemailer';
 import path from 'path';
 
-export const config = {
-  api: {
-    bodyParser: {
-      sizeLimit: '10mb',
-    },
-  },
+// Helper to safely parse request body across Vercel environments
+const parseRequestBody = async (req) => {
+  if (req.body && typeof req.body === 'object' && !Buffer.isBuffer(req.body)) {
+    return req.body;
+  }
+  if (typeof req.body === 'string') {
+    try {
+      return JSON.parse(req.body);
+    } catch {
+      return null;
+    }
+  }
+  if (Buffer.isBuffer(req.body)) {
+    try {
+      return JSON.parse(req.body.toString('utf-8'));
+    } catch {
+      return null;
+    }
+  }
+  if (typeof req.on === 'function') {
+    try {
+      const raw = await new Promise((resolve, reject) => {
+        let data = '';
+        req.on('data', chunk => { data += chunk; });
+        req.on('end', () => resolve(data));
+        req.on('error', reject);
+      });
+      return raw ? JSON.parse(raw) : {};
+    } catch {
+      return null;
+    }
+  }
+  return {};
 };
 
 // In-Memory Rate Limiter for serverless instance (5 in prod, 50 in dev)
@@ -383,18 +410,28 @@ const deliverEmail = async ({ from, to, replyTo, subject, html, text, attachment
       }));
     }
 
-    const { data: resendData, error: resendError } = await resend.emails.send(payload);
-    if (resendError) {
-      const errName = resendError.name || 'ResendError';
-      const errStatus = resendError.statusCode || resendError.status || 500;
-      const errMsg = resendError.message || 'Resend email delivery failed.';
-      console.error(`[Resend Delivery Error] Status: ${errStatus} | Name: ${errName} | Message: ${errMsg}`);
+    try {
+      const { data: resendData, error: resendError } = await resend.emails.send(payload);
+      if (resendError) {
+        const errName = resendError.name || 'ResendError';
+        const errStatus = resendError.statusCode || resendError.status || 500;
+        const errMsg = resendError.message || 'Resend email delivery failed.';
+        console.error(`[Resend Delivery Error] Status: ${errStatus} | Name: ${errName} | Message: ${errMsg}`);
+        const err = new Error(errMsg);
+        err.name = errName;
+        err.status = errStatus;
+        throw err;
+      }
+      return { provider: 'resend', id: resendData?.id };
+    } catch (resendThrown) {
+      if (resendThrown.status || resendThrown.name === 'ResendError') throw resendThrown;
+      const errMsg = resendThrown.message || 'Resend API network failure';
+      console.error(`[Resend Exception] ${errMsg}`);
       const err = new Error(errMsg);
-      err.name = errName;
-      err.status = errStatus;
+      err.name = 'ResendException';
+      err.status = 502;
       throw err;
     }
-    return { provider: 'resend', id: resendData?.id };
   }
 
   // 2. Deliver via SMTP fallback
@@ -404,6 +441,9 @@ const deliverEmail = async ({ from, to, replyTo, subject, html, text, attachment
       port: parseInt(process.env.SMTP_PORT || '587', 10),
       secure: process.env.SMTP_SECURE === 'true' || process.env.SMTP_PORT === '465',
       auth: { user: smtpUser, pass: smtpPass },
+      connectionTimeout: 4000,
+      greetingTimeout: 4000,
+      socketTimeout: 4000,
     });
 
     const info = await transporter.sendMail({
@@ -428,23 +468,23 @@ const deliverEmail = async ({ from, to, replyTo, subject, html, text, attachment
 };
 
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-  );
-
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
-
-  if (req.method !== 'POST') {
-    return res.status(405).json({ success: false, error: 'Method not allowed' });
-  }
-
   try {
+    const origin = req.headers?.origin || '*';
+    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+    res.setHeader(
+      'Access-Control-Allow-Headers',
+      'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization'
+    );
+
+    if (req.method === 'OPTIONS') {
+      return res.status(200).end();
+    }
+
+    if (req.method !== 'POST') {
+      return res.status(405).json({ success: false, error: 'Method not allowed' });
+    }
+
     const clientIp = req.headers['x-forwarded-for'] || req.socket?.remoteAddress || 'unknown';
 
     if (!checkRateLimit(clientIp)) {
@@ -454,7 +494,12 @@ export default async function handler(req, res) {
       });
     }
 
-    const { formType, sourcePage, data, file } = req.body;
+    const body = await parseRequestBody(req);
+    if (!body || typeof body !== 'object') {
+      return res.status(400).json({ success: false, error: 'Invalid or malformed JSON payload.' });
+    }
+
+    const { formType, sourcePage, data, file } = body;
 
     if (!formType || typeof formType !== 'string' || !data || typeof data !== 'object') {
       return res.status(400).json({ success: false, error: 'Invalid submission data.' });
@@ -605,9 +650,12 @@ export default async function handler(req, res) {
       });
     }
 
+    const isDomainError = errMsg.toLowerCase().includes('domain') || errMsg.toLowerCase().includes('verified');
     return res.status(500).json({
       success: false,
-      error: 'We were unable to deliver your message at this time. Please try again or reach out directly to info@datamintaarvix.com.'
+      error: isDomainError
+        ? `Email delivery failed: Domain verification check failed (${errMsg}). Please verify your Resend API key belongs to the workspace where datamintaarvix.com is verified.`
+        : 'We were unable to deliver your message at this time. Please try again or reach out directly to info@datamintaarvix.com.'
     });
   }
 }
