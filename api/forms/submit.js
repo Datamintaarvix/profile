@@ -369,19 +369,20 @@ const cleanEnvStr = (val) => {
 
 // Clean and validate sender email to prevent sandbox "onboarding@resend.dev" issues
 const resolveSenderEmail = (isCareer) => {
+  const defaultDomain = cleanEnvStr(process.env.RESEND_EMAIL_DOMAIN) || 'datamintaarvix.com';
   if (isCareer) {
     const customHrFrom = cleanEnvStr(process.env.HR_FROM_EMAIL || process.env.FROM_HR_EMAIL);
     if (customHrFrom && !customHrFrom.includes('resend.dev')) {
       return customHrFrom;
     }
-    return 'DATAMINT AARVIX HR <hr@datamintaarvix.com>';
+    return `DATAMINT AARVIX HR <hr@${defaultDomain}>`;
   }
 
   const customFrom = cleanEnvStr(process.env.FROM_EMAIL);
   if (customFrom && !customFrom.includes('resend.dev')) {
     return customFrom;
   }
-  return 'DATAMINT AARVIX <info@datamintaarvix.com>';
+  return `DATAMINT AARVIX <info@${defaultDomain}>`;
 };
 
 // Dispatch Email via Resend or SMTP
@@ -588,8 +589,9 @@ export default async function handler(req, res) {
                      cleanSource.includes('/careers') || 
                      cleanSource.includes('career');
 
-    const hrEmail = cleanEnvStr(process.env.HR_EMAIL || process.env.CAREERS_EMAIL) || 'hr@datamintaarvix.com';
-    const contactEmail = cleanEnvStr(process.env.CONTACT_EMAIL || process.env.INFO_EMAIL || process.env.COMPANY_EMAIL) || 'info@datamintaarvix.com';
+    const defaultDomain = cleanEnvStr(process.env.RESEND_EMAIL_DOMAIN) || 'datamintaarvix.com';
+    const hrEmail = cleanEnvStr(process.env.HR_EMAIL || process.env.CAREERS_EMAIL) || `hr@${defaultDomain}`;
+    const contactEmail = cleanEnvStr(process.env.CONTACT_EMAIL || process.env.INFO_EMAIL || process.env.COMPANY_EMAIL) || `info@${defaultDomain}`;
     const targetEmail = isCareer ? hrEmail : contactEmail;
     const fromEmail = resolveSenderEmail(isCareer);
 
