@@ -73,7 +73,7 @@ export const SolutionsView: React.FC<SolutionsViewProps> = ({ onOpenQuote, onNav
       <section id="bespoke-engineering-section" className="glass-panel rounded-3xl border border-white/10 relative overflow-hidden flex flex-col md:flex-row items-center justify-between shadow-[inset_0_0_80px_rgba(34,211,238,0.05)] bg-[#0a0f1d] mt-12 z-10">
         <div className="absolute inset-0 bg-gradient-to-r from-cyan-900/10 to-purple-900/10 pointer-events-none" />
 
-        <div className="p-8 sm:p-12 md:p-16 relative z-10 text-left md:max-w-[65%] w-full">
+        <div className="p-8 sm:p-12 md:p-14 relative z-10 text-left md:max-w-[52%] lg:max-w-[48%] w-full">
           <button 
             onClick={() => document.getElementById('bespoke-engineering-section')?.scrollIntoView({ behavior: 'smooth' })}
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono uppercase tracking-widest mb-4 font-semibold cursor-pointer hover:bg-cyan-500/20 transition-colors"
@@ -83,12 +83,12 @@ export const SolutionsView: React.FC<SolutionsViewProps> = ({ onOpenQuote, onNav
             <ArrowRight className="w-3 h-3" />
           </button>
 
-          <h3 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight leading-tight">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 tracking-tight leading-tight">
             Have a proprietary or <br className="hidden sm:block" /> <span className="text-cyan-400">unique challenge?</span>
           </h3>
 
-          <p className="text-base text-slate-300 max-w-lg mb-8 leading-relaxed">
-            Our engineering architects work with you to craft custom system architectures, database schemas, and integration pipelines tailored to your exact workflows.
+          <p className="text-sm sm:text-base text-slate-300 max-w-md mb-8 leading-relaxed">
+            Our architects craft custom system architectures, database schemas, and integration pipelines tailored to your workflows.
           </p>
 
           <button
@@ -101,9 +101,9 @@ export const SolutionsView: React.FC<SolutionsViewProps> = ({ onOpenQuote, onNav
         </div>
 
         {/* Custom Visual Image with Seamless Fade */}
-        <div className="hidden md:flex absolute right-0 top-0 bottom-0 w-[55%] z-0 pointer-events-none overflow-hidden rounded-r-3xl items-center justify-end">
+        <div className="hidden md:flex absolute right-0 top-0 bottom-0 w-[45%] lg:w-[48%] z-0 pointer-events-none overflow-hidden rounded-r-3xl items-center justify-end">
           {/* Left edge fade to prevent any hard lines */}
-          <div className="absolute left-0 top-0 bottom-0 w-1/2 bg-gradient-to-r from-[#0a0f1d] to-transparent z-20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0a0f1d] via-[#0a0f1d]/50 to-transparent z-20" />
           
           <img 
             src="/solution/fa.png" 
