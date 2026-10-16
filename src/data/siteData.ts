@@ -824,6 +824,27 @@ export const careers: CareerOpening[] = [
       "Solid understanding of statistical analysis and predictive modeling fundamentals.",
       "Excellent communication skills to translate complex data insights for non-technical stakeholders."
     ]
+  },
+  {
+    id: "sales-and-marketing",
+    title: "Sales and Marketing",
+    department: "Sales & Marketing",
+    location: "Bangalore / Remote",
+    type: "Full-Time",
+    experience: "1–3 Years",
+    description: "Drive strategic business growth, build client relationships, and plan and execute targeted outreach and multi-channel marketing campaigns.",
+    responsibilities: [
+      "Identify new business opportunities, generate qualified leads, and nurture client relationships.",
+      "Execute outbound sales initiatives and respond to inbound inquiries for software solutions and services.",
+      "Collaborate with technical and design teams to craft compelling sales proposals, presentations, and demos.",
+      "Plan, manage, and optimize multi-channel digital marketing campaigns across social media, email, and events."
+    ],
+    requirements: [
+      "Demonstrated experience or strong foundation in B2B sales, business development, or digital marketing.",
+      "Excellent verbal and written communication, presentation, and interpersonal skills.",
+      "Familiarity with CRM tools, modern marketing platforms, and lead generation methodologies.",
+      "Proactive, goal-oriented mindset with the ability to work collaboratively in a fast-paced environment."
+    ]
   }
 ];
 
