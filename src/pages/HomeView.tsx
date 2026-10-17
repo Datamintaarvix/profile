@@ -142,7 +142,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             
             <div className="flex flex-wrap items-center gap-4 pt-4 relative z-30">
               <button
-                onClick={() => onOpenQuote()}
+                onClick={() => onNavigate('contact')}
                 className="px-8 py-4 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 hover:opacity-90 transition-opacity flex items-center gap-2 cursor-pointer"
               >
                 <span>Start a Project</span>
