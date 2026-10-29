@@ -545,6 +545,8 @@ export const DataAnalystProjectView: React.FC<DataAnalystProjectViewProps> = ({
   const [lightboxImage, setLightboxImage] = useState<{ url: string; title: string; subtitle?: string } | null>(null);
 
   const content = dataAnalystRepository[project.id] || dataAnalystRepository['project-09'];
+  const workflowSteps = content.workflowSteps || [];
+  const kpiCards = content.kpiCards || [];
 
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
@@ -725,7 +727,7 @@ export const DataAnalystProjectView: React.FC<DataAnalystProjectViewProps> = ({
             </div>
 
             {/* 02b. KPI CARDS (ONLY IF DEFINED — e.g., GROKAL) */}
-            {content.kpiCards && content.kpiCards.length > 0 && (
+            {kpiCards.length > 0 && (
               <div className="space-y-4">
                 <div className="text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-bold flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -757,7 +759,7 @@ export const DataAnalystProjectView: React.FC<DataAnalystProjectViewProps> = ({
                 )}
 
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                  {content.kpiCards.map((kpi, idx) => (
+                  {kpiCards.map((kpi, idx) => (
                     <div
                       key={idx}
                       className="p-4 rounded-2xl bg-white dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 text-center space-y-1 shadow-sm hover:border-cyan-500/40 dark:hover:border-cyan-brand/40 transition-colors"
@@ -993,7 +995,7 @@ export const DataAnalystProjectView: React.FC<DataAnalystProjectViewProps> = ({
             </div>
 
             {/* 02b. KPI HIGHLIGHTS FOR PAGE 2 */}
-            {content.kpiCards && content.kpiCards.length > 0 && (
+            {kpiCards.length > 0 && (
               <div className="space-y-4">
                 {content.kpiImage && (
                   <div
@@ -1013,7 +1015,7 @@ export const DataAnalystProjectView: React.FC<DataAnalystProjectViewProps> = ({
                 )}
 
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                  {content.kpiCards.map((kpi, idx) => (
+                  {kpiCards.map((kpi, idx) => (
                     <div
                       key={idx}
                       className="p-5 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 text-center space-y-1 shadow-sm hover:border-yellow-500/40 dark:hover:border-yellow-400/40 transition-colors"
@@ -1247,7 +1249,7 @@ export const DataAnalystProjectView: React.FC<DataAnalystProjectViewProps> = ({
             </div>
 
             {/* 07. PROJECT ARCHITECTURE WORKFLOW DIAGRAM (SECTION 6) */}
-            {content.workflowSteps && content.workflowSteps.length > 0 && (
+            {workflowSteps.length > 0 && (
               <div className="space-y-6 pt-4 border-t border-slate-200/80 dark:border-white/10">
                 <div className="space-y-1">
                   <span className="text-xs font-mono font-bold tracking-wider uppercase text-cyan-600 dark:text-cyan-brand">
@@ -1263,7 +1265,7 @@ export const DataAnalystProjectView: React.FC<DataAnalystProjectViewProps> = ({
 
                 <div className="p-6 sm:p-8 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 shadow-sm">
                   <div className="flex flex-col lg:flex-row items-center justify-between gap-3 sm:gap-4">
-                    {content.workflowSteps.map((step, idx) => (
+                    {workflowSteps.map((step, idx) => (
                       <React.Fragment key={idx}>
                         <div className="flex-1 w-full text-center p-4 rounded-xl bg-white dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 shadow-sm hover:border-cyan-500/40 dark:hover:border-cyan-brand/40 transition-all group">
                           <div className="text-[10px] font-mono text-cyan-600 dark:text-cyan-brand font-bold uppercase tracking-wider mb-1">
@@ -1274,12 +1276,12 @@ export const DataAnalystProjectView: React.FC<DataAnalystProjectViewProps> = ({
                           </div>
                         </div>
 
-                        {idx < content.workflowSteps.length - 1 && (
+                        {idx < workflowSteps.length - 1 && (
                           <div className="hidden lg:flex items-center justify-center text-cyan-600 dark:text-cyan-brand shrink-0">
                             <ArrowRight className="w-5 h-5" />
                           </div>
                         )}
-                        {idx < content.workflowSteps.length - 1 && (
+                        {idx < workflowSteps.length - 1 && (
                           <div className="flex lg:hidden items-center justify-center text-cyan-600 dark:text-cyan-brand py-1">
                             <ArrowDown className="w-4 h-4" />
                           </div>
