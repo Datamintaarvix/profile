@@ -160,10 +160,10 @@ export const AboutView: React.FC<AboutViewProps> = ({ onOpenQuote, onNavigate })
           
           <div className="flex flex-wrap items-center gap-4 pt-4">
             <button
-              onClick={() => onNavigate('projects')}
+              onClick={() => onNavigate('portfolio')}
               className="bg-cyan-600 hover:bg-cyan-500 text-white px-6 py-3 rounded-xl text-sm font-semibold transition-colors flex items-center gap-2 cursor-pointer shadow-lg shadow-cyan-900/20"
             >
-              Explore Projects <ArrowRight className="w-4 h-4" />
+              Explore Portfolio <ArrowRight className="w-4 h-4" />
             </button>
           </div>
         </div>

@@ -527,9 +527,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 md:mb-10 gap-6">
           <div className="space-y-3 max-w-2xl">
             <button 
-              onClick={() => onNavigate('projects')}
+              onClick={() => onNavigate('portfolio')}
               className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-widest uppercase text-cyan-400 hover:text-cyan-300 cursor-pointer transition-colors group focus:outline-none"
-              title="Open Projects Page"
+              title="Open Portfolio Page"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 group-hover:scale-125 transition-transform" />
               <span>PORTFOLIO & CASE STUDIES</span>
@@ -543,10 +543,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </p>
           </div>
           <button
-            onClick={() => onNavigate('projects')}
+            onClick={() => onNavigate('portfolio')}
             className="text-cyan-400 text-xs font-mono uppercase tracking-widest hover:text-white flex items-center gap-2 transition-colors shrink-0 cursor-pointer"
           >
-            <span>View All Projects</span>
+            <span>View Full Portfolio</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
@@ -579,10 +579,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 <div className="flex items-center justify-between pt-3 border-t border-white/5 mt-auto">
                   <span className="text-[11px] text-white/50 font-mono">{project.year}</span>
                   <button 
-                    onClick={() => onNavigate('projects')}
+                    onClick={() => onNavigate('portfolio')}
                     className="text-xs font-semibold text-cyan-400 flex items-center gap-1 group-hover:translate-x-1 transition-all duration-300 cursor-pointer"
                   >
-                    View Project <ArrowRight className="w-3 h-3" />
+                    View Portfolio <ArrowRight className="w-3 h-3" />
                   </button>
                 </div>
               </div>

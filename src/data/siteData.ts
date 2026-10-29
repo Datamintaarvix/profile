@@ -145,7 +145,7 @@ export const navigationItems: NavigationItem[] = [
   { id: "services", label: "SERVICES", path: "/services" },
   { id: "solutions", label: "SOLUTIONS", path: "/solutions" },
   { id: "packages", label: "PACKAGES", path: "/packages" },
-  { id: "projects", label: "PROJECTS", path: "/projects" },
+  { id: "portfolio", label: "PORTFOLIO", path: "/portfolio" },
   { id: "careers", label: "CAREERS", path: "/careers" },
   { id: "contact", label: "CONTACT", path: "/contact" }
 ];
@@ -500,7 +500,7 @@ export const projects: Project[] = [
     title: "Business Management Platform",
     category: "Software Development",
     shortDesc: "Unified enterprise operations cockpit managing multi-branch resource planning, role permissions, and financial audits.",
-    tags: ["React", "TypeScript", "Node.js", "PostgreSQL"],
+    tags: ["Enterprise ERP", "Multi-Branch Sync", "Role Permissions", "Audit Logging"],
     metrics: "40% Ops Efficiency Gain",
     year: "2026"
   },
@@ -510,17 +510,17 @@ export const projects: Project[] = [
     title: "Modern Corporate Website",
     category: "Web Development",
     shortDesc: "High-performance corporate brand portal featuring fluid glassmorphic UI, dynamic CMS, and technical SEO structure.",
-    tags: ["Next.js", "Tailwind CSS", "Framer Motion"],
+    tags: ["Brand Experience", "Technical SEO", "High Performance", "Dynamic CMS"],
     metrics: "100/100 Lighthouse Performance",
     year: "2026"
   },
   {
     id: "project-03",
     number: "03",
-    title: "E-Commerce Platform",
+    title: "Omnichannel Commerce Platform",
     category: "E-Commerce",
     shortDesc: "High-conversion commerce platform supporting multi-gateway payment processing, instant checkout, and live inventory sync.",
-    tags: ["Headless Commerce", "Stripe / Razorpay", "Redis"],
+    tags: ["Omnichannel Commerce", "Multi-Gateway Payments", "Live Inventory", "Instant Checkout"],
     metrics: "Sub-second Page Loads",
     year: "2026"
   },
@@ -530,7 +530,7 @@ export const projects: Project[] = [
     title: "AI Business Assistant",
     category: "AI & Automation",
     shortDesc: "Domain-specific conversational artificial intelligence capable of answering technical enterprise queries from documentation.",
-    tags: ["Python", "FastAPI", "Vector Embeddings", "LLM"],
+    tags: ["AI Assistant", "Enterprise Knowledge Base", "Process Automation", "Smart Search"],
     metrics: "85% Support Ticket Deflection",
     year: "2026"
   },
@@ -538,20 +538,140 @@ export const projects: Project[] = [
     id: "project-05",
     number: "05",
     title: "Mobile Business Application",
-    category: "Mobile Development",
+    category: "Mobile App Development",
     shortDesc: "Cross-platform mobile client for field engineers with offline telemetry recording, instant geo-tagging, and secure uploads.",
-    tags: ["React Native", "SQLite", "Push Notifications"],
+    tags: ["Cross-Platform Mobile", "Offline Sync", "Field Telemetry", "Hardware Integration"],
     metrics: "99.9% Sync Reliability",
     year: "2026"
   },
   {
     id: "project-06",
     number: "06",
-    title: "Digital Customer Portal",
-    category: "Web Application",
+    title: "Enterprise Custom Portal",
+    category: "Custom Solutions",
     shortDesc: "Self-service client dashboard providing transparent invoice tracking, support ticket lifecycle, and contract signing.",
-    tags: ["Vue / React", "REST APIs", "AWS S3 Cloud"],
+    tags: ["Customer Portal", "Contract E-Sign", "Secure Cloud", "Invoice Lifecycle"],
     metrics: "Zero-Downtime Architecture",
+    year: "2026"
+  },
+  {
+    id: "project-07",
+    number: "07",
+    title: "Fintech Design System & UI/UX",
+    category: "UI/UX Design",
+    shortDesc: "Research-driven accessibility design system, interactive micro-prototypes, and frictionless financial onboarding flows.",
+    tags: ["Design System", "User Research", "WCAG AA Accessible", "Figma Tokens"],
+    metrics: "3.2x User Engagement",
+    year: "2026"
+  },
+  {
+    id: "project-08",
+    number: "08",
+    title: "Cloud Infrastructure & CI/CD Pipeline",
+    category: "Cloud & Deployment",
+    shortDesc: "Zero-downtime multi-region cloud topology with automated continuous delivery, container clustering, and proactive monitoring.",
+    tags: ["Multi-Region Cloud", "Automated CI/CD", "Container Clustering", "Proactive Monitoring"],
+    metrics: "99.99% Cloud Availability",
+    year: "2026"
+  },
+  {
+    id: "project-09",
+    number: "09",
+    title: "Enterprise Data Analytics & BI Suite",
+    category: "Data Analytics",
+    shortDesc: "Interactive executive decision engine with predictive forecasting models, live ETL pipelines, and real-time revenue telemetry.",
+    tags: ["Predictive Analytics", "ETL Data Pipeline", "Executive Dashboards", "BI Integration"],
+    metrics: "12x Faster Reporting Cycles",
+    year: "2026"
+  },
+  {
+    id: "project-10",
+    number: "10",
+    title: "Digital Brand Growth & Social Management",
+    category: "Social Media Management",
+    shortDesc: "Multi-channel content strategy, proactive community engagement workflows, targeted brand campaigns, and conversion analytics.",
+    tags: ["Brand Content Strategy", "Community Engagement", "Paid Campaigns", "Growth Analytics"],
+    metrics: "250% Organic Reach Growth",
+    year: "2026"
+  },
+  {
+    id: "project-11",
+    number: "11",
+    title: "Healthcare Clinical Operations Suite",
+    category: "Software Development",
+    shortDesc: "Electronic health records (EHR), multi-department patient triage, and central pharmacy inventory management.",
+    tags: ["Clinical EHR", "Pharmacy Inventory", "Patient Triage", "HIPAA Ready"],
+    metrics: "50% Shorter Patient Wait Times",
+    year: "2026"
+  },
+  {
+    id: "project-12",
+    number: "12",
+    title: "Global Wholesale Commerce Engine",
+    category: "E-Commerce",
+    shortDesc: "B2B wholesale digital portal with tiered pricing models, bulk order line uploads, and automated invoice credit term tracking.",
+    tags: ["B2B Wholesale", "Tiered Pricing", "Bulk Orders", "Invoice Terms"],
+    metrics: "3.8x B2B Order Volume",
+    year: "2026"
+  },
+  {
+    id: "project-13",
+    number: "13",
+    title: "Autonomous IT Helpdesk AI",
+    category: "AI & Automation",
+    shortDesc: "Self-healing IT service desk AI capable of executing automated password resets, policy verification, and ticket deflection.",
+    tags: ["Autonomous Helpdesk", "RAG Pipeline", "Ticket Deflection", "ITIL Compliance"],
+    metrics: "78% First-Contact Resolution",
+    year: "2026"
+  },
+  {
+    id: "project-14",
+    number: "14",
+    title: "Industrial Plant Telemetry App",
+    category: "Mobile App Development",
+    shortDesc: "Cross-platform tablet application for factory floor supervisors with real-time machine telemetry and predictive maintenance alerts.",
+    tags: ["Factory Telemetry", "Machine Monitoring", "Tablet Native", "Offline Logging"],
+    metrics: "99.8% Field Uptime",
+    year: "2026"
+  },
+  {
+    id: "project-15",
+    number: "15",
+    title: "Industrial Manufacturing Portal",
+    category: "Web Development",
+    shortDesc: "Interactive technical equipment catalog featuring 3D component previews, specification PDF generators, and global RFQ forms.",
+    tags: ["3D Product Catalog", "RFQ Generator", "Technical Spec Engine", "Global Inquiries"],
+    metrics: "140% More Inbound RFQs",
+    year: "2026"
+  },
+  {
+    id: "project-16",
+    number: "16",
+    title: "Institutional Research Network",
+    category: "Custom Solutions",
+    shortDesc: "Inter-departmental academic research repository, grant lifecycle management, and intellectual property publication tracking.",
+    tags: ["Research Hub", "Grant Approvals", "Patent Repository", "Academic Citations"],
+    metrics: "100% Grant Compliance",
+    year: "2026"
+  },
+  {
+    id: "project-17",
+    number: "17",
+    title: "Healthcare Clinical Intelligence & Patient Telemetry",
+    category: "Data Analytics",
+    shortDesc: "Automated hospital telemetry pipeline predicting patient readmission risks, ICU bed occupancy, and medication inventory variance.",
+    tags: ["Clinical BI", "Predictive Risk Modeling", "ETL Warehousing", "Patient Telemetry"],
+    metrics: "94.6% Prediction Accuracy",
+    year: "2026"
+  },
+  {
+    id: "project-18",
+    number: "18",
+    title: "Grokal — Retail Sales & Outlet Performance Intelligence",
+    category: "Data Analytics",
+    shortDesc: "An interactive retail analytics dashboard that transforms sales, product, and outlet data into actionable business insights through KPI monitoring, category analysis, outlet comparisons, and historical sales trends.",
+    tags: ["Power BI", "DAX", "Power Query", "Excel", "SQL"],
+    metrics: "$1.20M Total Sales Tracked",
     year: "2026"
   }
 ];

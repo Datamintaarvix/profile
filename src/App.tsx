@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
-import { QuoteModal } from './components/QuoteModal';
 import { LegalModal } from './components/LegalModal';
 import { HomeView } from './pages/HomeView';
 import { AboutView } from './pages/AboutView';
@@ -11,6 +10,7 @@ import { ServicesView } from './pages/ServicesView';
 import { SolutionsView } from './pages/SolutionsView';
 import { PackagesView } from './pages/PackagesView';
 import { ProjectsView } from './pages/ProjectsView';
+import { ProjectDetailView } from './pages/ProjectDetailView';
 import { CareersView } from './pages/CareersView';
 import { ContactView } from './pages/ContactView';
 import { QuoteView } from './pages/QuoteView';
@@ -43,9 +43,7 @@ function MainLayout() {
   };
 
   const handleOpenQuote = (service?: string, packageName?: string) => {
-    setQuoteServicePrefill(service);
-    setQuotePackagePrefill(packageName);
-    setIsQuoteModalOpen(true);
+    navigate('/contact');
   };
 
   const handleSelectServiceFromHome = (service: Service) => {
@@ -141,18 +139,53 @@ function MainLayout() {
             </>
           } />
 
-          <Route path="/projects" element={
+          <Route path="/portfolio" element={
             <>
               <SEOHead 
-                title="Our Projects - DATAMINT AARVIX" 
+                title="Our Portfolio - DATAMINT AARVIX" 
                 description="View our portfolio of successful projects and digital experiences built for growing businesses." 
-                url="https://datamintaarvix.com/projects" 
+                url="https://datamintaarvix.com/portfolio" 
               />
               <ProjectsView
                 onOpenQuote={handleOpenQuote}
                 onNavigate={handleNavigate}
               />
             </>
+          } />
+
+          <Route path="/portfolio/:id" element={
+            <ProjectDetailView
+              onOpenQuote={handleOpenQuote}
+              onNavigate={handleNavigate}
+            />
+          } />
+
+          <Route path="/projects" element={
+            <>
+              <SEOHead 
+                title="Our Portfolio - DATAMINT AARVIX" 
+                description="View our portfolio of successful projects and digital experiences built for growing businesses." 
+                url="https://datamintaarvix.com/portfolio" 
+              />
+              <ProjectsView
+                onOpenQuote={handleOpenQuote}
+                onNavigate={handleNavigate}
+              />
+            </>
+          } />
+
+          <Route path="/projects/:id" element={
+            <ProjectDetailView
+              onOpenQuote={handleOpenQuote}
+              onNavigate={handleNavigate}
+            />
+          } />
+
+          <Route path="/project/:id" element={
+            <ProjectDetailView
+              onOpenQuote={handleOpenQuote}
+              onNavigate={handleNavigate}
+            />
           } />
 
           <Route path="/careers" element={
@@ -177,19 +210,7 @@ function MainLayout() {
             </>
           } />
 
-          <Route path="/quote" element={
-            <>
-              <SEOHead 
-                title="Get a Quote - DATAMINT AARVIX" 
-                description="Request a free quote for your custom software, web, or mobile app project." 
-                url="https://datamintaarvix.com/quote" 
-              />
-              <QuoteView
-                initialService={quoteServicePrefill}
-                initialPackage={quotePackagePrefill}
-              />
-            </>
-          } />
+          <Route path="/quote" element={<Navigate to="/contact" replace />} />
 
           <Route path="*" element={
             <>
@@ -208,13 +229,6 @@ function MainLayout() {
         onNavigate={handleNavigate}
         onOpenPrivacy={() => setLegalModalType('privacy')}
         onOpenTerms={() => setLegalModalType('terms')}
-      />
-
-      <QuoteModal
-        isOpen={isQuoteModalOpen}
-        onClose={() => setIsQuoteModalOpen(false)}
-        initialService={quoteServicePrefill}
-        initialPackage={quotePackagePrefill}
       />
 
       <LegalModal

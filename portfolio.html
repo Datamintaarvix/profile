@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DATAMINT AARVIX — Portfolio & Selected Work Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F8FAFC;
+      --surface: #FFFFFF;
+      --card-bg: #FFFFFF;
+      --text: #0F172A;
+      --text-muted: #64748B;
+      --border: #E2E8F0;
+      --cyan: #0284C7;
+      --cyan-light: #E0F2FE;
+      --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+      --shadow-md: 0 12px 30px -10px rgba(15, 23, 42, 0.08);
+      --shadow-card: 0 20px 35px -10px rgba(0, 0, 0, 0.07), 0 4px 12px rgba(0, 0, 0, 0.03);
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    [data-theme="dark"] {
+      --bg: #050914;
+      --surface: #0B132B;
+      --card-bg: #0F172A;
+      --text: #F8FAFC;
+      --text-muted: #94A3B8;
+      --border: rgba(255, 255, 255, 0.08);
+      --cyan: #00F0FF;
+      --cyan-light: rgba(0, 240, 255, 0.12);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 12px 30px -10px rgba(0, 0, 0, 0.4);
+      --shadow-card: 0 20px 40px -10px rgba(0, 0, 0, 0.6);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.5;
+      padding-bottom: 80px;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Top Navigation Bar */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 40px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .brand-symbol {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #0284C7, #00F0FF);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFF;
+      font-weight: 800;
+      font-size: 16px;
+    }
+
+    .brand-text h1 {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .brand-text p {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .theme-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 14px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-family: var(--font-mono);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .back-btn {
+      background: var(--text);
+      color: var(--bg);
+      border: none;
+      padding: 9px 18px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    /* Page Header */
+    .header-section {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 40px;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      border-radius: 9999px;
+      background: var(--cyan-light);
+      color: var(--cyan);
+      font-size: 11px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--cyan);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .page-title {
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      line-height: 1.15;
+    }
+
+    .accent {
+      color: var(--cyan);
+    }
+
+    .page-desc {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Filters Bar */
+    .filters-wrapper {
+      margin-bottom: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      max-width: 1050px;
+    }
+
+    .filter-btn {
+      padding: 8px 16px;
+      border-radius: 9999px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 12px;
+      font-family: var(--font-mono);
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .filter-btn:hover {
+      color: var(--text);
+      border-color: var(--cyan);
+    }
+
+    .filter-btn.active {
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
+      font-weight: 700;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stats-counter {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* 4-COLUMN GRID (Matching the reference screenshot structure exactly) */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    @media (max-width: 1200px) {
+      .portfolio-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 860px) {
+      .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* PORTFOLIO CARD */
+    .portfolio-card {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      aspect-ratio: 3 / 4.2;
+    }
+
+    .portfolio-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-card);
+      border-color: rgba(2, 132, 199, 0.4);
+    }
+
+    /* Card Studio Backdrop with subtle gradient tint */
+    .card-canvas {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 20px 85px 20px;
+      overflow: hidden;
+    }
+
+    /* Color variations for studio canvas backdrops */
+    .canvas-tint-1 { background: linear-gradient(145deg, #FAF3EA 0%, #F2E8DC 100%); }
+    .canvas-tint-2 { background: linear-gradient(145deg, #EEF4F8 0%, #E0EBF2 100%); }
+    .canvas-tint-3 { background: linear-gradient(145deg, #EFF7F2 0%, #DFEEE4 100%); }
+    .canvas-tint-4 { background: linear-gradient(145deg, #F8EFF5 0%, #EDE0E8 100%); }
+    .canvas-tint-5 { background: linear-gradient(145deg, #EBF5F8 0%, #DCEEF2 100%); }
+    .canvas-tint-6 { background: linear-gradient(145deg, #F5F2EE 0%, #E8E2DA 100%); }
+
+    [data-theme="dark"] .canvas-tint-1 { background: linear-gradient(145deg, #181412 0%, #0F0C0A 100%); }
+    [data-theme="dark"] .canvas-tint-2 { background: linear-gradient(145deg, #0E1724 0%, #090F18 100%); }
+    [data-theme="dark"] .canvas-tint-3 { background: linear-gradient(145deg, #0F1C14 0%, #08120D 100%); }
+    [data-theme="dark"] .canvas-tint-4 { background: linear-gradient(145deg, #1B1119 0%, #110A10 100%); }
+    [data-theme="dark"] .canvas-tint-5 { background: linear-gradient(145deg, #0C181D 0%, #081014 100%); }
+    [data-theme="dark"] .canvas-tint-6 { background: linear-gradient(145deg, #161514 0%, #0E0D0C 100%); }
+
+    /* Mockup Visual Spread (Isometric / Layered screens effect) */
+    .mockup-spread {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .portfolio-card:hover .mockup-spread {
+      transform: scale(1.05) translateY(-2px);
+    }
+
+    .mockup-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 16px 30px -10px rgba(0, 0, 0, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    [data-theme="dark"] .mockup-img {
+      border-color: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 16px 35px -8px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Pinned Bottom Label Card (Directly like screenshot) */
+    .bottom-label-pill {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      right: 12px;
+      background: #FFFFFF;
+      border-radius: 14px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.12), 0 2px 6px rgba(15, 23, 42, 0.04);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      z-index: 10;
+      transition: all 0.25s ease;
+    }
+
+    [data-theme="dark"] .bottom-label-pill {
+      background: #0B132B;
+      border-color: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 10px 25px -4px rgba(0, 0, 0, 0.5);
+    }
+
+    .portfolio-card:hover .bottom-label-pill {
+      border-color: var(--cyan);
+      box-shadow: 0 12px 28px -4px rgba(2, 132, 199, 0.25);
+    }
+
+    .label-info {
+      overflow: hidden;
+    }
+
+    .label-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0F172A;
+      line-height: 1.25;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    [data-theme="dark"] .label-title {
+      color: #F8FAFC;
+    }
+
+    .label-meta {
+      font-size: 10px;
+      color: #64748B;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    [data-theme="dark"] .label-meta {
+      color: #94A3B8;
+    }
+
+    .open-icon-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: #F1F5F9;
+      color: #0F172A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+
+    [data-theme="dark"] .open-icon-btn {
+      background: rgba(255, 255, 255, 0.06);
+      color: #F8FAFC;
+    }
+
+    .portfolio-card:hover .open-icon-btn {
+      background: var(--cyan);
+      color: #FFF;
+      transform: translate(2px, -2px);
+    }
+
+    /* Modal for Quick Project View */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 9, 20, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal-container {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      max-width: 800px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+      position: relative;
+      animation: modalSlide 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes modalSlide {
+      from { opacity: 0; transform: scale(0.95) translateY(10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+      z-index: 20;
+    }
+
+    .modal-img-wrapper {
+      width: 100%;
+      height: 320px;
+      overflow: hidden;
+      border-radius: 24px 24px 0 0;
+      background: #000;
+    }
+
+    .modal-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .modal-content {
+      padding: 32px;
+    }
+
+    .modal-category {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 6px;
+    }
+
+    .modal-title {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .modal-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .deliverables-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .deliverables-box h4 {
+      font-size: 12px;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 12px;
+    }
+
+    .deliverables-box ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .deliverables-box li {
+      font-size: 13px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .check-mark {
+      color: #10B981;
+      font-weight: bold;
+    }
+
+    .modal-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+    }
+
+    .inquire-btn {
+      padding: 12px 24px;
+      border-radius: 9999px;
+      background: var(--cyan);
+      color: #050914;
+      font-weight: 700;
+      font-size: 13px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Print styles */
+    @media print {
+      body { background: #FFF !important; color: #000 !important; }
+      .top-bar, .filters-wrapper, .modal-backdrop { display: none !important; }
+      .portfolio-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 16px !important; }
+      .portfolio-card { break-inside: avoid; border: 1px solid #CCC !important; }
+      .bottom-label-pill { border: 1px solid #DDD !important; box-shadow: none !important; }
+    }
+  </style>
+</head>
+<body data-theme="light">
+
+  <div class="container">
+
+    <!-- Top Bar -->
+    <header class="top-bar">
+      <a href="/" class="brand-logo">
+        <div class="brand-symbol">DA</div>
+        <div class="brand-text">
+          <h1>DATAMINT AARVIX</h1>
+          <p>Portfolio & Client Work Gallery</p>
+        </div>
+      </a>
+
+      <div class="nav-actions">
+        <button class="theme-btn" id="themeToggle" onclick="toggleTheme()">
+          <span>◐</span> Toggle Theme
+        </button>
+        <a href="/" class="back-btn">← Back to Site</a>
+      </div>
+    </header>
+
+    <!-- Header Section -->
+    <section class="header-section">
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        <span>03 / PORTFOLIO SHOWCASE</span>
+      </div>
+      <h2 class="page-title">Selected Work & Portfolio</h2>
+      <p class="page-desc">
+        A curated showcase of web portals, custom software suites, commerce engines, mobile applications, and enterprise cloud systems engineered by DATAMINT AARVIX.
+      </p>
+    </section>
+
+    <!-- Filters & Categories Bar -->
+    <div class="filters-wrapper">
+      <div class="filter-pills" id="filterContainer">
+        <button class="filter-btn active" data-cat="all" onclick="filterProjects('all', this)">All (16)</button>
+        <button class="filter-btn" data-cat="web" onclick="filterProjects('web', this)">Web Development</button>
+        <button class="filter-btn" data-cat="software" onclick="filterProjects('software', this)">Software Development</button>
+        <button class="filter-btn" data-cat="uiux" onclick="filterProjects('uiux', this)">UI/UX Design</button>
+        <button class="filter-btn" data-cat="mobile" onclick="filterProjects('mobile', this)">Mobile App</button>
+        <button class="filter-btn" data-cat="ecom" onclick="filterProjects('ecom', this)">E-Commerce</button>
+        <button class="filter-btn" data-cat="ai" onclick="filterProjects('ai', this)">AI & Automation</button>
+        <button class="filter-btn" data-cat="cloud" onclick="filterProjects('cloud', this)">Cloud & DevOps</button>
+        <button class="filter-btn" data-cat="custom" onclick="filterProjects('custom', this)">Custom Solutions</button>
+        <button class="filter-btn" data-cat="analytics" onclick="filterProjects('analytics', this)">Data Analytics</button>
+        <button class="filter-btn" data-cat="social" onclick="filterProjects('social', this)">Social Media</button>
+      </div>
+      <div class="stats-counter" id="projectCountText">Showing 16 sample delivery cases</div>
+    </div>
+
+    <!-- 4-COLUMN PORTFOLIO GRID (MATCHING THE SCREENSHOT EXACTLY) -->
+    <div class="portfolio-grid" id="projectGrid">
+
+      <!-- Card 01 -->
+      <div class="portfolio-card" data-cat="software" onclick="openModal('Business Management Platform', 'Software Development', '/service/softwaredevelopment.png', 'Unified enterprise operations cockpit managing multi-branch resource planning, role permissions, and financial audits.', ['Multi-branch operational cockpit', 'Role-based access permissions', 'Automated fee & audit reconciliation'])">
+        <div class="card-canvas canvas-tint-1">
+          <div class="mockup-spread">
+            <img src="/service/softwaredevelopment.png" alt="Business Management Platform" class="mockup-img">
+          </div>
+        </div>
+        <div class="bottom-label-pill">
+          <div class="label-info">
+            <div class="label-title">Business Management Platform</div>
+            <div class="label-meta">Software Development</div>
+          </div>
+          <div class="open-icon-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 02 -->
+      <div class="portfolio-card" data-cat="web" onclick="openModal('Modern Corporate Website', 'Web Development', '/service/webdevelopment.png', 'Sub-second digital brand portal and prospective student admissions system featuring zero-shift animations.', ['100/100 Lighthouse performance', 'Headless CMS integration', 'Lead capture admissions funnel'])">
+        <div class="card-canvas canvas-tint-2">
+          <div class="mockup-spread">
+            <img src="/service/webdevelopment.png" alt="Modern Corporate Website" class="mockup-img">
+          </div>
+        </div>
+        <div class="bottom-label-pill">
+          <div class="label-info">
+            <div class="label-title">Modern Corporate Website</div>
+            <div class="label-meta">Web Development</div>
+          </div>
+          <div class="open-icon-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 03 -->
+      <div class="portfolio-card" data-cat="ecom" onclick="openModal('Omnichannel Commerce Platform', 'E-Commerce', '/service/ecom.png', 'High-conversion commerce platform supporting multi-gateway payment processing, instant checkout, and live inventory sync.', ['Multi-gateway failover checkout', 'Sub-50ms product search engine', 'Live inventory reservation'])">
+        <div class="card-canvas canvas-tint-3">
+          <div class="mockup-spread">
+            <img src="/service/ecom.png" alt="Omnichannel Commerce Platform" class="mockup-img">
+          </div>
+        </div>
+        <div class="bottom-label-pill">
+          <div class="label-info">
+            <div class="label-title">Omnichannel Commerce Platform</div>
+            <div class="label-meta">E-Commerce</div>
+          </div>
+          <div class="open-icon-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 04 -->
+      <div class="portfolio-card" data-cat="ai" onclick="openModal('AI Business Assistant', 'AI & Automation', '/service/ai.png', 'Domain-specific conversational artificial intelligence capable of answering technical enterprise queries from documentation.', ['Semantic vector knowledge retrieval', 'Accurate source attribution citations', 'Human agent escalation handoff'])">
+        <div class="card-canvas canvas-tint-4">
+          <div class="mockup-spread">
+            <img src="/service/ai.png" alt="AI Business Assistant" class="mockup-img">
+          </div>
+        </div>
+        <div class="bottom-label-pill">
+          <div class="label-info">
+            <div class="label-title">AI Business Assistant</div>
+            <div class="label-meta">AI & Automation</div>
+          </div>
+          <div class="open-icon-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 05 -->
+      <div class="portfolio-card" data-cat="mobile" onclick="openModal('Mobile Business Application', 'Mobile App Development', '/service/mobileappdevelopment.png', 'Cross-platform mobile client for field engineers with offline telemetry recording, instant geo-tagging, and secure uploads.', ['Offline-first SQLite sync engine', 'Hardware camera barcode scanner', 'GPS inspection photo stamping'])">
+        <div class="card-canvas canvas-tint-5">
+          <div class="mockup-spread">
+            <img src="/service/mobileappdevelopment.png" alt="Mobile Business Application" class="mockup-img">
+          </div>
+        </div>
+        <div class="bottom-label-pill">
+          <div class="label-info">
+            <div class="label-title">Mobile Business Application</div>
+            <div class="label-meta">Mobile App Development</div>
+          </div>
+          <div class="open-icon-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 06 -->
+      <div class="portfolio-card" data-cat="custom" onclick="openModal('Enterprise Custom Portal', 'Custom Solutions', '/service/customsolutions.png', 'Self-service client dashboard providing transparent invoice tracking, support ticket lifecycle, and contract signing.', ['Encrypted contract e-signing vault', 'Live milestone progress tracker', 'Consolidated billing reconciliation'])">
+        <div class="card-canvas canvas-tint-6">
+          <div class="mockup-spread">
+            <img src="/service/customsolutions.png" alt="Enterprise Custom Portal" class="mockup-img">
+          </div>
+        </div>
+        <div class="bottom-label-pill">
+          <div class="label-info">
+            <div class="label-title">Enterprise Custom Portal</div>
+            <div class="label-meta">Custom Solutions</div>
+          </div>
+          <div class="open-icon-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 07 -->
+      <div class="portfolio-card" data-cat="uiux" onclick="openModal('Fintech Design System & UI/UX', 'UI/UX Design', '/service/uiux.png', 'Full WCAG AA accessible patient onboarding interface, doctor booking calendar, and lab report portal.', ['150+ Design System atomic tokens', 'Zero-friction KYC onboarding flow', 'Accessible screen-reader compliance'])">
+        <div class="card-canvas canvas-tint-1">
+          <div class="mockup-spread">
+            <img src="/service/uiux.png" alt="Fintech Design System" class="mockup-img">
+          </div>
+        </div>
+        <div class="bottom-label-pill">
+          <div class="label-info">
+            <div class="label-title">Fintech Design System</div>
+            <div class="label-meta">UI/UX Design</div>
+          </div>
+          <div class="open-icon-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 08 -->
+      <div class="portfolio-card" data-cat="cloud" onclick="openModal('Cloud Infrastructure & CI/CD Pipeline', 'Cloud & Deployment', '/service/cloud-deployment.png', 'Zero-downtime multi-region cloud cluster with automated blue-green delivery pipeline.', ['Automated 4-minute CI/CD pipeline', 'Multi-region failover cluster', '24/7 proactive incident telemetry'])">
+        <div class="card-canvas canvas-tint-2">
+          <div class="mockup-spread">
+            <img src="/service/cloud-deployment.png" alt="Cloud Infrastructure" class="mockup-img">
+          </div>
+        </div>
+        <div class="bottom-label-pill">
+          <div class="label-info">
+            <div class="label-title">Cloud Infrastructure & CI/CD</div>
+            <div class="label-meta">Cloud & Deployment</div>
+          </div>
+          <div class="open-icon-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 09 -->
+      <div class="portfolio-card" data-cat="analytics" onclick="openModal('Enterprise Data Analytics & BI Suite', 'Data Analytics', '/service/dataanalytics.png', 'Interactive executive BI decision dashboard with streaming ETL pipeline and predictive inventory modeling.', ['Real-time streaming ETL ingestion', 'Executive margin & churn telemetry', 'Predictive demand forecasting'])">
+        <div class="card-canvas canvas-tint-3">
+          <div class="mockup-spread">
+            <img src="/service/dataanalytics.png" alt="Data Analytics" class="mockup-img">
+          </div>
+        </div>
+        <div class="bottom-label-pill">
+          <div class="label-info">
+            <div class="label-title">Enterprise Analytics & BI</div>
+            <div class="label-meta">Data Analytics</div>
+          </div>
+          <div class="open-icon-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 10 -->
+      <div class="portfolio-card" data-cat="social" onclick="openModal('Digital Brand Growth & Social Management', 'Social Media Management', '/service/socialmedia.png', 'Omnichannel content publishing calendar, targeted performance ad campaigns, and ROI attribution dashboard.', ['High-converting paid ad creatives', 'Community lead qualification triage', 'Full-funnel revenue attribution'])">
+        <div class="card-canvas canvas-tint-4">
+          <div class="mockup-spread">
+            <img src="/service/socialmedia.png" alt="Social Media" class="mockup-img">
+          </div>
+        </div>
+        <div class="bottom-label-pill">
+          <div class="label-info">
+            <div class="label-title">Digital Brand Social Growth</div>
+            <div class="label-meta">Social Media Management</div>
+          </div>
+          <div class="open-icon-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 11 -->
+      <div class="portfolio-card" data-cat="software" onclick="openModal('Healthcare Clinical Operations Suite', 'Software Development', '/project/businessdashboardworkspace.png', 'Electronic health records (EHR), multi-department patient triage, and central pharmacy inventory management.', ['Clinical EHR database', 'Emergency triage queue manager', 'Automated pharmacy stock sync'])">
+        <div class="card-canvas canvas-tint-5">
+          <div class="mockup-spread">
+            <img src="/project/businessdashboardworkspace.png" alt="Healthcare Operations Suite" class="mockup-img">
+          </div>
+        </div>
+        <div class="bottom-label-pill">
+          <div class="label-info">
+            <div class="label-title">Clinical Operations Suite</div>
+            <div class="label-meta">Software Development</div>
+          </div>
+          <div class="open-icon-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 12 -->
+      <div class="portfolio-card" data-cat="ecom" onclick="openModal('Global Wholesale Commerce Engine', 'E-Commerce', '/project/onlinestorefulfillmentworkspace.png', 'B2B wholesale digital portal with tiered pricing models, bulk order line uploads, and automated invoice credit terms.', ['Wholesale tiered pricing engine', 'Bulk CSV order upload tool', 'Automated credit term invoicing'])">
+        <div class="card-canvas canvas-tint-6">
+          <div class="mockup-spread">
+            <img src="/project/onlinestorefulfillmentworkspace.png" alt="Wholesale Commerce" class="mockup-img">
+          </div>
+        </div>
+        <div class="bottom-label-pill">
+          <div class="label-info">
+            <div class="label-title">B2B Wholesale Commerce</div>
+            <div class="label-meta">E-Commerce</div>
+          </div>
+          <div class="open-icon-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 13 -->
+      <div class="portfolio-card" data-cat="ai" onclick="openModal('Autonomous IT Helpdesk AI', 'AI & Automation', '/project/ai.png', 'Self-healing IT service desk AI capable of executing automated password resets, policy verification, and ticket deflection.', ['Automated IT helpdesk workflows', 'Accurate policy document lookup', 'Human escalation dispatch'])">
+        <div class="card-canvas canvas-tint-1">
+          <div class="mockup-spread">
+            <img src="/project/ai.png" alt="IT Helpdesk AI" class="mockup-img">
+          </div>
+        </div>
+        <div class="bottom-label-pill">
+          <div class="label-info">
+            <div class="label-title">Autonomous IT Helpdesk AI</div>
+            <div class="label-meta">AI & Automation</div>
+          </div>
+          <div class="open-icon-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 14 -->
+      <div class="portfolio-card" data-cat="mobile" onclick="openModal('Industrial Plant Telemetry App', 'Mobile App Development', '/project/Industrialfieldworkdeskbytheplant.png', 'Cross-platform tablet application for factory floor supervisors with real-time machine telemetry and predictive maintenance alerts.', ['Machine telemetry dashboard', 'Bluetooth sensor data capture', 'Offline floor log recording'])">
+        <div class="card-canvas canvas-tint-2">
+          <div class="mockup-spread">
+            <img src="/project/Industrialfieldworkdeskbytheplant.png" alt="Plant Telemetry App" class="mockup-img">
+          </div>
+        </div>
+        <div class="bottom-label-pill">
+          <div class="label-info">
+            <div class="label-title">Plant Telemetry Client</div>
+            <div class="label-meta">Mobile App Development</div>
+          </div>
+          <div class="open-icon-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 15 -->
+      <div class="portfolio-card" data-cat="web" onclick="openModal('Industrial Manufacturing Portal', 'Web Development', '/project/moderncorporateworkspacewebsiteshowcase.png', 'Interactive technical equipment catalog featuring 3D component previews, specification PDF generators, and global RFQ forms.', ['Interactive 3D product view', 'Technical spec PDF download', 'Direct RFQ quote generator'])">
+        <div class="card-canvas canvas-tint-3">
+          <div class="mockup-spread">
+            <img src="/project/moderncorporateworkspacewebsiteshowcase.png" alt="Manufacturing Portal" class="mockup-img">
+          </div>
+        </div>
+        <div class="bottom-label-pill">
+          <div class="label-info">
+            <div class="label-title">Industrial Equipment Portal</div>
+            <div class="label-meta">Web Development</div>
+          </div>
+          <div class="open-icon-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 16 -->
+      <div class="portfolio-card" data-cat="custom" onclick="openModal('Institutional Research Network', 'Custom Solutions', '/project/moderncustomerportalworkspace.png', 'Inter-departmental academic research repository, grant lifecycle management, and intellectual property publication tracking.', ['Grant approval lifecycle engine', 'Academic citation aggregation', 'Encrypted patent repository'])">
+        <div class="card-canvas canvas-tint-4">
+          <div class="mockup-spread">
+            <img src="/project/moderncustomerportalworkspace.png" alt="Research Network" class="mockup-img">
+          </div>
+        </div>
+        <div class="bottom-label-pill">
+          <div class="label-info">
+            <div class="label-title">Institutional Research Hub</div>
+            <div class="label-meta">Custom Solutions</div>
+          </div>
+          <div class="open-icon-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Interactive Project Preview Modal -->
+  <div class="modal-backdrop" id="projectModal" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-container">
+      <button class="modal-close-btn" onclick="closeModal()">✕</button>
+      <div class="modal-img-wrapper">
+        <img src="" alt="" id="modalImg" class="modal-img">
+      </div>
+      <div class="modal-content">
+        <div class="modal-category" id="modalCategory">SERVICE DOMAIN</div>
+        <h3 class="modal-title" id="modalTitle">Project Title</h3>
+        <p class="modal-desc" id="modalDesc">Detailed description of the project case study.</p>
+
+        <div class="deliverables-box">
+          <h4>What We Made (Key Deliverables)</h4>
+          <ul id="modalDeliverables">
+            <!-- Injected via JavaScript -->
+          </ul>
+        </div>
+
+        <div class="modal-footer">
+          <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);">
+            Engineered by DATAMINT AARVIX
+          </span>
+          <a href="mailto:info@datamintaarvix.com?subject=Project Inquiry" class="inquire-btn">
+            <span>Inquire About Similar Build</span>
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Theme Toggle
+    function toggleTheme() {
+      const current = document.body.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.body.setAttribute('data-theme', next);
+      localStorage.setItem('da_portfolio_theme', next);
+    }
+
+    // Persist theme
+    const savedTheme = localStorage.getItem('da_portfolio_theme');
+    if (savedTheme) {
+      document.body.setAttribute('data-theme', savedTheme);
+    }
+
+    // Category Filtering
+    function filterProjects(cat, btn) {
+      // Update active pill
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('.portfolio-card');
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const cardCat = card.getAttribute('data-cat');
+        if (cat === 'all' || cardCat === cat) {
+          card.style.display = 'flex';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      document.getElementById('projectCountText').innerText = 
+        `Showing ${visibleCount} sample delivery ${visibleCount === 1 ? 'case' : 'cases'}`;
+    }
+
+    // Modal Interaction
+    function openModal(title, category, imgSrc, desc, deliverables) {
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalCategory').innerText = category;
+      document.getElementById('modalImg').src = imgSrc;
+      document.getElementById('modalDesc').innerText = desc;
+
+      const listEl = document.getElementById('modalDeliverables');
+      listEl.innerHTML = '';
+      deliverables.forEach(item => {
+        const li = document.createElement('li');
+        li.innerHTML = `<span class="check-mark">✓</span> <span>${item}</span>`;
+        listEl.appendChild(li);
+      });
+
+      document.getElementById('projectModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('projectModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function closeModalOnBackdrop(e) {
+      if (e.target.id === 'projectModal') {
+        closeModal();
+      }
+    }
+  </script>
+
+</body>
+</html>

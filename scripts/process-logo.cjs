@@ -125,7 +125,6 @@ for (let y = 0; y < mH; y++) {
     const g = srcPng.data[srcIdx + 1];
     const b = srcPng.data[srcIdx + 2];
     const a = srcPng.data[srcIdx + 3];
-
     if (a < 5) {
       markCrop.data[dstIdx] = 0;
       markCrop.data[dstIdx + 1] = 0;
