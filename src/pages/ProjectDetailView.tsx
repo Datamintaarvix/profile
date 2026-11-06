@@ -17,6 +17,16 @@ import {
 } from 'lucide-react';
 import { SEOHead } from '../components/SEOHead';
 import { DataAnalystProjectView } from '../components/DataAnalystProjectView';
+import { EndloopCaseStudy } from './portfolio/EndloopCaseStudy';
+import { JBRBuildersCaseStudy } from './portfolio/JBRBuildersCaseStudy';
+import { FloralEleganceCaseStudy } from './portfolio/FloralEleganceCaseStudy';
+import { VelouraCaseStudy } from './portfolio/VelouraCaseStudy';
+import { NextgenDMACaseStudy } from './portfolio/NextgenDMACaseStudy';
+import { IronforgeCaseStudy } from './portfolio/IronforgeCaseStudy';
+import { DigitalTwinCaseStudy } from './portfolio/DigitalTwinCaseStudy';
+import { SKSoftwareCaseStudy } from './portfolio/SKSoftwareCaseStudy';
+import { PlantHealthScannerCaseStudy } from './portfolio/PlantHealthScannerCaseStudy';
+import { VisionQInspectionCaseStudy } from './portfolio/VisionQInspectionCaseStudy';
 
 interface ProjectDetailViewProps {
   onOpenQuote: (serviceCategory?: string) => void;
@@ -509,6 +519,38 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({ onOpenQuot
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [id]);
 
+  // Dedicated Case Studies routing guards
+  if (id === 'endloop' || id === 'project-01') {
+    return <EndloopCaseStudy onOpenQuote={() => onOpenQuote()} onNavigate={onNavigate} />;
+  }
+  if (id === 'jbr-builders' || id === 'project-02') {
+    return <JBRBuildersCaseStudy onOpenQuote={() => onOpenQuote()} onNavigate={onNavigate} />;
+  }
+  if (id === 'floral-elegance' || id === 'project-03') {
+    return <FloralEleganceCaseStudy onOpenQuote={() => onOpenQuote()} onNavigate={onNavigate} />;
+  }
+  if (id === 'veloura' || id === 'project-04') {
+    return <VelouraCaseStudy onOpenQuote={() => onOpenQuote()} onNavigate={onNavigate} />;
+  }
+  if (id === 'nextgen-dma' || id === 'project-05') {
+    return <NextgenDMACaseStudy onOpenQuote={() => onOpenQuote()} onNavigate={onNavigate} />;
+  }
+  if (id === 'ironforge' || id === 'project-06') {
+    return <IronforgeCaseStudy onOpenQuote={() => onOpenQuote()} onNavigate={onNavigate} />;
+  }
+  if (id === 'digital-twin' || id === 'project-07') {
+    return <DigitalTwinCaseStudy onOpenQuote={() => onOpenQuote()} onNavigate={onNavigate} />;
+  }
+  if (id === 'sk-software' || id === 'smart-energy' || id === 'project-08') {
+    return <SKSoftwareCaseStudy onOpenQuote={() => onOpenQuote()} onNavigate={onNavigate} />;
+  }
+  if (id === 'plant-health-scanner' || id === 'ai-project-01') {
+    return <PlantHealthScannerCaseStudy onOpenQuote={() => onOpenQuote()} onNavigate={onNavigate} />;
+  }
+  if (id === 'visionq-inspection' || id === 'ai-project-02') {
+    return <VisionQInspectionCaseStudy onOpenQuote={() => onOpenQuote()} onNavigate={onNavigate} />;
+  }
+
   // Find project by id or fallback to first project
   const project = projects.find((p) => p.id === id) || projects[0];
   const projectIndex = projects.findIndex((p) => p.id === project.id);
@@ -554,6 +596,10 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({ onOpenQuot
       case 'project-16': return '/project/moderncustomerportalworkspace.png';
       case 'project-17': return '/home/businessmanagementdashboardinterface.png';
       case 'project-18': return '/dataanalyst_project/grokal/grokal_main_dashboard.png';
+      case 'project-19': return '/dataanalyst_project/ai_supply_chain/dashboard_1_executive.png';
+      case 'project-20': return '/dataanalyst_project/kister_retail/01_Retail_Sales.png';
+      case 'project-21': return '/dataanalyst_project/superstore/dashboard_1_sales.png';
+      case 'project-22': return '/dataanalyst_project/supply_chain_risk/01_Supply_analysis_summary.png';
       default: return '/service/webdevelopment.png';
     }
   };

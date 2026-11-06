@@ -11,6 +11,16 @@ import { SolutionsView } from './pages/SolutionsView';
 import { PackagesView } from './pages/PackagesView';
 import { ProjectsView } from './pages/ProjectsView';
 import { ProjectDetailView } from './pages/ProjectDetailView';
+import { EndloopCaseStudy } from './pages/portfolio/EndloopCaseStudy';
+import { JBRBuildersCaseStudy } from './pages/portfolio/JBRBuildersCaseStudy';
+import { FloralEleganceCaseStudy } from './pages/portfolio/FloralEleganceCaseStudy';
+import { VelouraCaseStudy } from './pages/portfolio/VelouraCaseStudy';
+import { NextgenDMACaseStudy } from './pages/portfolio/NextgenDMACaseStudy';
+import { IronforgeCaseStudy } from './pages/portfolio/IronforgeCaseStudy';
+import { DigitalTwinCaseStudy } from './pages/portfolio/DigitalTwinCaseStudy';
+import { SKSoftwareCaseStudy } from './pages/portfolio/SKSoftwareCaseStudy';
+import { PlantHealthScannerCaseStudy } from './pages/portfolio/PlantHealthScannerCaseStudy';
+import { VisionQInspectionCaseStudy } from './pages/portfolio/VisionQInspectionCaseStudy';
 import { CareersView } from './pages/CareersView';
 import { ContactView } from './pages/ContactView';
 import { QuoteView } from './pages/QuoteView';
@@ -153,6 +163,21 @@ function MainLayout() {
             </>
           } />
 
+          {/* Dedicated Project Case Study Routes */}
+          <Route path="/portfolio/endloop" element={<EndloopCaseStudy onOpenQuote={() => handleOpenQuote()} onNavigate={handleNavigate} />} />
+          <Route path="/portfolio/jbr-builders" element={<JBRBuildersCaseStudy onOpenQuote={() => handleOpenQuote()} onNavigate={handleNavigate} />} />
+          <Route path="/portfolio/floral-elegance" element={<FloralEleganceCaseStudy onOpenQuote={() => handleOpenQuote()} onNavigate={handleNavigate} />} />
+          <Route path="/portfolio/veloura" element={<VelouraCaseStudy onOpenQuote={() => handleOpenQuote()} onNavigate={handleNavigate} />} />
+          <Route path="/portfolio/nextgen-dma" element={<NextgenDMACaseStudy onOpenQuote={() => handleOpenQuote()} onNavigate={handleNavigate} />} />
+          <Route path="/portfolio/ironforge" element={<IronforgeCaseStudy onOpenQuote={() => handleOpenQuote()} onNavigate={handleNavigate} />} />
+          <Route path="/portfolio/digital-twin" element={<DigitalTwinCaseStudy onOpenQuote={() => handleOpenQuote()} onNavigate={handleNavigate} />} />
+          <Route path="/portfolio/sk-software" element={<SKSoftwareCaseStudy onOpenQuote={() => handleOpenQuote()} onNavigate={handleNavigate} />} />
+          <Route path="/portfolio/smart-energy" element={<SKSoftwareCaseStudy onOpenQuote={() => handleOpenQuote()} onNavigate={handleNavigate} />} />
+          <Route path="/portfolio/plant-health-scanner" element={<PlantHealthScannerCaseStudy onOpenQuote={() => handleOpenQuote()} onNavigate={handleNavigate} />} />
+          <Route path="/portfolio/ai-project-01" element={<PlantHealthScannerCaseStudy onOpenQuote={() => handleOpenQuote()} onNavigate={handleNavigate} />} />
+          <Route path="/portfolio/visionq-inspection" element={<VisionQInspectionCaseStudy onOpenQuote={() => handleOpenQuote()} onNavigate={handleNavigate} />} />
+          <Route path="/portfolio/ai-project-02" element={<VisionQInspectionCaseStudy onOpenQuote={() => handleOpenQuote()} onNavigate={handleNavigate} />} />
+
           <Route path="/portfolio/:id" element={
             <ProjectDetailView
               onOpenQuote={handleOpenQuote}
@@ -173,6 +198,21 @@ function MainLayout() {
               />
             </>
           } />
+
+          {/* Dedicated Project Aliases under /projects/ */}
+          <Route path="/projects/endloop" element={<EndloopCaseStudy onOpenQuote={() => handleOpenQuote()} onNavigate={handleNavigate} />} />
+          <Route path="/projects/jbr-builders" element={<JBRBuildersCaseStudy onOpenQuote={() => handleOpenQuote()} onNavigate={handleNavigate} />} />
+          <Route path="/projects/floral-elegance" element={<FloralEleganceCaseStudy onOpenQuote={() => handleOpenQuote()} onNavigate={handleNavigate} />} />
+          <Route path="/projects/veloura" element={<VelouraCaseStudy onOpenQuote={() => handleOpenQuote()} onNavigate={handleNavigate} />} />
+          <Route path="/projects/nextgen-dma" element={<NextgenDMACaseStudy onOpenQuote={() => handleOpenQuote()} onNavigate={handleNavigate} />} />
+          <Route path="/projects/ironforge" element={<IronforgeCaseStudy onOpenQuote={() => handleOpenQuote()} onNavigate={handleNavigate} />} />
+          <Route path="/projects/digital-twin" element={<DigitalTwinCaseStudy onOpenQuote={() => handleOpenQuote()} onNavigate={handleNavigate} />} />
+          <Route path="/projects/sk-software" element={<SKSoftwareCaseStudy onOpenQuote={() => handleOpenQuote()} onNavigate={handleNavigate} />} />
+          <Route path="/projects/smart-energy" element={<SKSoftwareCaseStudy onOpenQuote={() => handleOpenQuote()} onNavigate={handleNavigate} />} />
+          <Route path="/projects/plant-health-scanner" element={<PlantHealthScannerCaseStudy onOpenQuote={() => handleOpenQuote()} onNavigate={handleNavigate} />} />
+          <Route path="/projects/ai-project-01" element={<PlantHealthScannerCaseStudy onOpenQuote={() => handleOpenQuote()} onNavigate={handleNavigate} />} />
+          <Route path="/projects/visionq-inspection" element={<VisionQInspectionCaseStudy onOpenQuote={() => handleOpenQuote()} onNavigate={handleNavigate} />} />
+          <Route path="/projects/ai-project-02" element={<VisionQInspectionCaseStudy onOpenQuote={() => handleOpenQuote()} onNavigate={handleNavigate} />} />
 
           <Route path="/projects/:id" element={
             <ProjectDetailView

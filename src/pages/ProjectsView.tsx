@@ -71,19 +71,112 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({ onOpenQuote, onNavig
     'Social Media Management'
   ];
 
+  const isProjectInCategory = (project: Project, category: string) => {
+    if (category === 'All') return true;
+    if (project.category.toLowerCase() === category.toLowerCase()) return true;
+    if (category.toLowerCase() === 'e-commerce' && project.tags.some(t => t.toLowerCase().includes('commerce') || t.toLowerCase().includes('e-com'))) {
+      return true;
+    }
+    return false;
+  };
+
   const filteredProjects = activeCategory === 'All'
     ? projects
-    : projects.filter((p) => p.category.toLowerCase() === activeCategory.toLowerCase());
+    : projects.filter((p) => isProjectInCategory(p, activeCategory));
+
+  const getProjectRoute = (pId: string) => {
+    switch (pId) {
+      case 'project-01':
+      case 'endloop':
+        return '/portfolio/endloop';
+      case 'project-02':
+      case 'jbr-builders':
+        return '/portfolio/jbr-builders';
+      case 'project-03':
+      case 'floral-elegance':
+        return '/portfolio/floral-elegance';
+      case 'project-04':
+      case 'veloura':
+        return '/portfolio/veloura';
+      case 'project-05':
+      case 'nextgen-dma':
+        return '/portfolio/nextgen-dma';
+      case 'project-06':
+      case 'ironforge':
+        return '/portfolio/ironforge';
+      case 'project-07':
+      case 'digital-twin':
+        return '/portfolio/digital-twin';
+      case 'sk-software':
+      case 'smart-energy':
+        return '/portfolio/sk-software';
+      case 'plant-health-scanner':
+      case 'ai-project-01':
+        return '/portfolio/plant-health-scanner';
+      case 'visionq-inspection':
+      case 'ai-project-02':
+        return '/portfolio/visionq-inspection';
+      default:
+        return `/portfolio/${pId}`;
+    }
+  };
+
+  const getLiveUrl = (id: string): string | null => {
+    switch (id) {
+      case 'sk-software':
+      case 'smart-energy':
+        return 'https://softweredev01.vercel.app/login';
+      case 'digital-twin':
+        return 'https://digital-twin-lovat-beta.vercel.app/';
+      case 'endloop':
+        return 'https://endloop-ecom.vercel.app/';
+      case 'jbr-builders':
+        return 'https://www.jbrbuilders.in/';
+      case 'floral-elegance':
+        return 'https://floral-elegance-xi.vercel.app/';
+      case 'veloura':
+        return 'https://demo01-ap8k.vercel.app/';
+      case 'nextgen-dma':
+        return 'https://nextgen-virid-five.vercel.app/';
+      case 'ironforge':
+        return 'https://iron-psi-eight.vercel.app/';
+      default:
+        return null;
+    }
+  };
 
   const getProjectImage = (id: string) => {
     switch (id) {
-      case 'project-01': return '/service/softwaredevelopment.png';
-      case 'project-02': return '/service/webdevelopment.png';
-      case 'project-03': return '/service/ecom.png';
-      case 'project-04': return '/service/ai.png';
-      case 'project-05': return '/service/mobileappdevelopment.png';
-      case 'project-06': return '/service/customsolutions.png';
-      case 'project-07': return '/service/uiux.png';
+      case 'sk-software':
+      case 'smart-energy':
+        return '/projects/software-development/hero/smart_energy_dashboard_hero.png';
+      case 'plant-health-scanner':
+      case 'ai-project-01':
+        return '/projects/ai-automation/plant-health-scanner/hero/plant_health_hero.jpeg';
+      case 'visionq-inspection':
+      case 'ai-project-02':
+        return '/projects/ai-automation/visionq-industrial-inspection/hero/visionq_dashboard_hero.png';
+      case 'endloop':
+      case 'project-01':
+        return '/projects_showcase/endloop/desktop_hero.png';
+      case 'jbr-builders':
+      case 'project-02':
+        return '/projects_showcase/jbr-builders/desktop_hero.png';
+      case 'floral-elegance':
+      case 'project-03':
+        return '/projects_showcase/floral-elegance/desktop_hero.png';
+      case 'veloura':
+      case 'project-04':
+        return '/projects_showcase/veloura/desktop_hero.png';
+      case 'nextgen-dma':
+      case 'project-05':
+        return '/projects_showcase/nextgen-dma/desktop_hero.png';
+      case 'ironforge':
+      case 'project-06':
+        return '/projects_showcase/ironforge/desktop_hero.png';
+      case 'digital-twin':
+      case 'project-07':
+        return '/projects_showcase/digital-twin/desktop_hero.png';
       case 'project-08': return '/service/cloud-deployment.png';
       case 'project-09': return '/service/dataanalytics.png';
       case 'project-10': return '/service/socialmedia.png';
@@ -95,6 +188,10 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({ onOpenQuote, onNavig
       case 'project-16': return '/project/moderncustomerportalworkspace.png';
       case 'project-17': return '/home/businessmanagementdashboardinterface.png';
       case 'project-18': return '/dataanalyst_project/grokal/grokal_main_dashboard.png';
+      case 'project-19': return '/dataanalyst_project/ai_supply_chain/dashboard_1_executive.png';
+      case 'project-20': return '/dataanalyst_project/kister_retail/01_Retail_Sales.png';
+      case 'project-21': return '/dataanalyst_project/superstore/dashboard_1_sales.png';
+      case 'project-22': return '/dataanalyst_project/supply_chain_risk/01_Supply_analysis_summary.png';
       default: return '/service/webdevelopment.png';
     }
   };
@@ -114,7 +211,7 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({ onOpenQuote, onNavig
 
   const getCategoryCount = (cat: string) => {
     if (cat === 'All') return projects.length;
-    return projects.filter((p) => p.category.toLowerCase() === cat.toLowerCase()).length;
+    return projects.filter((p) => isProjectInCategory(p, cat)).length;
   };
 
   return (
@@ -256,7 +353,7 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({ onOpenQuote, onNavig
           {filteredProjects.map((project, idx) => (
             <div
               key={project.id}
-              onClick={() => navigate(`/portfolio/${project.id}`)}
+              onClick={() => navigate(getProjectRoute(project.id))}
               className="group relative rounded-2xl overflow-hidden cursor-pointer bg-white dark:bg-white/[0.03] border border-slate-200/90 dark:border-white/10 shadow-sm hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col aspect-[3/4.2]"
             >
               {/* Studio Canvas Backdrop with delicate tint */}
@@ -270,8 +367,51 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({ onOpenQuote, onNavig
                     className="w-full h-full object-cover rounded-xl shadow-lg border border-black/5 dark:border-white/10"
                   />
                   
+                  {/* Hover Overlay with Tech Tags, Description & Action Buttons */}
+                  <div className="absolute inset-0 bg-slate-950/85 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-between rounded-xl z-20">
+                    <div className="space-y-1.5">
+                      <div className="flex flex-wrap gap-1">
+                        {project.tags.slice(0, 2).map((tag, ti) => (
+                          <span key={ti} className="text-[9px] font-mono px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <p className="text-[11px] text-slate-300 line-clamp-3 leading-relaxed">
+                        {project.shortDesc}
+                      </p>
+                    </div>
+
+                    <div className="flex items-center gap-1.5 pt-2">
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigate(getProjectRoute(project.id));
+                        }}
+                        className="flex-1 py-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-navy-950 font-bold font-mono text-[10px] tracking-wider uppercase text-center transition-colors cursor-pointer"
+                      >
+                        Case Study
+                      </button>
+
+                      {getLiveUrl(project.id) && (
+                        <a
+                          href={getLiveUrl(project.id)!}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="px-2 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-mono text-[10px] flex items-center justify-center gap-1 border border-white/20 transition-colors"
+                          title="View Live Application"
+                        >
+                          <ExternalLink className="w-3 h-3 text-cyan-400" />
+                          <span className="hidden sm:inline">Live App</span>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+
                   {/* Subtle top badge for release year */}
-                  <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
                     <span className="text-[9px] font-mono font-bold px-2 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-white border border-white/20">
                       PROJ {project.number}
                     </span>

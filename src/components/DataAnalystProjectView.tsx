@@ -70,6 +70,7 @@ interface DataAnalystDetailContent {
     paragraphs: string[];
   };
   dashboards: DashboardCard[];
+  detailedVisuals?: DashboardCard[];
   toolsUsedForThis: {
     capability: string;
     tools: string[];
@@ -363,6 +364,48 @@ const dataAnalystRepository: Record<string, DataAnalystDetailContent> = {
     }
   },
   'project-18': {
+    detailedVisuals: [
+      {
+            "id": "grok-v1",
+            "title": "Executive KPI Cards: Revenue & Volume",
+            "category": "Core KPIs",
+            "metric": "$1.20M Sales | $141 Avg | 8,523 Items | 3.9 Rating",
+            "description": "Consolidated executive metric cards tracking total sales, average sales per transaction, catalog item count, and customer satisfaction ratings.",
+            "image": "/dataanalyst_project/grokal/grokal_kpi_cards.png"
+      },
+      {
+            "id": "grok-v2",
+            "title": "Outlet Establishment Growth Curve",
+            "category": "Historical Trends",
+            "metric": "Historical Peak $205K (2018)",
+            "description": "Longitudinal sales performance mapped across outlet establishment years, showing expansion spikes in 2018.",
+            "image": "/dataanalyst_project/grokal/Outlet establishment.png"
+      },
+      {
+            "id": "grok-v3",
+            "title": "Outlet Type Performance & Visibility Matrix",
+            "category": "Outlet Benchmarking",
+            "metric": "Supermarket Type 1 $787.55K",
+            "description": "Detailed comparison of Supermarket Type 1 ($787.55K, 5,577 items), Grocery Store ($151.94K), Type 2 & 3 outlets with item visibility indices.",
+            "image": "/dataanalyst_project/grokal/sales by outlet type.png"
+      },
+      {
+            "id": "grok-v4",
+            "title": "Item Category & Fat Content Revenue Split",
+            "category": "Category Intelligence",
+            "metric": "Fruits & Snacks ($0.18M each)",
+            "description": "High-resolution donut and bar chart analyzing item category sales contributions and regular vs low-fat preference.",
+            "image": "/dataanalyst_project/grokal/Screenshot 2026-10-29 104941.png"
+      },
+      {
+            "id": "grok-v5",
+            "title": "Fat Content Distribution Across Outlet Tiers",
+            "category": "Merchandising",
+            "metric": "Tier 3 $0.31M Low Fat Lead",
+            "description": "Cross-dimensional distribution of Low Fat ($776K) vs Regular ($425K) sales across Tier 1, Tier 2, and Tier 3 retail zones.",
+            "image": "/dataanalyst_project/grokal/fatcontentbyoutlet&itemtype.png"
+      }
+],
     overview: 'Developed an interactive Power BI dashboard to analyze retail sales performance across product categories, outlet types, outlet sizes, location tiers, and outlet establishment years. The dashboard consolidates important business KPIs and interactive visualizations into a unified reporting interface to support data-driven retail decisions.',
     toolsUsed: [
       'Microsoft Power BI',
@@ -530,6 +573,1286 @@ const dataAnalystRepository: Record<string, DataAnalystDetailContent> = {
         }
       ]
     }
+  },
+  'project-19': {
+    detailedVisuals: [
+      {
+            "id": "sc-v-11",
+            "title": "KPI: Total Units Sold",
+            "category": "Executive Overview",
+            "metric": "9.98M Units Sold",
+            "description": "Primary demand-volume measure showing total units sold across all channels during the reporting period.",
+            "image": "/dataanalyst_project/ai_supply_chain/executive/11.png"
+      },
+      {
+            "id": "sc-v-111",
+            "title": "KPI: Total Units Ordered",
+            "category": "Executive Overview",
+            "metric": "8.04M Units Ordered",
+            "description": "Total customer order volume benchmarked against fulfilled demand.",
+            "image": "/dataanalyst_project/ai_supply_chain/executive/111.png"
+      },
+      {
+            "id": "sc-v-1111",
+            "title": "KPI: Total Inventory Level & Average Forecast",
+            "category": "Executive Overview",
+            "metric": "20.1M Stock | 141.49 Avg Forecast",
+            "description": "Macro inventory holding volume compared against machine learning average demand forecast.",
+            "image": "/dataanalyst_project/ai_supply_chain/executive/1111.png"
+      },
+      {
+            "id": "sc-v-12",
+            "title": "Executive Key Insights Strip",
+            "category": "Executive Overview",
+            "metric": "+4.7% Period-over-Period Growth",
+            "description": "Executive summary banner highlighting +4.7% sales growth, Electronics lead (20.3% / 2.03M units), and East region dominance (2.51M units).",
+            "image": "/dataanalyst_project/ai_supply_chain/executive/12.png"
+      },
+      {
+            "id": "sc-v-13",
+            "title": "Reporting Period & Date Horizon Slicer",
+            "category": "Executive Overview",
+            "metric": "01 Jan 2022 - 01 Jan 2024 Window",
+            "description": "Interactive date range slider governing time-series windows and comparative period benchmarks.",
+            "image": "/dataanalyst_project/ai_supply_chain/executive/13.png"
+      },
+      {
+            "id": "sc-v-14",
+            "title": "Total Units Sold Trend Curve",
+            "category": "Executive Overview",
+            "metric": "385K - 438K Monthly Range",
+            "description": "Longitudinal sales time-series tracking cyclical demand swings and volume momentum.",
+            "image": "/dataanalyst_project/ai_supply_chain/executive/14.png"
+      },
+      {
+            "id": "sc-v-15",
+            "title": "Units Sold by Product Category",
+            "category": "Executive Overview",
+            "metric": "Furniture 20.3% | Groceries 20.05%",
+            "description": "Donut chart displaying balanced category contributions across Furniture, Groceries, Clothing, Toys, and Electronics.",
+            "image": "/dataanalyst_project/ai_supply_chain/executive/15.png"
+      },
+      {
+            "id": "sc-v-16",
+            "title": "Units Sold by Day of Week",
+            "category": "Executive Overview",
+            "metric": "Peak at 1.44M on Sunday",
+            "description": "Weekday demand cadence showing consistent throughput rising toward weekend consumer volume.",
+            "image": "/dataanalyst_project/ai_supply_chain/executive/16.png"
+      },
+      {
+            "id": "sc-v-17",
+            "title": "Units Sold by Geographic Region",
+            "category": "Executive Overview",
+            "metric": "East (2.51M) & South (2.51M)",
+            "description": "Horizontal regional comparison highlighting balanced demand across East, South, North, and West territories.",
+            "image": "/dataanalyst_project/ai_supply_chain/executive/17.png"
+      },
+      {
+            "id": "sc-v-18",
+            "title": "Product Line Navigation Slicer",
+            "category": "Executive Overview",
+            "metric": "Multi-Category Slicer",
+            "description": "Categorical filter enabling instant cross-filtering across store formats and merchandise lines.",
+            "image": "/dataanalyst_project/ai_supply_chain/executive/18.png"
+      },
+      {
+            "id": "sc-v-19",
+            "title": "Executive Operations Summary Panel",
+            "category": "Executive Overview",
+            "metric": "Fulfillment & Pipeline Health",
+            "description": "Overview panel consolidating order fulfillment rates and pipeline throughput.",
+            "image": "/dataanalyst_project/ai_supply_chain/executive/19.png"
+      },
+      {
+            "id": "sc-v-21",
+            "title": "KPI: Total Inventory Stock",
+            "category": "Inventory & Operations",
+            "metric": "20.1M Units in Storage",
+            "description": "Total physical inventory volume across all regional fulfillment centers.",
+            "image": "/dataanalyst_project/ai_supply_chain/inventory/21.png"
+      },
+      {
+            "id": "sc-v-22",
+            "title": "KPI: Low Inventory Stockout Alerts",
+            "category": "Inventory & Operations",
+            "metric": "8.0K SKUs at Depletion Risk",
+            "description": "Critical safety threshold alert flagging 8.0K product records with stock below required safety buffer.",
+            "image": "/dataanalyst_project/ai_supply_chain/inventory/22.png"
+      },
+      {
+            "id": "sc-v-222",
+            "title": "KPI: Average Inventory Level",
+            "category": "Inventory & Operations",
+            "metric": "274.47 Units Average per Record",
+            "description": "Average inventory holding per active product line across warehouse facilities.",
+            "image": "/dataanalyst_project/ai_supply_chain/inventory/222.png"
+      },
+      {
+            "id": "sc-v-2222",
+            "title": "KPI: Replenishment Orders Volume",
+            "category": "Inventory & Operations",
+            "metric": "8.04M Units Ordered",
+            "description": "Purchase order replenishment pipeline initiated with manufacturing suppliers.",
+            "image": "/dataanalyst_project/ai_supply_chain/inventory/2222.png"
+      },
+      {
+            "id": "sc-v-23",
+            "title": "KPI: Average Discount Percentage",
+            "category": "Inventory & Operations",
+            "metric": "10.01% Commercial Discount",
+            "description": "Average promotional discounting applied across product categories.",
+            "image": "/dataanalyst_project/ai_supply_chain/inventory/23.png"
+      },
+      {
+            "id": "sc-v-24",
+            "title": "Warehouse & Store Location Slicer",
+            "category": "Inventory & Operations",
+            "metric": "Facility Filter Console",
+            "description": "Dynamic filter controls isolating stock metrics by distribution hub and retail branch.",
+            "image": "/dataanalyst_project/ai_supply_chain/inventory/24.png"
+      },
+      {
+            "id": "sc-v-25",
+            "title": "Inventory Stock vs Units Sold Comparison",
+            "category": "Inventory & Operations",
+            "metric": "Turnover Health Diagnostics",
+            "description": "Bivariate comparison identifying overstocked SKUs versus fast-selling products with high stockout risk.",
+            "image": "/dataanalyst_project/ai_supply_chain/inventory/25.png"
+      },
+      {
+            "id": "sc-v-26",
+            "title": "Units Sold by Retail Store Outlet",
+            "category": "Inventory & Operations",
+            "metric": "Store Network Throughput",
+            "description": "Sales volume benchmarked across retail branches to optimize inventory transfer routing.",
+            "image": "/dataanalyst_project/ai_supply_chain/inventory/26.png"
+      },
+      {
+            "id": "sc-v-27",
+            "title": "Inventory Status by Product Category",
+            "category": "Inventory & Operations",
+            "metric": "Stockout vs Adequate Ratio",
+            "description": "Classification of inventory health across categories, surfacing vulnerable merchandise lines.",
+            "image": "/dataanalyst_project/ai_supply_chain/inventory/27.png"
+      },
+      {
+            "id": "sc-v-28",
+            "title": "Granular SKU Inventory Register Table",
+            "category": "Inventory & Operations",
+            "metric": "Item-Level Stock Telemetry",
+            "description": "Interactive data table showing individual SKU stock levels, safety stock points, and reorder alerts.",
+            "image": "/dataanalyst_project/ai_supply_chain/inventory/28.png"
+      },
+      {
+            "id": "sc-v-29",
+            "title": "Inventory Operations Header Banner",
+            "category": "Inventory & Operations",
+            "metric": "Warehouse Operations Cockpit",
+            "description": "Context header defining inventory parameters and operational scope.",
+            "image": "/dataanalyst_project/ai_supply_chain/inventory/29.png"
+      },
+      {
+            "id": "sc-v-31",
+            "title": "KPI: Mean Absolute Error (MAE)",
+            "category": "Demand Forecasting",
+            "metric": "MAE = 135.39 Units",
+            "description": "Average absolute difference between ML forecast predictions and actual historical unit demand.",
+            "image": "/dataanalyst_project/ai_supply_chain/forecast/31.png"
+      },
+      {
+            "id": "sc-v-32",
+            "title": "KPI: Root Mean Squared Error (RMSE)",
+            "category": "Demand Forecasting",
+            "metric": "RMSE = 176.16 Units",
+            "description": "Model dispersion metric penalizing larger forecast errors to ensure tight safety buffer modeling.",
+            "image": "/dataanalyst_project/ai_supply_chain/forecast/32.png"
+      },
+      {
+            "id": "sc-v-33",
+            "title": "KPI: Model Determination R² Score",
+            "category": "Demand Forecasting",
+            "metric": "R² = 0.71 (71% Accuracy)",
+            "description": "Statistical determination score indicating 71% of total demand variance is explained by the predictive algorithm.",
+            "image": "/dataanalyst_project/ai_supply_chain/forecast/33.png"
+      },
+      {
+            "id": "sc-v-333",
+            "title": "KPI: Mean Absolute Percentage Error (MAPE)",
+            "category": "Demand Forecasting",
+            "metric": "MAPE = 0.45",
+            "description": "Relative error percentage verifying robust model performance across diverse product price points.",
+            "image": "/dataanalyst_project/ai_supply_chain/forecast/333.png"
+      },
+      {
+            "id": "sc-v-3333",
+            "title": "KPI: Holdout Test Records Evaluated",
+            "category": "Demand Forecasting",
+            "metric": "3K Validation Records",
+            "description": "Total out-of-sample test cases used to validate model accuracy prior to production deployment.",
+            "image": "/dataanalyst_project/ai_supply_chain/forecast/3333.png"
+      },
+      {
+            "id": "sc-v-34",
+            "title": "Forecast Horizon & Model Parameters Slicer",
+            "category": "Demand Forecasting",
+            "metric": "Confidence Tuning Console",
+            "description": "Interactive parameter control adjusting prediction horizon length and confidence bands.",
+            "image": "/dataanalyst_project/ai_supply_chain/forecast/34.png"
+      },
+      {
+            "id": "sc-v-35",
+            "title": "Actual vs Predicted Units Sold Time-Series",
+            "category": "Demand Forecasting",
+            "metric": "ML Model Fit Tracking",
+            "description": "Overlay of actual sales history against machine learning forecast showing close tracking of cyclical patterns.",
+            "image": "/dataanalyst_project/ai_supply_chain/forecast/35.png"
+      },
+      {
+            "id": "sc-v-36",
+            "title": "Prediction Error Variance by Category",
+            "category": "Demand Forecasting",
+            "metric": "Category Residual Spread",
+            "description": "Residual error analysis isolating categories with higher volatility to recommend adaptive safety stocks.",
+            "image": "/dataanalyst_project/ai_supply_chain/forecast/36.png"
+      },
+      {
+            "id": "sc-v-37",
+            "title": "Actual vs Predicted Demand by Region",
+            "category": "Demand Forecasting",
+            "metric": "Regional Forecast Alignment",
+            "description": "Geographic verification showing high predictive fidelity across East, West, North, and South corridors.",
+            "image": "/dataanalyst_project/ai_supply_chain/forecast/37.png"
+      },
+      {
+            "id": "sc-v-38",
+            "title": "Top Prediction Error Outliers Diagnostics",
+            "category": "Demand Forecasting",
+            "metric": "Residual Outlier Audit Table",
+            "description": "Diagnostic table surfacing individual records with highest error to facilitate continuous algorithmic retraining.",
+            "image": "/dataanalyst_project/ai_supply_chain/forecast/38.png"
+      },
+      {
+            "id": "sc-v-39",
+            "title": "Demand Forecast Dashboard Header",
+            "category": "Demand Forecasting",
+            "metric": "Predictive Intelligence Header",
+            "description": "Module header framing the machine learning time-series predictive environment.",
+            "image": "/dataanalyst_project/ai_supply_chain/forecast/39.png"
+      }
+],
+    overview: 'An AI-powered supply chain demand forecasting and inventory optimization platform consolidating 9.98M units sold, 8.04M units ordered, and 20.1M inventory units across multi-tier warehouses with predictive time-series machine learning models.',
+    toolsUsed: ['Microsoft Power BI', 'Python (Prophet & Scikit-Learn)', 'DAX', 'Power Query', 'SQL', 'Statistical Modeling'],
+    kpiCards: [
+      { label: 'Units Sold', value: '9.98M' },
+      { label: 'Units Ordered', value: '8.04M' },
+      { label: 'Total Inventory', value: '20.1M' },
+      { label: 'Forecast Accuracy (R²)', value: '0.71' },
+      { label: 'Mean Absolute Error', value: '135.39' },
+      { label: 'Avg Forecast Units', value: '141.49' }
+    ],
+    kpiImage: '/dataanalyst_project/ai_supply_chain/kpi_units_sold.png',
+    mainDashboardImage: '/dataanalyst_project/ai_supply_chain/dashboard_1_executive.png',
+    pdfDownloadUrl: '/dataanalyst_project/ai_supply_chain/AI_Powered_Supply_Chain_Every_Image_Explanation.pdf',
+    pdfDownloadName: 'AI_Powered_Supply_Chain_Every_Image_Explanation.pdf',
+    processSteps: [
+      {
+        number: '01',
+        title: 'Multi-Echelon Data Ingestion & Cleansing',
+        description: 'Consolidated transactional order history, warehouse stock receipts, SKU-level lead times, and fulfillment backlogs from distributed logistics systems with zero packet loss.'
+      },
+      {
+        number: '02',
+        title: 'Feature Engineering & Seasonal Lag Modeling',
+        description: 'Constructed time-series features incorporating promotional calendar shifts, regional delivery lags, rolling moving averages, and supplier replenishment cycles.'
+      },
+      {
+        number: '03',
+        title: 'Machine Learning Demand Forecasting',
+        description: 'Trained and validated time-series ML regressors achieving R² of 0.71, MAE of 135.39, RMSE of 176.16, and MAPE of 0.45 for dynamic forward-looking demand estimates.'
+      },
+      {
+        number: '04',
+        title: 'Power BI Executive & Inventory Cockpit',
+        description: 'Constructed three specialized dashboards spanning executive telemetry, warehouse safety stock reorder thresholds, and granular demand forecast distributions.'
+      }
+    ],
+    referenceImage: '/dataanalyst_project/ai_supply_chain/dashboard_2_inventory.png',
+    overviewOfProject: {
+      heading: 'AI-Powered Supply Chain Demand Forecasting & Inventory Optimization',
+      content: 'Engineered an end-to-end supply chain analytics platform combining descriptive enterprise reporting with predictive machine learning algorithms. The platform empowers logistics directors and inventory controllers to dynamically balance 20.1M units of inventory against 9.98M units of demand while preempting costly stockouts.',
+      referenceImage: '/dataanalyst_project/ai_supply_chain/dashboard_3_forecast.png'
+    },
+    detailedExplanation: {
+      heading: 'Supply Chain AI Architecture & Analytical Scope',
+      paragraphs: [
+        'Global supply networks face constant disruptions from volatile consumer demand, procurement lead-time shifts, and excess warehouse carrying costs. This project was developed to eliminate blind spots across enterprise logistics by unifying multi-warehouse data into a centralized intelligence system.',
+        'Using a three-dashboard architecture, the solution provides executive visibility into 9.98M units sold and 8.04M units ordered, offers deep inventory optimization to prevent stockouts across 20.1M units of stock, and delivers forward-looking demand projections powered by ML algorithms evaluated at an R² of 0.71.',
+        'The resulting platform enables operations teams to transition from reactive firefighting to predictive replenishment, slashing carrying costs, eliminating excess holding overhead, and ensuring critical stock availability across high-velocity sales channels.'
+      ]
+    },
+    dashboards: [
+      {
+        id: 'dash-sc-1',
+        title: 'Dashboard 1: Executive Supply Chain Overview',
+        category: 'Executive Telemetry',
+        metric: '9.98M Units Sold | 8.04M Ordered',
+        description: 'High-level executive dashboard tracking total units sold, fulfillment order velocity, sales channel distribution, and macro inventory status across all warehouses.',
+        image: '/dataanalyst_project/ai_supply_chain/dashboard_1_executive.png'
+      },
+      {
+        id: 'dash-sc-2',
+        title: 'Dashboard 2: Inventory Optimization & Buffer Health',
+        category: 'Warehouse Logistics',
+        metric: '20.1M Total Inventory Tracked',
+        description: 'Warehouse-level SKU diagnostics, carrying cost analysis, inventory turnover ratios, reorder triggers, and stockout probability matrix.',
+        image: '/dataanalyst_project/ai_supply_chain/dashboard_2_inventory.png'
+      },
+      {
+        id: 'dash-sc-3',
+        title: 'Dashboard 3: AI Demand Forecasting Engine',
+        category: 'Predictive ML Analytics',
+        metric: 'R² 0.71 | MAE 135.39 | Avg Forecast 141.49',
+        description: 'Algorithmic time-series demand forecasts comparing historical baseline sales with projected weekly units, confidence bands, and seasonal variance.',
+        image: '/dataanalyst_project/ai_supply_chain/dashboard_3_forecast.png'
+      }
+    ],
+    toolsUsedForThis: [
+      {
+        capability: 'Predictive Modeling & Feature Engineering',
+        tools: ['Python', 'Scikit-Learn', 'Prophet', 'Pandas'],
+        purpose: 'Time-series forecasting, lag feature calculation, outlier detection, and hyperparameter tuning achieving R² = 0.71.'
+      },
+      {
+        capability: 'Data Transformation & Star-Schema ETL',
+        tools: ['Power Query', 'SQL Server', 'Excel'],
+        purpose: 'Ingesting multi-warehouse inventory snapshots, cleaning order records, and linking calendar, SKU, and facility tables.'
+      },
+      {
+        capability: 'Advanced Business Logic & DAX',
+        tools: ['DAX', 'Power BI Data Engine'],
+        purpose: 'Formulating dynamic safety stock metrics, reorder point formulas, stockout risk indicators, and cumulative volume measures.'
+      },
+      {
+        capability: 'Interactive BI Cockpit & UX Design',
+        tools: ['Microsoft Power BI', 'UI Design System'],
+        purpose: 'Three-tiered executive layout with drill-through navigation, slicers, forecast comparison visuals, and automated threshold alerts.'
+      }
+    ],
+    workflowSteps: [
+      'Multi-Source Data Ingestion',
+      'Data Cleansing & Validation',
+      'Python ML Demand Modeling',
+      'DAX Safety Stock Formulas',
+      'Three-Tier Power BI Cockpit',
+      'Automated Replenishment Insights'
+    ],
+    predictsAndEnhanced: {
+      predictsLabel: 'What We Predict & Model',
+      enhancedLabel: 'Operational Impact Delivered',
+      whatWePredict: [
+        {
+          title: 'Weekly & Monthly Demand Volumes',
+          description: 'Predict SKU order quantities across distribution centers up to 12 weeks ahead.'
+        },
+        {
+          title: 'Stockout Probability Scoring',
+          description: 'Flag inventory items where lead time replenishment lags behind predicted run-rate.'
+        },
+        {
+          title: 'Seasonal Surges & Demand Shifts',
+          description: 'Isolate promotional peaks and seasonal buying trends from standard baseline demand.'
+        },
+        {
+          title: 'Optimal Safety Stock Levels',
+          description: 'Calculate statistical safety stock per facility to balance capital cost against service level agreements.'
+        }
+      ],
+      whatWeEnhanced: [
+        {
+          title: 'Carrying Cost Reduction',
+          description: 'Minimized warehouse holding expenses by trimming over-ordered buffer stock across 20.1M units.'
+        },
+        {
+          title: 'Proactive Reorder Triggering',
+          description: 'Replaced manual spreadsheet reviews with automated alerts tied to predictive threshold triggers.'
+        },
+        {
+          title: 'Procurement Alignment',
+          description: 'Synchronized purchase orders with vendor manufacturing lead times for optimized fulfillment.'
+        },
+        {
+          title: 'Executive Multi-Facility Visibility',
+          description: 'Single-pane-of-glass executive monitoring spanning sales, inventory buffers, and forecast variance.'
+        }
+      ]
+    }
+  },
+  'project-20': {
+    detailedVisuals: [
+      {
+            "id": "kr-v-02",
+            "title": "Total Sales & Profit KPI Banner",
+            "category": "Financial KPIs",
+            "metric": "$3.43M Sales | $1.09M Net Profit",
+            "description": "Core financial indicators tracking top-line sales volume alongside operating profit.",
+            "image": "/dataanalyst_project/kister_retail/02_Total_Sales_and_Profit.png"
+      },
+      {
+            "id": "kr-v-03",
+            "title": "Geographic Sales Distribution",
+            "category": "Regional Performance",
+            "metric": "West ($1.22M) Leading",
+            "description": "Sales volume distribution mapped across West, East, North, and South commercial zones.",
+            "image": "/dataanalyst_project/kister_retail/03_Sales_by_Region.png"
+      },
+      {
+            "id": "kr-v-04",
+            "title": "Regional Sales & Margin Breakdown",
+            "category": "Regional Performance",
+            "metric": "32% Target Margin Maintained",
+            "description": "Cross-comparison of regional sales volume versus operating profit margins.",
+            "image": "/dataanalyst_project/kister_retail/04_Region_by_Sales.png"
+      },
+      {
+            "id": "kr-v-05",
+            "title": "Product Category Revenue & Margin Yield",
+            "category": "Merchandising",
+            "metric": "Electronics & Apparel Dominance",
+            "description": "Detailed category performance comparing sales contributions against margin durability.",
+            "image": "/dataanalyst_project/kister_retail/05_Sales_by_Category.png"
+      },
+      {
+            "id": "kr-v-06",
+            "title": "Top Metropolitan Commercial Centers",
+            "category": "City Benchmarking",
+            "metric": "Ahmedabad ($0.32M) & Surat ($0.31M)",
+            "description": "Ranked ranking of highest-performing cities driving majority retail revenue.",
+            "image": "/dataanalyst_project/kister_retail/06_Top_10_Sales.png"
+      },
+      {
+            "id": "kr-v-07",
+            "title": "City Performance & Order Matrix",
+            "category": "City Benchmarking",
+            "metric": "1,223 Orders Mapped",
+            "description": "Order frequency and average order values across key urban commercial territories.",
+            "image": "/dataanalyst_project/kister_retail/07_City_Performance.png"
+      },
+      {
+            "id": "kr-v-08",
+            "title": "Historical Seasonality & 6-Month Forecast",
+            "category": "Forecasting",
+            "metric": "6-Month Growth Trajectory",
+            "description": "Monthly revenue trend paired with statistical 6-month predictive forecasting for upcoming fiscal quarters.",
+            "image": "/dataanalyst_project/kister_retail/08_Sales_and_Profit_Trend.png"
+      }
+],
+    overview: 'An enterprise retail sales business intelligence and predictive analytics suite analyzing $3.43M in total revenue, $1.09M in net profit, 1,223 fulfilled orders, and a 32% profit margin with 6-month statistical sales forecasting.',
+    toolsUsed: ['Microsoft Power BI', 'DAX', 'Power Query', 'Statistical Modeling', 'Microsoft Excel', 'Data Modeling'],
+    kpiCards: [
+      { label: 'Total Sales', value: '$3.43M' },
+      { label: 'Total Profit', value: '$1.09M' },
+      { label: 'Profit Margin', value: '32%' },
+      { label: 'Total Orders', value: '1,223' },
+      { label: 'Top City (Ahmedabad)', value: '$0.32M' },
+      { label: 'Predictive Scope', value: '6-Month Forecast' }
+    ],
+    kpiImage: '/dataanalyst_project/kister_retail/02_Total_Sales.png',
+    mainDashboardImage: '/dataanalyst_project/kister_retail/01_Retail_Sales.png',
+    pdfDownloadUrl: '/dataanalyst_project/kister_retail/Kister_Retail_Sales_Business_Analysis_Updated.pdf',
+    pdfDownloadName: 'Kister_Retail_Sales_Business_Analysis_Updated.pdf',
+    processSteps: [
+      {
+        number: '01',
+        title: 'Data Extraction & Schema Normalization',
+        description: 'Extracted transactional retail records, cleaned inconsistencies, normalized regional store identifiers, and created relational date dimensions.'
+      },
+      {
+        number: '02',
+        title: 'DAX Business Logic & Margin Formulation',
+        description: 'Engineered custom DAX measures for net sales, gross margin percentages (32%), average order value, and city-level sales rankings.'
+      },
+      {
+        number: '03',
+        title: 'Geographic & Category Segmentation',
+        description: 'Benchmarked top revenue centers including Ahmedabad ($0.32M), Surat ($0.31M), and Mumbai ($0.30M), analyzing category profit yields.'
+      },
+      {
+        number: '04',
+        title: '6-Month Machine Learning Sales Forecasting',
+        description: 'Applied statistical time-series forecasting to model projected revenue streams 6 months into the future with dynamic confidence intervals.'
+      }
+    ],
+    referenceImage: '/dataanalyst_project/kister_retail/08_Sales_and_Profit_Trend.png',
+    overviewOfProject: {
+      heading: 'Kister Retail Sales — Multi-Dimensional Intelligence & 6-Month Forecasting',
+      content: 'Developed an interactive enterprise Power BI dashboard providing deep analytical visibility into $3.43M in retail sales and $1.09M in net profit. The platform connects customer purchasing channels, regional sales territories, category performance, and forward-looking 6-month predictive trends.',
+      referenceImage: '/dataanalyst_project/kister_retail/07_Sales_by_Category.png'
+    },
+    detailedExplanation: {
+      heading: 'Kister Retail Analytical Architecture & Scope',
+      paragraphs: [
+        'Kister Retail operated across multiple regional commercial hubs but lacked centralized reporting, leaving leadership unable to monitor margin health or identify which cities and categories drove sustainable profit.',
+        'This analytics solution consolidated 1,223 store orders into an interactive Power BI command center. Key DAX measures isolate high-margin product categories (maintaining a healthy 32% margin) while highlighting top-performing urban centers including Ahmedabad ($0.32M) and Surat ($0.31M).',
+        'Furthermore, the integration of 6-month predictive time-series forecasting gives retail merchandising teams advance visibility into seasonal fluctuations, helping align purchasing budgets and marketing campaigns with expected revenue cycles.'
+      ]
+    },
+    dashboards: [
+      {
+        id: 'dash-kr-1',
+        title: 'Dashboard 1: Kister Retail Sales Executive Cockpit',
+        category: 'Executive Overview',
+        metric: '$3.43M Total Sales | $1.09M Profit',
+        description: 'Comprehensive Power BI dashboard tracking total sales, profit, orders (1,223), margin (32%), monthly trends, and regional city rankings.',
+        image: '/dataanalyst_project/kister_retail/01_Retail_Sales.png'
+      },
+      {
+        id: 'dash-kr-2',
+        title: 'Dashboard 2: Top 5 City Market Penetration',
+        category: 'Geospatial Analytics',
+        metric: 'Ahmedabad ($0.32M) | Surat ($0.31M)',
+        description: 'Detailed geographic breakdown showing top revenue-generating metropolitan territories and market share across key urban centers.',
+        image: '/dataanalyst_project/kister_retail/06_Top_5_City.png'
+      },
+      {
+        id: 'dash-kr-3',
+        title: 'Dashboard 3: Category Profit Margin Analysis',
+        category: 'Merchandising Intelligence',
+        metric: '32% Profit Margin Tracked',
+        description: 'Analysis of product categories comparing gross revenue against net profitability to isolate high-yield inventory segments.',
+        image: '/dataanalyst_project/kister_retail/07_Sales_by_Category.png'
+      },
+      {
+        id: 'dash-kr-4',
+        title: 'Dashboard 4: 6-Month Sales & Profit Forecasting',
+        category: 'Predictive Modeling',
+        metric: '6-Month Forward Projection',
+        description: 'Predictive time-series forecasting model projecting sales and profit trajectories with confidence intervals to guide upcoming quarterly budgets.',
+        image: '/dataanalyst_project/kister_retail/08_Sales_and_Profit_Trend.png'
+      }
+    ],
+    toolsUsedForThis: [
+      {
+        capability: 'Data Transformation & Hygiene',
+        tools: ['Power Query', 'Microsoft Excel'],
+        purpose: 'Cleaning transactional order files, standardizing currencies, fixing date anomalies, and building dimensional tables.'
+      },
+      {
+        capability: 'Data Modeling & Relational Architecture',
+        tools: ['Power BI Data Engine', 'Star Schema'],
+        purpose: 'Constructing robust relational links across sales transactions, calendar hierarchies, geographic maps, and item catalogs.'
+      },
+      {
+        capability: 'Advanced Business Logic & Calculations',
+        tools: ['DAX (Data Analysis Expressions)'],
+        purpose: 'Formulating total sales ($3.43M), net profit ($1.09M), margin rates (32%), moving averages, and dynamic city rankings.'
+      },
+      {
+        capability: 'Predictive Forecasting & BI Visuals',
+        tools: ['Power BI Visuals', 'Time Series Forecasting'],
+        purpose: 'Deploying interactive cards, bar charts, trend graphs, and 6-month predictive projection bands.'
+      }
+    ],
+    workflowSteps: [
+      'Transactional Data Consolidation',
+      'Power Query Cleaning & Formatting',
+      'Star-Schema Dimensional Modeling',
+      'Custom DAX Measure Development',
+      'Geographic & Category Analytics',
+      '6-Month Predictive Sales Forecast'
+    ],
+    predictsAndEnhanced: {
+      predictsLabel: 'What We Analyze & Forecast',
+      enhancedLabel: 'Commercial Value Delivered',
+      whatWePredict: [
+        {
+          title: '6-Month Revenue Trajectory',
+          description: 'Model future retail sales velocity by month using statistical time-series forecasting.'
+        },
+        {
+          title: 'Top Regional Market Expansion',
+          description: 'Identify highest-yielding metropolitan regions such as Ahmedabad and Surat for inventory allocation.'
+        },
+        {
+          title: 'Product Category Profit Elasticity',
+          description: 'Assess margin sustainability across product categories to guide promotional discount limits.'
+        },
+        {
+          title: 'Order Velocity & Basket Trends',
+          description: 'Analyze average order size and purchasing cadence across the 1,223 recorded transactions.'
+        }
+      ],
+      whatWeEnhanced: [
+        {
+          title: 'Centralized Executive Reporting',
+          description: 'Replaced scattered spreadsheets with an interactive, single-pane Power BI decision dashboard.'
+        },
+        {
+          title: 'Margin Protection Strategy',
+          description: 'Identified low-margin lines to protect overall 32% enterprise profit margin ($1.09M net profit).'
+        },
+        {
+          title: 'Regional Inventory Prioritization',
+          description: 'Directed stock and logistics resources to top revenue cities to maximize fulfillment speed.'
+        },
+        {
+          title: 'Quarterly Budget Planning',
+          description: 'Provided sales leadership with forward-looking 6-month projections for reliable inventory planning.'
+        }
+      ]
+    }
+  },
+  'project-21': {
+    detailedVisuals: [
+      {
+            "id": "ss-v-1-1",
+            "title": "KPI: Total Sales Revenue",
+            "category": "Sales Overview",
+            "metric": "$2.00M Total Sales",
+            "description": "Gross commercial sales revenue generated across all enterprise product lines.",
+            "image": "/dataanalyst_project/superstore/1/1.1.png"
+      },
+      {
+            "id": "ss-v-1-2",
+            "title": "KPI: Total Operating Profit",
+            "category": "Sales Overview",
+            "metric": "$275K Total Profit",
+            "description": "Net operating profit achieved with average margin of 12.9%.",
+            "image": "/dataanalyst_project/superstore/1/1.2.png"
+      },
+      {
+            "id": "ss-v-1-3",
+            "title": "KPI: Total Order Count",
+            "category": "Sales Overview",
+            "metric": "4,627 Orders Fulfilled",
+            "description": "Total transaction count across Consumer, Corporate, and Home Office clients.",
+            "image": "/dataanalyst_project/superstore/1/1.3.png"
+      },
+      {
+            "id": "ss-v-1-4",
+            "title": "KPI: Quantity of Units Sold",
+            "category": "Sales Overview",
+            "metric": "35K Total Units",
+            "description": "Aggregate physical volume of merchandise shipped across customer accounts.",
+            "image": "/dataanalyst_project/superstore/1/1.4.png"
+      },
+      {
+            "id": "ss-v-1-5",
+            "title": "KPI: Average Order Value (AOV)",
+            "category": "Sales Overview",
+            "metric": "$460.80 AOV",
+            "description": "Average expenditure per transaction across enterprise ordering channels.",
+            "image": "/dataanalyst_project/superstore/1/1.5.png"
+      },
+      {
+            "id": "ss-v-1-6",
+            "title": "Monthly Sales & Profit Trend Curve",
+            "category": "Sales Overview",
+            "metric": "Q4 Peak Seasonality",
+            "description": "Multi-year monthly trend curve tracking sales surges and profitability margins over time.",
+            "image": "/dataanalyst_project/superstore/1/1.6.png"
+      },
+      {
+            "id": "ss-v-1-7",
+            "title": "Sales by Customer Segment",
+            "category": "Sales Overview",
+            "metric": "Consumer (50.6%) Lead",
+            "description": "Segment distribution comparing Consumer ($1.01M), Corporate ($0.61M), and Home Office ($0.38M).",
+            "image": "/dataanalyst_project/superstore/1/1.7.png"
+      },
+      {
+            "id": "ss-v-1-8",
+            "title": "Category Revenue Contribution",
+            "category": "Sales Overview",
+            "metric": "Technology ($0.84M) & Office ($0.72M)",
+            "description": "Donut chart displaying product category share: Technology (41.6%), Office Supplies (31.5%), Furniture (26.9%).",
+            "image": "/dataanalyst_project/superstore/1/1.8.png"
+      },
+      {
+            "id": "ss-v-1-9",
+            "title": "Sales by Shipping Mode",
+            "category": "Sales Overview",
+            "metric": "Standard Class (59.6%)",
+            "description": "Fulfillment method breakdown: Standard Class, Second Class, First Class, and Same Day.",
+            "image": "/dataanalyst_project/superstore/1/1.9.png"
+      },
+      {
+            "id": "ss-v-1-10",
+            "title": "State-by-State Sales Density Map",
+            "category": "Sales Overview",
+            "metric": "California & New York Leading",
+            "description": "Geographic heatmap displaying order distribution and market penetration across 48 US states.",
+            "image": "/dataanalyst_project/superstore/1/1.10.png"
+      },
+      {
+            "id": "ss-v-1-11",
+            "title": "Regional Sales & Performance Table",
+            "category": "Sales Overview",
+            "metric": "West ($725K) & East ($678K)",
+            "description": "Comparative table benchmark tracking sales volume, profit, and customer orders by region.",
+            "image": "/dataanalyst_project/superstore/1/1.11.png"
+      },
+      {
+            "id": "ss-v-1-12",
+            "title": "Executive Filter & Horizon Slicers",
+            "category": "Sales Overview",
+            "metric": "Dynamic Slicing Console",
+            "description": "Interactive slicers for Year, Geographic Region, and Product Category.",
+            "image": "/dataanalyst_project/superstore/1/1.12.png"
+      },
+      {
+            "id": "ss-v-2-1",
+            "title": "KPI: Loss-Making Products Count",
+            "category": "Profitability Diagnostics",
+            "metric": "296 Unprofitable SKUs Flagged",
+            "description": "Critical audit indicator identifying 296 products generating negative profit due to high discounts.",
+            "image": "/dataanalyst_project/superstore/2/2.1.png"
+      },
+      {
+            "id": "ss-v-2-2",
+            "title": "KPI: Highest Regional Profit Leader",
+            "category": "Profitability Diagnostics",
+            "metric": "West Region ($104K Net Profit)",
+            "description": "Top-performing geographical territory delivering greatest margin contribution.",
+            "image": "/dataanalyst_project/superstore/2/2.2.png"
+      },
+      {
+            "id": "ss-v-2-3",
+            "title": "KPI: Loss-Making Sub-Categories",
+            "category": "Profitability Diagnostics",
+            "metric": "Tables, Bookcases & Supplies",
+            "description": "Identifies sub-categories where high promotional discounts and freight costs destroyed operating profits.",
+            "image": "/dataanalyst_project/superstore/2/2.3.png"
+      },
+      {
+            "id": "ss-v-2-4",
+            "title": "KPI: Regional Margin Variance",
+            "category": "Profitability Diagnostics",
+            "metric": "12.9% Mean Enterprise Margin",
+            "description": "Overall operating margin metric establishing baseline profitability benchmark.",
+            "image": "/dataanalyst_project/superstore/2/2.4.png"
+      },
+      {
+            "id": "ss-v-2-5",
+            "title": "Profit vs Discount Correlation Matrix",
+            "category": "Profitability Diagnostics",
+            "metric": "Discount Erosion Thresholds",
+            "description": "Scatter visualization demonstrating steep profit collapse when discounts exceed 20%.",
+            "image": "/dataanalyst_project/superstore/2/2.5.png"
+      },
+      {
+            "id": "ss-v-2-6",
+            "title": "Sub-Category Margin Health Comparison",
+            "category": "Profitability Diagnostics",
+            "metric": "Paper (+35%) vs Tables (-18%)",
+            "description": "Bar chart ranking sub-category margins from high-yielding Paper and Binders to loss-making Tables.",
+            "image": "/dataanalyst_project/superstore/2/2.6.png"
+      },
+      {
+            "id": "ss-v-2-7",
+            "title": "Geographic Profitability Heatmap",
+            "category": "Profitability Diagnostics",
+            "metric": "State Profit Variance",
+            "description": "US state map highlighting profitable states (green) versus deep-loss states such as Texas (red).",
+            "image": "/dataanalyst_project/superstore/2/2.7.png"
+      },
+      {
+            "id": "ss-v-2-8",
+            "title": "Severe Loss-Making Products Breakdown",
+            "category": "Profitability Diagnostics",
+            "metric": "Cubify 3D (-$8.9K) & Lexmark (-$4.6K)",
+            "description": "Ranked analysis of individual loss-making SKUs with largest net negative drag on enterprise profit.",
+            "image": "/dataanalyst_project/superstore/2/2.8.png"
+      },
+      {
+            "id": "ss-v-2-9",
+            "title": "Customer Segment Profit Contribution",
+            "category": "Profitability Diagnostics",
+            "metric": "Corporate Margin Leadership",
+            "description": "Net margin comparison showing Corporate clients delivering highest profitability per order dollar.",
+            "image": "/dataanalyst_project/superstore/2/2.9.png"
+      },
+      {
+            "id": "ss-v-2-10",
+            "title": "Worst 10 Loss-Making SKUs Table",
+            "category": "Profitability Diagnostics",
+            "metric": "De-Listing & Price Review Table",
+            "description": "Granular table identifying specific product codes requiring immediate discount caps or vendor renegotiation.",
+            "image": "/dataanalyst_project/superstore/2/2.10.png"
+      },
+      {
+            "id": "ss-v-2-11",
+            "title": "Discount Level Impact on Margins",
+            "category": "Profitability Diagnostics",
+            "metric": "Discount Band Diagnostics",
+            "description": "Staged analysis of operating margins across 0-10%, 10-20%, 20-40%, and >40% discount brackets.",
+            "image": "/dataanalyst_project/superstore/2/2.11.png"
+      },
+      {
+            "id": "ss-v-2-12",
+            "title": "Subcategory Turnaround Matrix",
+            "category": "Profitability Diagnostics",
+            "metric": "Strategic Margin Action Plan",
+            "description": "Turnaround framework mapping remedial actions for Tables, Bookcases, and Office Supplies.",
+            "image": "/dataanalyst_project/superstore/2/2.12.png"
+      },
+      {
+            "id": "ss-v-2-13",
+            "title": "Profitability Diagnostic Filters",
+            "category": "Profitability Diagnostics",
+            "metric": "Multi-Filter Diagnostics",
+            "description": "Interactive slicers for auditing margin health across regions and discount thresholds.",
+            "image": "/dataanalyst_project/superstore/2/2.13.png"
+      },
+      {
+            "id": "ss-v-3-1",
+            "title": "KPI: 12-Month Forecasted Demand",
+            "category": "AI Forecasting",
+            "metric": "14,011 Projected Units",
+            "description": "Machine learning forward-looking demand projection for the upcoming 12 months.",
+            "image": "/dataanalyst_project/superstore/3/3.1.png"
+      },
+      {
+            "id": "ss-v-3-2",
+            "title": "KPI: Forecasted Demand Growth Rate",
+            "category": "AI Forecasting",
+            "metric": "+17.3% Annual Unit Growth",
+            "description": "Predicted expansion in total unit demand driven by core office supply consumables.",
+            "image": "/dataanalyst_project/superstore/3/3.2.png"
+      },
+      {
+            "id": "ss-v-3-3",
+            "title": "KPI: Average Monthly Projected Demand",
+            "category": "AI Forecasting",
+            "metric": "2.7K Units / Month Run-Rate",
+            "description": "Baseline monthly inventory throughput requirement across distribution centers.",
+            "image": "/dataanalyst_project/superstore/3/3.3.png"
+      },
+      {
+            "id": "ss-v-3-4",
+            "title": "KPI: Total Modeled Catalog Products",
+            "category": "AI Forecasting",
+            "metric": "1,843 SKUs Modeled",
+            "description": "Total product catalog coverage analyzed through predictive time-series regression.",
+            "image": "/dataanalyst_project/superstore/3/3.4.png"
+      },
+      {
+            "id": "ss-v-3-5",
+            "title": "Actual vs Forecasted Demand Curve (with 95% CI)",
+            "category": "AI Forecasting",
+            "metric": "Time-Series Model with Confidence Area",
+            "description": "Historical demand trajectory transitioning into 12-month forward predictive forecast with shaded confidence intervals.",
+            "image": "/dataanalyst_project/superstore/3/3.5.png"
+      },
+      {
+            "id": "ss-v-3-6",
+            "title": "Monthly Demand Seasonality Breakdown",
+            "category": "AI Forecasting",
+            "metric": "September Peak 5.1K (46% in Q4)",
+            "description": "Calendar month aggregation showing demand surges from September through December.",
+            "image": "/dataanalyst_project/superstore/3/3.6.png"
+      },
+      {
+            "id": "ss-v-3-7",
+            "title": "Top 10 Products by Demand Volume",
+            "category": "AI Forecasting",
+            "metric": "Staples (218) & Envelopes (166)",
+            "description": "Green-bar ranking highlighting highest-velocity consumable products that must never stock out.",
+            "image": "/dataanalyst_project/superstore/3/3.7.png"
+      },
+      {
+            "id": "ss-v-3-8",
+            "title": "Bottom 10 Slow-Moving Products",
+            "category": "AI Forecasting",
+            "metric": "1-2 Units Long Tail Warning",
+            "description": "Red-bar diagnostics highlighting stagnant SKUs tying up warehouse capital for catalog rationalization.",
+            "image": "/dataanalyst_project/superstore/3/3.8.png"
+      },
+      {
+            "id": "ss-v-3-9",
+            "title": "Category Demand Split Donut",
+            "category": "AI Forecasting",
+            "metric": "Office Supplies 60.25% Majority",
+            "description": "Donut chart showing unit demand split: Office Supplies (60.25%), Furniture (21.6%), Technology (18.15%).",
+            "image": "/dataanalyst_project/superstore/3/3.9.png"
+      },
+      {
+            "id": "ss-v-3-10",
+            "title": "Top 10 Forward Forecast Clustered Bar",
+            "category": "AI Forecasting",
+            "metric": "Actual vs Forecast Comparison",
+            "description": "Clustered bar chart comparing past 12-month actuals with upcoming 12-month forecasts for top 10 SKUs.",
+            "image": "/dataanalyst_project/superstore/3/3.10.png"
+      },
+      {
+            "id": "ss-v-3-11",
+            "title": "Forecast Horizon & Parameter Tuning Slicers",
+            "category": "AI Forecasting",
+            "metric": "Predictive Tuning Interface",
+            "description": "Interactive controls for customizing time horizons, seasonal weights, and confidence levels.",
+            "image": "/dataanalyst_project/superstore/3/3.11.png"
+      }
+],
+    overview: 'An enterprise sales, profitability, and 12-month demand forecasting intelligence platform for Superstore, analyzing $2.00M in revenue, $275K in profit, 4,627 orders, 296 loss-making products, and a +17.3% projected demand growth.',
+    toolsUsed: ['Microsoft Power BI', 'Python (Time Series / Prophet)', 'DAX', 'Power Query', 'Microsoft Excel', 'Statistical Modeling'],
+    kpiCards: [
+      { label: 'Total Sales', value: '$2.00M' },
+      { label: 'Total Profit', value: '$275K' },
+      { label: 'Total Orders', value: '4,627' },
+      { label: 'Quantity Sold', value: '35K Units' },
+      { label: 'Average Order Value', value: '$460.80' },
+      { label: '12-Month Forecast Growth', value: '+17.3%' }
+    ],
+    kpiImage: '/dataanalyst_project/superstore/dashboard_2_product_profit.png',
+    mainDashboardImage: '/dataanalyst_project/superstore/dashboard_1_sales.png',
+    pdfDownloadUrl: '/dataanalyst_project/superstore/Superstore_Sales_Dashboard_Explanation.pdf',
+    pdfDownloadName: 'Superstore_Sales_Dashboard_Explanation.pdf',
+    processSteps: [
+      {
+        number: '01',
+        title: 'Enterprise Transactional Ingestion',
+        description: 'Ingested multi-year Superstore ERP transactional data covering 4,627 orders, 35K units, across customer segments, regions, and categories.'
+      },
+      {
+        number: '02',
+        title: 'Margin Leakage & Product Profitability Audit',
+        description: 'Executed deep profitability diagnostics isolating 296 unprofitable SKUs where aggressive discounts eroded gross operating margins.'
+      },
+      {
+        number: '03',
+        title: 'AI-Powered 12-Month Demand Forecasting',
+        description: 'Engineered time-series machine learning models projecting a +17.3% growth (14,011 forecast units) with high-confidence forecast bounds.'
+      },
+      {
+        number: '04',
+        title: 'Three-Tier Executive BI Cockpit Deployment',
+        description: 'Delivered three dedicated Power BI dashboard interfaces: Sales Overview, Product & Regional Diagnostics, and AI Demand Forecasting.'
+      }
+    ],
+    referenceImage: '/dataanalyst_project/superstore/dashboard_3_ai_forecast.png',
+    overviewOfProject: {
+      heading: 'Superstore Enterprise Intelligence — Sales, Profitability & 12-Month Forecast',
+      content: 'Constructed an end-to-end commercial intelligence suite for Superstore enterprise operations. The platform analyzes $2.00M in total sales and $275K in profit while diagnosing margin leakage across 296 loss-making products and delivering a 12-month forward predictive forecast (+17.3% growth).',
+      referenceImage: '/dataanalyst_project/superstore/dashboard_1_sales.png'
+    },
+    detailedExplanation: {
+      heading: 'Superstore Analytics Architecture & Scope',
+      paragraphs: [
+        'Superstore enterprise operations managed high transactional velocity across Consumer, Corporate, and Home Office segments, but lacked granular insights into product-level profitability and forward demand dynamics.',
+        'This analytics system was structured across three specialized dashboard environments: (1) Sales Overview tracking top-line revenue ($2.00M), orders (4,627), and average basket size ($460.80); (2) Product & Regional Profitability diagnosing margin leakage across 296 loss-making products; and (3) AI Demand Forecasting projecting 14,011 units (+17.3% growth) over 12 months.',
+        'With these tools, management identified exactly which discounting structures destroyed product margins, rationalized underperforming SKUs, and aligned inventory procurement schedules with machine learning demand forecasts.'
+      ]
+    },
+    dashboards: [
+      {
+        id: 'dash-ss-1',
+        title: 'Dashboard 1: Superstore Sales & Customer Intelligence',
+        category: 'Sales Analytics',
+        metric: '$2.00M Sales | 4,627 Orders | $460.80 AOV',
+        description: 'Executive overview tracking total revenue, order volume, quantity sold (35K), and segment contributions (Consumer, Corporate, Home Office).',
+        image: '/dataanalyst_project/superstore/dashboard_1_sales.png'
+      },
+      {
+        id: 'dash-ss-2',
+        title: 'Dashboard 2: Product Profitability & Margin Remediation',
+        category: 'Profitability Diagnostics',
+        metric: '$275K Profit | 296 Loss-Making SKUs',
+        description: 'Diagnostic dashboard isolating unprofitable product lines, discount erosion, category margins, and regional profit variance.',
+        image: '/dataanalyst_project/superstore/dashboard_2_product_profit.png'
+      },
+      {
+        id: 'dash-ss-3',
+        title: 'Dashboard 3: AI Demand Forecasting Engine',
+        category: 'Predictive ML Analytics',
+        metric: '+17.3% Growth | 14,011 Forecast Units',
+        description: '12-month forward predictive demand model visualizing historical trends, forecasted unit velocity, and upper/lower confidence bounds.',
+        image: '/dataanalyst_project/superstore/dashboard_3_ai_forecast.png'
+      }
+    ],
+    toolsUsedForThis: [
+      {
+        capability: 'Predictive Modeling & Time Series',
+        tools: ['Python', 'Prophet', 'Statsmodels'],
+        purpose: 'Training 12-month demand forecasting models, seasonal decomposition, and calculating +17.3% projected unit growth.'
+      },
+      {
+        capability: 'Data Transformation & Hygiene',
+        tools: ['Power Query', 'Microsoft Excel'],
+        purpose: 'Ingesting multi-year order history, standardizing shipping dimensions, and parsing product sub-category hierarchies.'
+      },
+      {
+        capability: 'Analytical Modeling & Custom DAX',
+        tools: ['DAX', 'Power BI Engine'],
+        purpose: 'Engineering measures for profit margins (12.9%), discount correlation, loss-making SKU flags, and AOV ($460.80).'
+      },
+      {
+        capability: 'Executive UI & Cross-Filtering Visuals',
+        tools: ['Microsoft Power BI', 'Interactive Visuals'],
+        purpose: 'Designing a three-tier dashboard suite with interactive slicers, geographic maps, and predictive trend lines.'
+      }
+    ],
+    workflowSteps: [
+      'ERP Transactional Data Ingestion',
+      'Power Query Cleaning & Enrichment',
+      'Profitability & Margin Leakage Audit',
+      'Python ML 12-Month Demand Model',
+      'Three-Tier Power BI Dashboard Suite',
+      'SKU Rationalization & Strategy'
+    ],
+    predictsAndEnhanced: {
+      predictsLabel: 'What We Predict & Model',
+      enhancedLabel: 'Enterprise Outcomes Delivered',
+      whatWePredict: [
+        {
+          title: '12-Month Demand Volume (+17.3%)',
+          description: 'Forecast 14,011 units of forward demand across product categories to guide supply procurement.'
+        },
+        {
+          title: 'Discount vs Profit Erosion Thresholds',
+          description: 'Model maximum allowable discount ceilings before individual products become unprofitable.'
+        },
+        {
+          title: 'Customer Segment Growth Trends',
+          description: 'Predict purchasing velocity differences between Consumer, Corporate, and Home Office accounts.'
+        },
+        {
+          title: 'Regional Margin Variance',
+          description: 'Isolate logistics and freight overhead impacts on regional net margins across geographical zones.'
+        }
+      ],
+      whatWeEnhanced: [
+        {
+          title: 'Remediation of 296 Loss-Making SKUs',
+          description: 'Surfaced unprofitable items for immediate price adjustment, discount reduction, or catalog sunsetting.'
+        },
+        {
+          title: 'AOV & Revenue Optimization',
+          description: 'Identified bundling opportunities to lift average order value above current $460.80 baseline.'
+        },
+        {
+          title: 'Automated Procurement Timing',
+          description: 'Replaced guesswork with algorithmic 12-month demand forecasts to schedule purchase orders accurately.'
+        },
+        {
+          title: 'Multi-Tiered Decision Framework',
+          description: 'Empowered leadership with tailored views for executive sales, deep profit diagnostics, and future forecasting.'
+        }
+      ]
+    }
+  },
+  'project-22': {
+    detailedVisuals: [
+      {
+            "id": "scr-v-01",
+            "title": "Global Supply Chain Executive Summary",
+            "category": "Executive Overview",
+            "metric": "$550.23M Sales | 73.1K Orders",
+            "description": "High-level overview tracking global supply chain revenue, order fulfillment velocity, and gross margins.",
+            "image": "/dataanalyst_project/supply_chain_risk/01_Supply_analysis_summary.png"
+      },
+      {
+            "id": "scr-v-02",
+            "title": "Delivery Performance & Transit Delay Diagnostics",
+            "category": "Logistics Analytics",
+            "metric": "$6.29M Delay Cost Exposure",
+            "description": "Transit delay tracking quantifying freight corridor bottlenecks and financial SLA penalties.",
+            "image": "/dataanalyst_project/supply_chain_risk/02_Delivery.png"
+      },
+      {
+            "id": "scr-v-03",
+            "title": "Supplier Reliability & SLA Risk Matrix",
+            "category": "Vendor Reliability",
+            "metric": "27.39 Avg Risk Score | 25 Suppliers",
+            "description": "Multi-factor vendor scoring evaluating defect ratios, lead-time volatility, and contract compliance.",
+            "image": "/dataanalyst_project/supply_chain_risk/03_Suppliers.png"
+      },
+      {
+            "id": "scr-v-04",
+            "title": "Warehouse Inventory Levels & Carrying Cost",
+            "category": "Warehouse Logistics",
+            "metric": "Multi-Hub Inventory Distribution",
+            "description": "Inventory allocation across regional fulfillment nodes assessing stock holding overhead.",
+            "image": "/dataanalyst_project/supply_chain_risk/04_Inventory.png"
+      },
+      {
+            "id": "scr-v-05",
+            "title": "Revenue, Net Profit & Delay Financial Impact",
+            "category": "Financial Analytics",
+            "metric": "$192.56M Net Profit Tracked",
+            "description": "Financial modeling isolating net profit margins against freight transit delay costs.",
+            "image": "/dataanalyst_project/supply_chain_risk/05_Sales_and_Profit.png"
+      },
+      {
+            "id": "scr-v-06",
+            "title": "Demand Forecast vs Fulfillment Throughput",
+            "category": "Predictive Modeling",
+            "metric": "Fulfillment Capacity Alignment",
+            "description": "Predictive demand curves compared against carrier shipping and warehousing capacities.",
+            "image": "/dataanalyst_project/supply_chain_risk/06_Demand_Forecast.png"
+      },
+      {
+            "id": "scr-v-07",
+            "title": "30-Day Inventory Shortage Early Warning Radar",
+            "category": "Shortage Warning",
+            "metric": "5.19M Units at Risk Preempted",
+            "description": "Automated early warning radar surfacing critical buffer depletion 30 days before assembly stoppage.",
+            "image": "/dataanalyst_project/supply_chain_risk/07_Inventory_Risk.png"
+      }
+],
+    overview: 'An executive supply chain risk analytics and inventory shortage early warning cockpit evaluating $550.23M in sales, 73.1K orders, $192.56M profit, $6.29M in delay cost exposure, and a 30-day 5.19M unit inventory shortage radar across 25 global tier-1 suppliers.',
+    toolsUsed: ['Microsoft Power BI', 'Python', 'DAX', 'Power Query', 'Risk Scoring Algorithms', 'Supply Chain Telemetry'],
+    kpiCards: [
+      { label: 'Total Sales Volume', value: '$550.23M' },
+      { label: 'Total Orders Handled', value: '73.1K' },
+      { label: 'Net Profit Delivered', value: '$192.56M' },
+      { label: 'Delay Cost Impact', value: '$6.29M' },
+      { label: 'Average Risk Score', value: '27.39 / 100' },
+      { label: '30-Day Shortage Radar', value: '5.19M Units' }
+    ],
+    kpiImage: '/dataanalyst_project/supply_chain_risk/02_Total_Sales.png',
+    mainDashboardImage: '/dataanalyst_project/supply_chain_risk/01_Supply_analysis_summary.png',
+    pdfDownloadUrl: '/dataanalyst_project/supply_chain_risk/Supply_Chain_Analysis_Dashboard.pdf',
+    pdfDownloadName: 'Supply_Chain_Analysis_Dashboard.pdf',
+    processSteps: [
+      {
+        number: '01',
+        title: 'Global Supply Chain Data Integration',
+        description: 'Aggregated transactional orders ($550.23M across 73.1K orders), carrier freight manifests, warehouse receipts, and vendor SLA records.'
+      },
+      {
+        number: '02',
+        title: 'Quantitative Risk Scoring Engine',
+        description: 'Built a composite risk assessment algorithm (scoring average risk at 27.39) factoring delivery lead time, defect rates, and supplier stability.'
+      },
+      {
+        number: '03',
+        title: 'Logistics Delay Cost Financial Modeling',
+        description: 'Formulated DAX models calculating financial exposure ($6.29M total delay cost) driven by shipping bottlenecks and transit delays.'
+      },
+      {
+        number: '04',
+        title: '30-Day Predictive Shortage Early Warning Cockpit',
+        description: 'Constructed an automated shortage radar alerting operations to 5.19M vulnerable units 30 days ahead of impending factory line stoppage.'
+      }
+    ],
+    referenceImage: '/dataanalyst_project/supply_chain_risk/07_Inventory_Risk.png',
+    overviewOfProject: {
+      heading: 'Global Supply Chain Risk Intelligence & 30-Day Shortage Cockpit',
+      content: 'Developed a mission-critical supply chain risk cockpit monitoring $550.23M in sales volume and 73.1K orders. The platform evaluates 25 global tier-1 suppliers, quantifies $6.29M in transit delay costs, and alerts procurement teams to 5.19M units of projected 30-day inventory shortages before operational impact.',
+      referenceImage: '/dataanalyst_project/supply_chain_risk/05_Delay_Cost.png'
+    },
+    detailedExplanation: {
+      heading: 'Supply Chain Risk Intelligence Architecture & Scope',
+      paragraphs: [
+        'Global supply chains operating at enterprise scale face immense exposure to freight transit bottlenecks, supplier SLA defaults, and unexpected factory stockouts. This project was commissioned to build an executive decision cockpit capable of monitoring high-value supply operations totaling $550.23M in sales.',
+        'The platform introduces quantitative supplier risk scoring (averaging 27.39 / 100 across 25 tier-1 vendors) and isolates $6.29M in delay costs directly linked to carrier routes and customs delays, enabling logistics teams to renegotiate vendor contracts based on verified performance data.',
+        'Most importantly, the 30-Day Predictive Inventory Shortage Cockpit continuously scans inventory burn rates against incoming purchase orders, identifying 5.19M units at risk of depletion a full month in advance and allowing automated safety stock reallocation.'
+      ]
+    },
+    dashboards: [
+      {
+        id: 'dash-scr-1',
+        title: 'Dashboard 1: Supply Chain Analysis Executive Summary',
+        category: 'Executive Risk Cockpit',
+        metric: '$550.23M Sales | 73.1K Orders | $192.56M Profit',
+        description: 'Comprehensive executive cockpit tracking global sales volume, net profit, order velocity, and high-level fulfillment performance.',
+        image: '/dataanalyst_project/supply_chain_risk/01_Supply_analysis_summary.png'
+      },
+      {
+        id: 'dash-scr-2',
+        title: 'Dashboard 2: Delay Cost & Logistics Bottleneck Diagnostics',
+        category: 'Cost Exposure',
+        metric: '$6.29M Delay Cost Impact Monitored',
+        description: 'Financial quantification of freight delays, carrier transit times, customs clearance bottlenecks, and SLA breach expenses.',
+        image: '/dataanalyst_project/supply_chain_risk/05_Delay_Cost.png'
+      },
+      {
+        id: 'dash-scr-3',
+        title: 'Dashboard 3: Supplier Risk & SLA Performance Matrix',
+        category: 'Vendor Reliability',
+        metric: '27.39 Avg Risk Score | 25 Global Suppliers',
+        description: 'Vendor evaluation matrix scoring on-time fulfillment ratios, defect rates, supplier dependency risks, and contract compliance.',
+        image: '/dataanalyst_project/supply_chain_risk/06_Average_Risk_Score.png'
+      },
+      {
+        id: 'dash-scr-4',
+        title: 'Dashboard 4: 30-Day Predictive Inventory Shortage Radar',
+        category: 'Early Warning System',
+        metric: '5.19M Shortage Units Preempted',
+        description: 'Predictive risk dashboard identifying inventory lines facing stockouts within 30 days to trigger urgent replenishment workflows.',
+        image: '/dataanalyst_project/supply_chain_risk/07_Inventory_Risk.png'
+      }
+    ],
+    toolsUsedForThis: [
+      {
+        capability: 'Risk Scoring & Algorithmic Modeling',
+        tools: ['Python', 'Statistical Scoring', 'NumPy'],
+        purpose: 'Formulating multi-factor supplier risk scores (27.39 mean) and calculating 30-day inventory burn probabilities.'
+      },
+      {
+        capability: 'Data Transformation & Integration',
+        tools: ['Power Query', 'SQL Server', 'Excel'],
+        purpose: 'Consolidating order lines ($550.23M), logistics waybills, warehouse stock registers, and carrier delay records.'
+      },
+      {
+        capability: 'Financial & Operational DAX Metrics',
+        tools: ['DAX', 'Power BI Data Engine'],
+        purpose: 'Modeling delay cost exposure ($6.29M), net margin ($192.56M), vendor SLA percentages, and shortage unit totals (5.19M).'
+      },
+      {
+        capability: 'Executive BI Cockpit & Warning Alerting',
+        tools: ['Microsoft Power BI', 'Interactive Visuals'],
+        purpose: 'Interactive executive radar layout with drill-through maps, vendor ranking grids, and automated shortage alert indicators.'
+      }
+    ],
+    workflowSteps: [
+      'Multi-Source Logistics Ingestion',
+      'Power Query Cleaning & Reconciliation',
+      'Supplier Risk Scoring Algorithm',
+      'Delay Cost Financial Quantification',
+      '30-Day Shortage Prediction Model',
+      'Executive Power BI Risk Cockpit'
+    ],
+    predictsAndEnhanced: {
+      predictsLabel: 'What We Predict & Monitor',
+      enhancedLabel: 'Enterprise Risk Mitigated',
+      whatWePredict: [
+        {
+          title: '30-Day Inventory Shortages (5.19M Units)',
+          description: 'Identify critical inventory stockouts 30 days ahead based on production consumption and lead times.'
+        },
+        {
+          title: 'Carrier Delay Costs ($6.29M)',
+          description: 'Calculate monetary financial liability of shipping route bottlenecks and customs clearance delays.'
+        },
+        {
+          title: 'Supplier Default Probability (27.39 Index)',
+          description: 'Score tier-1 supplier SLA delivery reliability to preempt vendor-caused manufacturing shutdowns.'
+        },
+        {
+          title: 'Fulfillment Order Velocity (73.1K Orders)',
+          description: 'Track throughput capacity across global logistics corridors to optimize container loading.'
+        }
+      ],
+      whatWeEnhanced: [
+        {
+          title: '5.19M Unit Shortage Prevention',
+          description: 'Enabled proactive buffer stock transfers between regional hubs before production assembly lines stalled.'
+        },
+        {
+          title: 'Delay Cost Containment',
+          description: 'Provided legal and procurement teams with SLA non-compliance evidence to recover carrier delay penalties.'
+        },
+        {
+          title: 'Vendor Contract Optimization',
+          description: 'Ranked 25 suppliers by verified performance to allocate high-value POs to top-tier reliable partners.'
+        },
+        {
+          title: 'Executive C-Suite Risk Visibility',
+          description: 'Delivered unified real-time oversight of $550.23M in enterprise sales volume and $192.56M in profits.'
+        }
+      ]
+    }
   }
 };
 
@@ -543,10 +1866,16 @@ export const DataAnalystProjectView: React.FC<DataAnalystProjectViewProps> = ({
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<'both' | 'page1' | 'page2'>('both');
   const [lightboxImage, setLightboxImage] = useState<{ url: string; title: string; subtitle?: string } | null>(null);
+  const [visualCategoryFilter, setVisualCategoryFilter] = useState<string>('All');
 
-  const content = dataAnalystRepository[project.id] || dataAnalystRepository['project-09'];
+  const content = dataAnalystRepository[project.id] || dataAnalystRepository['project-18'];
   const workflowSteps = content.workflowSteps || [];
   const kpiCards = content.kpiCards || [];
+  const detailedVisuals = content.detailedVisuals || [];
+  const availableCategories = ['All', ...Array.from(new Set(detailedVisuals.map(v => v.category)))];
+  const filteredVisuals = visualCategoryFilter === 'All'
+    ? detailedVisuals
+    : detailedVisuals.filter(v => v.category === visualCategoryFilter);
 
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
@@ -677,8 +2006,8 @@ export const DataAnalystProjectView: React.FC<DataAnalystProjectViewProps> = ({
                 <div
                   onClick={() => setLightboxImage({
                     url: content.mainDashboardImage!,
-                    title: 'Grokal — Retail Sales & Outlet Performance Intelligence',
-                    subtitle: 'Full Power BI Executive Analytics Dashboard ($1.20M Total Sales)'
+                    title: project.title,
+                    subtitle: content.dashboards[0] ? `${content.dashboards[0].category} // ${content.dashboards[0].metric}` : project.metrics
                   })}
                   className="group relative rounded-3xl overflow-hidden bg-white dark:bg-navy-950 border-2 border-slate-200 dark:border-white/15 p-2 sm:p-4 shadow-2xl hover:border-cyan-500/60 dark:hover:border-cyan-brand/60 transition-all duration-300 cursor-pointer"
                   title="Click to expand full Power BI dashboard in lightbox"
@@ -686,7 +2015,7 @@ export const DataAnalystProjectView: React.FC<DataAnalystProjectViewProps> = ({
                   <div className="relative rounded-2xl overflow-hidden bg-slate-50 dark:bg-black/40 flex items-center justify-center p-1 sm:p-3">
                     <img
                       src={content.mainDashboardImage}
-                      alt="Grokal Retail Sales & Outlet Performance Intelligence Main Dashboard"
+                      alt={`${project.title} Main Dashboard`}
                       className="w-full h-auto max-h-[620px] object-contain mx-auto rounded-xl group-hover:scale-[1.01] transition-transform duration-500 shadow-md"
                     />
 
@@ -743,7 +2072,7 @@ export const DataAnalystProjectView: React.FC<DataAnalystProjectViewProps> = ({
 
                 {content.kpiImage && (
                   <div
-                    onClick={() => setLightboxImage({ url: content.kpiImage!, title: 'Grokal Executive KPI Cards', subtitle: '$1.20M Total Sales | $141 Avg Sales | 8,523 Items | 3.9 Rating' })}
+                    onClick={() => setLightboxImage({ url: content.kpiImage!, title: `${project.title} — Executive KPI Metrics`, subtitle: content.kpiCards?.map(k => `${k.label}: ${k.value}`).join(' | ') || project.metrics })}
                     className="group relative rounded-2xl overflow-hidden bg-white dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 p-3 sm:p-4 shadow-sm hover:border-yellow-500/40 dark:hover:border-yellow-400/40 transition-all cursor-pointer"
                     title="Click to view full-resolution KPI Cards"
                   >
@@ -999,7 +2328,7 @@ export const DataAnalystProjectView: React.FC<DataAnalystProjectViewProps> = ({
               <div className="space-y-4">
                 {content.kpiImage && (
                   <div
-                    onClick={() => setLightboxImage({ url: content.kpiImage!, title: 'Executive KPI Telemetry', subtitle: 'Total Sales $1.20M | Average Sales $141 | Items 8,523 | Rating 3.9' })}
+                    onClick={() => setLightboxImage({ url: content.kpiImage!, title: `${project.title} — Executive KPI Metrics`, subtitle: content.kpiCards?.map(k => `${k.label}: ${k.value}`).join(' | ') || project.metrics })}
                     className="group relative rounded-2xl overflow-hidden bg-white dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 p-4 shadow-sm hover:border-yellow-500/40 transition-all cursor-pointer"
                     title="Click to view full-resolution KPI Cards"
                   >
@@ -1118,6 +2447,98 @@ export const DataAnalystProjectView: React.FC<DataAnalystProjectViewProps> = ({
                 ))}
               </div>
             </div>
+
+            {/* 04B. DETAILED REPORT COMPONENT DEEP-DIVES (SCANNED FROM INNER FOLDERS) */}
+            {detailedVisuals.length > 0 && (
+              <div className="space-y-6 pt-4">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-200 dark:border-white/10 pb-5">
+                  <div className="space-y-1">
+                    <div className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-wider uppercase text-cyan-600 dark:text-cyan-brand">
+                      <Activity className="w-4 h-4" />
+                      <span>Report Component Deep-Dives ({detailedVisuals.length} Visuals)</span>
+                    </div>
+                    <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                      Granular Report Visuals & Metric Crops
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-mono">
+                      Every scanned chart, KPI card, and diagnostic table extracted from the project analysis
+                    </p>
+                  </div>
+
+                  {/* Filter category pills */}
+                  {availableCategories.length > 2 && (
+                    <div className="flex flex-wrap items-center gap-2">
+                      {availableCategories.map((cat) => (
+                        <button
+                          key={cat}
+                          type="button"
+                          onClick={() => setVisualCategoryFilter(cat)}
+                          className={`px-3 py-1.5 rounded-xl text-xs font-mono tracking-wider transition-all cursor-pointer ${
+                            visualCategoryFilter === cat
+                              ? 'bg-cyan-500 text-white font-bold shadow-md shadow-cyan-500/20'
+                              : 'bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10'
+                          }`}
+                        >
+                          {cat} {cat === 'All' ? `(${detailedVisuals.length})` : `(${detailedVisuals.filter(v => v.category === cat).length})`}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Visuals Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
+                  {filteredVisuals.map((vis) => (
+                    <div
+                      key={vis.id}
+                      onClick={() => setLightboxImage({ url: vis.image, title: vis.title, subtitle: `${vis.category} ${vis.metric ? `// ${vis.metric}` : ''}` })}
+                      className="group rounded-2xl overflow-hidden bg-white dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 shadow-sm hover:shadow-xl hover:border-cyan-500/50 dark:hover:border-cyan-brand/50 transition-all duration-300 cursor-pointer flex flex-col"
+                    >
+                      <div className="relative aspect-[16/11] bg-slate-100/90 dark:bg-navy-950 overflow-hidden flex items-center justify-center p-3">
+                        <img
+                          src={vis.image}
+                          alt={vis.title}
+                          className="max-h-full max-w-full object-contain rounded-md group-hover:scale-105 transition-transform duration-500 shadow-sm"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+
+                        <div className="absolute top-2.5 left-2.5 z-10 flex items-center gap-1.5 max-w-[80%]">
+                          <span className="px-2 py-0.5 rounded-md text-[9px] font-mono tracking-wider bg-black/75 backdrop-blur-md text-cyan-300 border border-white/15 truncate">
+                            {vis.category}
+                          </span>
+                        </div>
+
+                        <div className="absolute top-2.5 right-2.5 z-10 w-7 h-7 rounded-lg bg-black/60 backdrop-blur-md text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                          <Maximize2 className="w-3 h-3" />
+                        </div>
+
+                        {vis.metric && (
+                          <div className="absolute bottom-2 left-2.5 right-2.5 z-10 text-[10px] font-mono font-bold text-white truncate drop-shadow-md">
+                            {vis.metric}
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="p-4 space-y-1.5 flex-1 flex flex-col justify-between">
+                        <div>
+                          <h4 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-brand transition-colors line-clamp-1">
+                            {vis.title}
+                          </h4>
+                          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1 line-clamp-2 leading-relaxed">
+                            {vis.description}
+                          </p>
+                        </div>
+
+                        <div className="pt-2.5 border-t border-slate-100 dark:border-white/5 flex items-center justify-between text-[10px] font-mono text-slate-400">
+                          <span>Inspect scan</span>
+                          <Eye className="w-3 h-3 text-cyan-500 dark:text-cyan-brand" />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* 05. TOOLS USED FOR THIS (CATEGORIZED TABLE/CARDS) */}
             <div className="space-y-4">
